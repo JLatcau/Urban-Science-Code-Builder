@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BarChartComponent } from './chart/bar-chart/bar-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import {DataTablesModule} from 'angular-datatables';
 import { KpiComponent } from './kpi/kpi.component';
