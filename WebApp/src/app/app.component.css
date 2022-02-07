@@ -24,11 +24,6 @@ p {
     flex: 1;
 }
 
-.toolbar #twitter-logo:hover,
-.toolbar #youtube-logo:hover {
-    opacity: 0.8;
-}
-
 .content {
     display: flex;
     margin: 82px auto 32px;
