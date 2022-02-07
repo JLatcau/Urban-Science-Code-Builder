@@ -1,0 +1,114 @@
+<head>
+    <script>
+    //window.onload = function () {
+    
+    //Better to construct options first and then pass it as a parameter
+    var options = {
+        animationEnabled: true,
+        title: {
+            text: "Example Bar Chart",                
+            fontColor: "Black"
+        },	
+        axisY: {
+            tickThickness: 0,
+            lineThickness: 0,
+            valueFormatString: " ",
+            includeZero: true,
+            gridThickness: 0                    
+        },
+        axisX: {
+            tickThickness: 0,
+            lineThickness: 0,
+            labelFontSize: 18,
+            labelFontColor: "Black"				
+        },
+        data: [{
+            indexLabelFontSize: 18,
+            toolTipContent: "<span style=\"color:#62C9C3\">{indexLabel}:</span> <span style=\"color:#CD853F\"><strong>{y}</strong></span>",
+            indexLabelPlacement: "inside",
+            indexLabelFontColor: "Black",
+            indexLabelFontWeight: 50,
+            indexLabelFontFamily: "Verdana",
+            color: "#00FF00",
+            type: "bar",
+            dataPoints: [
+                { y: 20, label: "20%", indexLabel: "Example1" },
+                { y: 25, label: "25%", indexLabel: "Example2" },
+                { y: 33, label: "33%", indexLabel: "Example3" },
+                { y: 38, label: "38%", indexLabel: "Example4" },
+                { y: 42, label: "42%", indexLabel: "Example5" },
+                { y: 49, label: "49%", indexLabel: "Example6" },
+                { y: 60, label: "60%", indexLabel: "Example7" },
+                { y: 65, label: "65%", indexLabel: "Example8" },
+                { y: 80, label: "80%", indexLabel: "Example9" }
+            ]
+        }]
+    };
+    
+    $("#chartContainer").CanvasJSChart(options);
+    }
+    </script>
+</head>
+    <body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    </body>
+
+    <xmp>
+        <head>
+            <script>
+            window.onload = function () {
+            
+            var options = {
+                animationEnabled: true,
+                title: {
+                    text: "Example Bar Chart",                
+                    fontColor: "Black"
+                },	
+                axisY: {
+                    tickThickness: 0,
+                    lineThickness: 0,
+                    valueFormatString: " ",
+                    includeZero: true,
+                    gridThickness: 0                    
+                },
+                axisX: {
+                    tickThickness: 0,
+                    lineThickness: 0,
+                    labelFontSize: 18,
+                    labelFontColor: "Lime"				
+                },
+                data: [{
+                    indexLabelFontSize: 26,
+                    toolTipContent: "<span style=\"color:#62C9C3\">{indexLabel}:</span> <span style=\"color:#CD853F\"><strong>{y}</strong></span>",
+                    indexLabelPlacement: "inside",
+                    indexLabelFontColor: "Black",
+                    indexLabelFontWeight: 600,
+                    indexLabelFontFamily: "Verdana",
+                    color: "#00FF00",
+                    type: "bar",
+                    dataPoints: [
+                        { y: 20, label: "20%", indexLabel: "Example1" },
+                        { y: 25, label: "25%", indexLabel: "Example2" },
+                        { y: 33, label: "33%", indexLabel: "Example3" },
+                        { y: 38, label: "38%", indexLabel: "Example4" },
+                        { y: 42, label: "42%", indexLabel: "Example5" },
+                        { y: 49, label: "49%", indexLabel: "Example6" },
+                        { y: 60, label: "60%", indexLabel: "Example7" },
+                        { y: 65, label: "65%", indexLabel: "Example8" },
+                        { y: 70, label: "80%", indexLabel: "Example9" }
+                    ]
+                }]
+            };
+            
+            $("#chartContainer").CanvasJSChart(options);
+            }
+            </script>
+        </head>
+            <body>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+            <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+            </body>
+    </xmp>
