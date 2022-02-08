@@ -18,6 +18,10 @@
         </div>
     </div>
 
+    <div class="webcam-image" *ngIf="webcamImage">
+        <img [src]="webcamImage.imageAsDataUrl" />
+      </div>
+
     <ng-template #noCameraExist>
         Camera device not available
     </ng-template>

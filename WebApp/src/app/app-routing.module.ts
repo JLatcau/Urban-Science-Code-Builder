@@ -7,7 +7,7 @@ import { KpiComponent } from './kpi/kpi.component';
 
 
 const routes: Routes = [
-  {path: 'camera', component: CameraComponent},
+  {path: 'camera', component: CameraComponent, outlet: "camera"},
   {path:'chart', component:BarChartComponent},
   {path:'datatable', component:DatatableComponent},
   {path:'kpi', component:KpiComponent}

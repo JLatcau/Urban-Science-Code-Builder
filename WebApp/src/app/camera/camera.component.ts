@@ -1,3 +1,4 @@
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
@@ -17,6 +18,8 @@ export class CameraComponent implements OnInit {
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
+
+  public webcamImage: WebcamImage | undefined;
 
   constructor() { }
 
@@ -45,7 +48,8 @@ export class CameraComponent implements OnInit {
   }
 
   handleImage(webcamImage: WebcamImage) {
-    this.getPicture.emit(webcamImage);
+   // this.getPicture.emit(webcamImage);
+    this.webcamImage = webcamImage;
     this.showWebcam = false;
   }
 

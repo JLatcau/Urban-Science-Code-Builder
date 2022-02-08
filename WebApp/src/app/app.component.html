@@ -4,28 +4,30 @@
   <p>Choose a method to upload your handwritten concept:</p>
 
   <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" >
+    <a class="card" rel="noopener" >
       <input type="file"
       accept="image/png, image/jpeg"> 
     </a>
 
-    <a class="card" target="_blank" rel="noopener" routerLink="camera">
+    <a class="card" rel="noopener" [routerLink]="[{ outlets: { camera: ['camera']}}]">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
       <span>Open Camera</span>
     </a>
 
-    <a class="card" target="_blank" rel="noopener" >
+    <a class="card" rel="noopener" >
       <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px" width="21.813" height="23.453" viewBox="0 0 21.813 23.453"><path d="M4099.584,972.736h0l-10.882,3.9,1.637,14.4,9.245,5.153,9.245-5.153,1.686-14.4Z" transform="translate(-4088.702 -972.736)" fill="#808080"/><path d="M4181.516,972.736v23.453l9.245-5.153,1.686-14.4Z" transform="translate(-4170.633 -972.736)" fill="#808080"/><path d="M4137.529,1076.127l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1058.315)" fill="#ffe0b2"/><path d="M4137.529,1051.705l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1036.757)" fill="#fff3e0"/><path d="M4137.529,1027.283l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1015.199)" fill="#fff"/></svg>
       <span>Previously Uploaded</span>
     </a>
 
   </div>
 
-  <app-camera (getPicture)="handleImage($event)"></app-camera>
+  <router-outlet name="camera"></router-outlet>
+
+  <!-- <app-camera (getPicture)="handleImage($event)"></app-camera> -->
   
-  <div class="webcam-image" *ngIf="webcamImage">
+  <!-- <div class="webcam-image" *ngIf="webcamImage">
     <img [src]="webcamImage.imageAsDataUrl" />
-  </div>
+  </div> -->
 
   <h2>Output</h2>
   <p>How do you want the output presented to you?</p>
@@ -82,5 +84,8 @@
   </footer>
 
 </div>
+
+&nbsp;
+&nbsp;
 
 <router-outlet></router-outlet>
