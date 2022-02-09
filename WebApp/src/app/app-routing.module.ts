@@ -11,7 +11,6 @@ const routes: Routes = [
   {path:'chart', component:BarChartComponent},
   {path:'datatable', component:DatatableComponent},
   {path:'kpi', component:KpiComponent}
-
 ];
 
 @NgModule({

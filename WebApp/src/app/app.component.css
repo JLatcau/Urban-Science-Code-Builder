@@ -181,3 +181,8 @@ footer a {
     display: flex;
     align-items: center;
 }
+
+a.hleft {position:absolute;width:220px;height:auto;left:80px;top:0;padding:22px 0;z-index:1;}
+a.hleft .st0 {fill:#252122;}
+a.hleft .st1 {fill:#73BF41;}
+a.hleft:hover, a.hleft:focus {opacity:0.7;}

@@ -3,8 +3,8 @@
         <div class="content">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary" (click)="takeSnapshot()">Take Picture</button>
-                <button type="button" class="btn btn-primary" (click)="changeWebCame(true)">Toggle Camera</button>
-                <button type="button" class="btn btn-primary" (click)="onOffWebCame()">Switch camera</button>
+                <button type="button" class="btn btn-primary" (click)="onOffWebCame()">Toggle Camera</button>
+                <button type="button" class="btn btn-primary" (click)="changeWebCame(true)">Switch camera</button>
             </div> <br />
             <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
                 *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
