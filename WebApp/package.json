@@ -22,10 +22,12 @@
     "@angular/router": "~12.2.0",
     "angular-datatables": "^13.0.1",
     "angular-material": "^1.2.4",
+    "chart.js": "^2.8.0",
     "datatables.net": "^1.11.4",
     "datatables.net-dt": "^1.11.4",
     "jquery": "^3.6.0",
     "ngx-webcam": "^0.4.1",
+    "ng2-charts": "^2.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -11,6 +11,8 @@ import { KpiComponent } from './kpi/kpi.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ChartsModule,
     AppRoutingModule,
     WebcamModule,
     DataTablesModule,
