@@ -14,6 +14,7 @@ h4,
 h5,
 h6 {
     margin: 8px 0;
+    color: rgb(88, 180, 88);
 }
 
 p {
@@ -60,10 +61,10 @@ svg.material-icons:not(:last-child) {
 
 .card {
     all: unset;
-    border-radius: 4px;
+    border-radius: 48px;
     border: 1px solid #eee;
     background-color: #fafafa;
-    height: 40px;
+    height: 30px;
     width: 200px;
     margin: 0 8px 16px;
     padding: 16px;
