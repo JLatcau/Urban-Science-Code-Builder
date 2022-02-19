@@ -14,13 +14,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
-
+import { FileService } from './_service/file.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     BarChartComponent,
     DatatableComponent,
-    KpiComponent
+    KpiComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +31,10 @@ import { ChartsModule } from 'ng2-charts';
     DataTablesModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [FileService],
   bootstrap: [AppComponent],
   schemas: [
     NO_ERRORS_SCHEMA
