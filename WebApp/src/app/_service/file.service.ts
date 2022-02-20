@@ -7,14 +7,26 @@ import { Injectable } from '@angular/core';
 })
 export class FileService {
   constructor(private http: HttpClient) {}
+
+  //TODO: make api url easily interchangeable between localhost ports
+  private url='https://localhost:7112/api/File';
+  
   public upload(formData: FormData) {
-      return this.http.post('https://localhost:4200/api/file/upload', formData, {
+      return this.http.post('${this.url}/upload', formData, {
           reportProgress: true,
           observe: 'events',
       });
   }
   
-  public download(){
-    return this.http.get('https://localhost:4200/api/file/download', {});
+  public download(fileUrl:string){
+    return this.http.get('${this.url}/download?fileUrl=${fileUrl}',
+    {reportProgress:true,
+    responseType:'blob',}
+    );
+    
+  }
+//Retrieving Dashboard files from Resources folder for download
+  public getFiles(){
+    return this.http.get('${this.url}/getFiles');
   }
 }
