@@ -17,10 +17,10 @@ export class DownloadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  download(){
-    this.fileService.download().subscribe((response) => {
-      this.message = response['message'];
-    });
-  }
+  // download(){
+  //   this.fileService.download().subscribe((response) => {
+  //     this.message = response['message'];
+  //   });
+  // }
 
 }

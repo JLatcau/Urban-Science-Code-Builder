@@ -15,7 +15,10 @@ builder.Services.Configure<FormOptions>(o => {
     o.MultipartBodyLengthLimit = int.MaxValue;
     o.MemoryBufferThreshold = int.MaxValue;
 });
-
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,11 +35,11 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath= new PathString("/Resources")
 }
     );
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors(options => options.AllowAnyOrigin());
 
 app.Run();
