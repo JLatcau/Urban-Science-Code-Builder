@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DataGridController : ControllerBase
+    public class BarChartController : ControllerBase
     {
         private readonly IConfiguration _configuration;
 
-        public DataGridController(IConfiguration configuration)
+        public BarChartController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
