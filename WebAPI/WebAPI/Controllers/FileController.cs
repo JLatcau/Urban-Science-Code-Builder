@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Net.Http.Headers;
@@ -7,11 +8,13 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowOrigin")]
     public class FileController : ControllerBase
     {
+        //add IFormFile fileInput parameter to upload function for testing in swaggerui
         [HttpPost, DisableRequestSizeLimit]
         [Route("upload")]
-        public async Task<IActionResult> Upload(IFormFile fileInput)
+        public async Task<IActionResult> Upload()
         {
             try
             {

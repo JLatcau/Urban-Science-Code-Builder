@@ -12,21 +12,21 @@ export class FileService {
   private url='https://localhost:7112/api/File';
   
   public upload(formData: FormData) {
-      return this.http.post('${this.url}/upload', formData, {
+      return this.http.post('https://localhost:7112/api/File/upload', formData, {
           reportProgress: true,
           observe: 'events',
       });
   }
   
-  public download(fileUrl:string){
-    return this.http.get('${this.url}/download?fileUrl=${fileUrl}',
-    {reportProgress:true,
-    responseType:'blob',}
-    );
+  // public download(fileUrl:string){
+  //   return this.http.get('${this.url}/download?fileUrl=${fileUrl}',
+  //   {reportProgress:true,
+  //   responseType:'blob',}
+  //   );
     
-  }
+  // }
 //Retrieving Dashboard files from Resources folder for download
-  public getFiles(){
-    return this.http.get('${this.url}/getFiles');
-  }
+  // public getFiles(){
+  //   return this.http.get('${this.url}/getFiles');
+  // }
 }
