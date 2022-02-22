@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainPageComponent } from './main-page/main-page.component';
+import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 
 const routes: Routes = [
-  {path:'main', component:MainPageComponent},
+  {path:'', component: MainPageComponent},
+  {path:'loading', component: LoadingPageComponent}
 ];
 
 @NgModule({

@@ -11,12 +11,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent
+    MainPageComponent,
+    LoadingPageComponent
   ],
   imports: [
     BrowserModule,
