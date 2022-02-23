@@ -20,6 +20,7 @@ p {
     border-radius: 25px;
     width: 100px;
     opacity: 1;
+    user-select: none;
 }
 
 .button:hover {opacity: 0.6}
