@@ -10,11 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { CameraComponent } from './camera/camera.component';
 import { WebcamModule } from 'ngx-webcam'
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CameraComponent
+    CameraComponent,
+    MainPageComponent,
+    LoadingPageComponent
   ],
   imports: [
     BrowserModule,
