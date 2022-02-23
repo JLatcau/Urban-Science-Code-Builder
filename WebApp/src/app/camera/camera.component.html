@@ -1,0 +1,32 @@
+<div class="main_content">
+    <h1 style="color: #70c82f;">Code Builder</h1>
+    <h3>Take a picture using your camera</h3>
+
+    <div *ngIf="isCameraExist; else noCameraExist">
+        <div class="content">
+            <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
+        </div>
+
+        <div *ngIf="errors.length > 0">
+            <h4>Error Messages:</h4>
+            <ul *ngFor="let error of errors">
+                <li>{{ error | json }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="webcam-image" *ngIf="webcamImage">
+        <img [src]="webcamImage.imageAsDataUrl" />
+      </div>
+
+    <ng-template #noCameraExist>
+        Camera device not available
+    </ng-template>
+
+    <div class="card_holder">
+        <a class="button" (click)="takeSnapshot()">Take Picture</a>
+        <a class="button" (click)="onOffWebCame()">On/Off</a>
+        <a class="button" (click)="changeWebCame(true)">Toggle</a>
+    </div>
+</div>
