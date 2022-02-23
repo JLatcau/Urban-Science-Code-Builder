@@ -1,18 +1,4 @@
-.main_content {
-    display: flex;
-    margin: 100px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
     margin: 8px 0;
 }
 
@@ -21,7 +7,7 @@ p {
 }
 
 .button {
-    background-color: #4CAF50; 
+    background-color: #70c82f; 
     border: none;
     color: white;
     padding: 10px;
@@ -33,10 +19,10 @@ p {
     cursor: pointer;
     border-radius: 25px;
     width: 100px;
-    opacity: 0.6;
+    opacity: 1;
 }
 
-.button:hover {opacity: 1}
+.button:hover {opacity: 0.6}
 
 .card_holder {
     padding: 75px;
