@@ -23,8 +23,14 @@
         Camera device not available
     </ng-template>
 
-    <div class="card_holder">
-        <a class="button" (click)="takeSnapshot()" routerLink="/loading">Take Picture</a>
-        <a class="button" (click)="changeWebCame(true)">Change Camera</a>
+    <div class="page_actions">
+        <a class="button" (click)="takeSnapshot()" (click)="toggleSubmit()">Take Picture</a>
+        <a class="button" (click)="onOffWebCame()">On/Off</a>
+        <a class="button" (click)="changeWebCame(true)">Toggle</a>
     </div>
+
+    <div class="page_actions" *ngIf="showSubmit">
+        <a class="button" [routerLink]="['../download']">Submit</a>
+    </div>
+
 </div>
