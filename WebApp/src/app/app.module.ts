@@ -12,13 +12,15 @@ import { CameraComponent } from './pages/camera-page/camera.component';
 import { WebcamModule } from 'ngx-webcam'
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
+import { DownloadPageComponent } from './pages/download-page/download-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CameraComponent,
     MainPageComponent,
-    LoadingPageComponent
+    LoadingPageComponent,
+    DownloadPageComponent
   ],
   imports: [
     BrowserModule,
