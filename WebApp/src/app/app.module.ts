@@ -13,6 +13,7 @@ import { WebcamModule } from 'ngx-webcam'
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 import { DownloadPageComponent } from './pages/download-page/download-page.component';
+import { ConfirmationPageComponent } from './pages/confirmation-page/confirmation-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DownloadPageComponent } from './pages/download-page/download-page.compo
     CameraComponent,
     MainPageComponent,
     LoadingPageComponent,
-    DownloadPageComponent
+    DownloadPageComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     BrowserModule,
