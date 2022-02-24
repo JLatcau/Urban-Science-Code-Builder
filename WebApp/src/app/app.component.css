@@ -1,9 +1,9 @@
 a.hleft {
     position:absolute;
-    width:220px;
+    width:240px;
     height:auto;
     left:80px;
-    top:0;
+    top:10px;
     padding:22px 0;
     z-index:1;
     user-select: none;
