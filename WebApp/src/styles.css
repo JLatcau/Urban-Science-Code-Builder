@@ -29,9 +29,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 0px 70px;
     cursor: pointer;
     border-radius: 25px;
-    width: 150px;
+    min-width: 175px;
     opacity: 1;
     user-select: none;
+    white-space: nowrap;
 }
 
 .button:hover {opacity: 0.6}
