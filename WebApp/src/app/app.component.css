@@ -6,6 +6,7 @@ a.hleft {
     top:0;
     padding:22px 0;
     z-index:1;
+    user-select: none;
 }
 
 a.hleft:hover, a.hleft:focus {
