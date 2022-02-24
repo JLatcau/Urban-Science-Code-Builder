@@ -12,7 +12,7 @@ export class CameraComponent implements OnInit {
   @Output() getPicture = new EventEmitter<WebcamImage>();
   showWebcam = true;
   isCameraExist = true;
-
+  showSubmit = false;
   errors: WebcamInitError[] = [];
 
   // webcam snapshot trigger
@@ -53,6 +53,9 @@ export class CameraComponent implements OnInit {
     this.showWebcam = false;
   }
 
+  toggleSubmit() {
+    this.showSubmit = !this.showSubmit;
+  }
   get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
