@@ -1,12 +1,3 @@
-.main_content {
-    display: flex;
-    margin: 100px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-}
-
 h1,
 h2,
 h3,
