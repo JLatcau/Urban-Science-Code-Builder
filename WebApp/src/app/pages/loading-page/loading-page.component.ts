@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loading-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+      // do init at here for current route.
+
+      //For demonstration purposes
+      setTimeout(() => {
+          this.router.navigate(['download']);
+      }, 5000);  //5s
   }
-
 }
