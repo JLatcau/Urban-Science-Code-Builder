@@ -1,0 +1,51 @@
+ <style>
+        :host {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          font-size: 14px;
+          color: #333;
+          box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+       
+        .chart {
+          width: 1200px;
+          height: 800px;
+          display: block;
+          padding-top:50px;
+          padding-left: 320px;
+        }
+      
+        @media screen and (max-width: 575px) {
+          svg#rocket-smoke {
+            display: none;
+            visibility: hidden;
+          }
+        }
+      </style>
+      
+      <div class="chart">
+        <canvas baseChart
+                [datasets]="chart_Data"
+                [labels]="chart_Labels"
+                [options]="chart_Options"
+                [plugins]="chart_Plugins"
+                [legend]="chart_Legend"
+                [chartType]="chart_Type">
+        </canvas>
+      </div>
+
+    <pre>
+        <code>
+            &lt;div class="chart"&gt;
+            &lt;canvas baseChart
+                        [datasets]="chart_Data"
+                        [labels]="chart_Labels"
+                        [options]="chart_Options"
+                        [plugins]="chart_Plugins"
+                        [legend]="chart_Legend"
+                        [chartType]="chart_Type"&gt;
+                        &lt;/canvas&gt;
+                        &lt;/div&gt;
+        </code>
+    </pre>  

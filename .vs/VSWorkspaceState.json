@@ -1,12 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebApp",
-    "\\WebApp\\src",
-    "\\WebApp\\src\\app",
-    "\\WebApp\\src\\app\\datatable",
-    "\\WebApp\\src\\app\\kpi"
+    "\\WebAPI",
+    "\\WebAPI\\WebAPI"
   ],
-  "SelectedNode": "\\WebApp\\src\\app\\app.module.ts",
+  "SelectedNode": "\\WebAPI\\WebAPI\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
