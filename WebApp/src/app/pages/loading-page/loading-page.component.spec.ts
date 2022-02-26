@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KpiComponent } from './kpi.component';
+import { LoadingPageComponent } from './loading-page.component';
 
-describe('KpiComponent', () => {
-  let component: KpiComponent;
-  let fixture: ComponentFixture<KpiComponent>;
+describe('LoadingPageComponent', () => {
+  let component: LoadingPageComponent;
+  let fixture: ComponentFixture<LoadingPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KpiComponent ]
+      declarations: [ LoadingPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KpiComponent);
+    fixture = TestBed.createComponent(LoadingPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

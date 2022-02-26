@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
-import { DatatableComponent } from './datatable/datatable.component';
-import { KpiComponent } from './kpi/kpi.component';
+import { CameraComponent } from './pages/camera-page/camera.component';
+import { DownloadPageComponent } from './pages/download-page/download-page.component';
+import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 const routes: Routes = [
-  {path:'chart', component:BarChartComponent},
-  {path:'datatable', component:DatatableComponent},
-  {path:'kpi', component:KpiComponent}
-
+  {path:'', component: MainPageComponent},
+  {path:'loading', component: LoadingPageComponent},
+  {path:'camera', component: CameraComponent},
+  {path:'download', component: DownloadPageComponent}
 ];
 
 @NgModule({

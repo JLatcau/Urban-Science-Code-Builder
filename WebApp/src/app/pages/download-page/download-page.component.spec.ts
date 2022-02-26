@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatatableComponent } from './datatable.component';
+import { DownloadPageComponent } from './download-page.component';
 
-describe('DatatableComponent', () => {
-  let component: DatatableComponent;
-  let fixture: ComponentFixture<DatatableComponent>;
+describe('DownloadPageComponent', () => {
+  let component: DownloadPageComponent;
+  let fixture: ComponentFixture<DownloadPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DatatableComponent ]
+      declarations: [ DownloadPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatatableComponent);
+    fixture = TestBed.createComponent(DownloadPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
