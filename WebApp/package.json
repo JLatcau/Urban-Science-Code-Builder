@@ -31,7 +31,6 @@
     "datatables.net-dt": "^1.11.4",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
-    "jszip-utils": "^0.1.0",
     "ng2-charts": "^2.2.0",
     "ngx-webcam": "^0.4.1",
     "rxjs": "~6.6.0",
