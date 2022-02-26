@@ -1,0 +1,15 @@
+.mat-card {
+  max-width: 300px;
+  margin: auto;
+  padding: 20px;
+  text-align-last: center;
+}
+
+.title-text {
+  text-align-last: center;
+}
+
+.inline-block {
+  display: inline-block;
+}
+

@@ -8,25 +8,32 @@ import { Injectable } from '@angular/core';
 export class FileService {
   constructor(private http: HttpClient) {}
 
-  //TODO: make api url easily interchangeable between localhost ports
-  private url='https://localhost:7112/api/File';
+  //TODO: make api url easily interchangeable between localhost portuse on different machines
+  private url='https://localhost:7112';
   
   public upload(formData: FormData) {
-      return this.http.post('https://localhost:7112/api/File/upload', formData, {
+      return this.http.post(this.url+'/api/File/upload', formData, {
           reportProgress: true,
           observe: 'events',
       });
   }
   
-  // public download(fileUrl:string){
-  //   return this.http.get('${this.url}/download?fileUrl=${fileUrl}',
-  //   {reportProgress:true,
-  //   responseType:'blob',}
-  //   );
+  public download(fileUrl:string){
+    return this.http.get(this.url+'/api/File/download?fileUrl='+fileUrl,
+    {reportProgress:true,
+    responseType:'blob',}
+    );
     
-  // }
-//Retrieving Dashboard files from Resources folder for download
-  // public getFiles(){
-  //   return this.http.get('${this.url}/getFiles');
-  // }
+  }
+//Retrieving Dashboard folders from WebAPI Resources folder for download
+  public getFolders(){
+    return this.http.get(this.url+'/api/File/getFolders');
+  }
+//Retrieving Dashboard files from Web APIResources folder for download
+  public getFiles(path: string){
+    return this.http.get(this.url+'/api/File/getFiles?path='+path);
+  }
+  public createZip(){
+    return this.http.get(this.url+'/api/File/createZIP');
+  }
 }

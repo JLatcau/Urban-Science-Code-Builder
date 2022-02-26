@@ -1,0 +1,45 @@
+<h2>Top Facing Dealer Competitive Segment Sales</h2>
+<table datatable class="row-border hover" title="Top Facing Dealer Competitive Segment Sales">
+   <thead>
+        <tr>
+            <th>Dealer</th>
+            <th>Brand</th>
+            <th>June '17</th>
+            <th>June CYTD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of jsonData">
+            <td>{{item.dealer}}</td>
+            <td>{{item.brand}}</td>
+            <td>{{item.june17}}</td>
+            <td>{{item.juneCYTD}}</td>
+        </tr>
+    </tbody>
+</table>
+
+  <!--TODO: fix formatting issue with displaying component code on page, "item" property is not being recognized, "{{}}" removed from each 
+item property call for now, as it was causing this error.-->
+<pre>
+    <code>
+        
+        &lt;table datatable class="row-border hover"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Country&lt;/th&gt;
+      &lt;th&gt;Club Name&lt;/th&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+&lt;tr *ngFor="let item of jsonData"&gt;
+     &lt;td&gt;item.playerName&lt;/td&gt;
+      &lt;td&gt;item.playerCountry&lt;/td&gt;
+      &lt;td&gt;item.playerClub&lt;/td&gt; 
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;/table&gt;
+    </code>
+</pre>  
+
+
+
