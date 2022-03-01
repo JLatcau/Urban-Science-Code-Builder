@@ -1,31 +1,17 @@
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 8px 0;
     user-select: none;
 }
 
-p {
-    margin: 0;
-}
-
-.button {
-    background-color: #70c82f; 
-    border: none;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 0px 70px;
-    cursor: pointer;
-    border-radius: 25px;
-    width: 100px;
-    opacity: 1;
-    user-select: none;
-}
-
-.button:hover {opacity: 0.6}
-
 .card_holder {
     padding: 75px;
+}
+
+input[type="file"] {
+    display: none;
 }

@@ -15,6 +15,7 @@ import { WebcamModule } from 'ngx-webcam'
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 import { DownloadPageComponent } from './pages/download-page/download-page.component';
+import { ConfirmationPageComponent } from './pages/confirmation-page/confirmation-page.component';
 
 import { FileService } from './_service/file.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     CameraComponent,
     MainPageComponent,
     LoadingPageComponent,
-    DownloadPageComponent
+    DownloadPageComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     BrowserModule,
