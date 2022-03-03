@@ -19,7 +19,7 @@ export class ConfirmationPageComponent implements OnInit {
         this.image = img;
       })
 
-      console.log(this.image);
+    //  console.log(this.image);
 
       this.readURL();
   }

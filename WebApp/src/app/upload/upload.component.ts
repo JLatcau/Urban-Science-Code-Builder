@@ -1,7 +1,10 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { FileService } from '../_service/file.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
+import { DataService } from 'src/app/_service/data.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -10,18 +13,30 @@ import { FileService } from '../_service/file.service';
 export class UploadComponent implements OnInit {
   public message!: string;
   public progress!: number;
+  image;
+  response;
+  imagePath!: string;
+  subscription!: Subscription;
+
   @Output() public onUploadFinished = new EventEmitter();
 
-  constructor(private fileService: FileService) { }
+  constructor(private fileService: FileService,private imageService: ImageSharingServiceService,
+    private route: ActivatedRoute,
+    private router: Router,private data: DataService) { }
 
   ngOnInit(): void {
+    this.imageService.image.subscribe(img => {
+      this.image = img;
+      this.subscription = this.data.currentImagePath.subscribe(imagePath => this.imagePath = imagePath)
+
+    })
   }
 
-  public uploadFile = (files) => {
-    if(files.length === 0)
-      return;
+  public uploadFile = (file) => {
+    // if(files.length === 0)
+    //   return;
 
-    let fileToUpload = <File>files[0];
+    let fileToUpload = <File>file;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
@@ -32,8 +47,15 @@ export class UploadComponent implements OnInit {
       else if(event.type === HttpEventType.Response){
         this.message = 'upload success.';
         this.onUploadFinished.emit(event.body);
-      }
+        this.response=event.body;
+        //img path to store in database entry for retrieval, localhost API link
+        this.data.changeImagePath(this.response.imagePath);
+        console.log("image path: "+this.imagePath);
+      }      
+
     });
+    this.router.navigate(['/loading']);
+
   }
 
 }
