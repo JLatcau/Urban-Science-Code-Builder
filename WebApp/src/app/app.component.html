@@ -1,12 +1,13 @@
 <!-- This page will be the parent page -->
 <!-- Anything put here will persist on every page -->
+
 <div>
-    <a class="hleft" routerLink="">
-        <img src="https://www.urbanscience.com/wp-content/themes/urbanscience/images/logos/urbanscience.svg" alt="Urban Science">
-    </a>
+  <a class="hleft" [routerLink]="['']">
+      <img src="https://www.urbanscience.com/wp-content/themes/urbanscience/images/logos/urbanscience.svg" alt="Urban Science">
+  </a>
 </div>
 
 <div class="main_content">
-    <h1 class="code_builder">Code Builder</h1>
-    <router-outlet></router-outlet>
+  <h1 class="code_builder">Code Builder</h1>
+  <router-outlet></router-outlet>
 </div>  
