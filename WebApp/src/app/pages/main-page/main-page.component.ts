@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -10,6 +11,9 @@ import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service
 export class MainPageComponent implements OnInit {
 
   image;
+  files;
+
+  private acceptedFileTypes = "image.png|image.heic|image.jpg|image.jpg"
 
   constructor(private imageService: ImageSharingServiceService,
     private route: ActivatedRoute,
@@ -19,15 +23,35 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  allowDrop(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  onDrop(event) {
+    event.preventDefault();
+  
+    const files = event.dataTransfer.files;
+    const file:File = files[0]; // Should only accept 1 file for the time being
+
+    this.validateImage(file);
+  }
+
   onImageSelected(event) {
     const file:File = event.target.files[0];
 
-    if (file) {
-      this.image = file;
+    this.validateImage(file);
+  }
 
-      this.newImage();
-      //console.log(this.image);
-      this.router.navigate(['/confirmation']);
+  validateImage(file) {
+    if(file) {
+      if(file.type.match(this.acceptedFileTypes)) {
+        this.image = file;
+
+        this.newImage();
+        //console.log(this.image);
+        this.router.navigate(['/confirmation']);
+      }
     }
   }
 
