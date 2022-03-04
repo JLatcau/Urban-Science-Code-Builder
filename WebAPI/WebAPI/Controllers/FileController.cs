@@ -41,11 +41,12 @@ namespace WebAPI.Controllers
                 {
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(savePath, fileName);
+                    var imagePath= Path.Combine( "Resources", "Images", fileName);
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
-                    return Ok();
+                    return Ok(new { imagePath});
 
                 }
                 else
