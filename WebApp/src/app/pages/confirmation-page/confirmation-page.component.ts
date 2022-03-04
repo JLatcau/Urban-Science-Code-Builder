@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 
 @Component({
@@ -10,9 +11,11 @@ export class ConfirmationPageComponent implements OnInit {
 
   image;
   imageURL;
-  isImageAvailable:boolean = true;
 
-  constructor(private imageService: ImageSharingServiceService) { }
+  sanitizedImageURL;
+
+  constructor(private imageService: ImageSharingServiceService,
+    private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
       this.imageService.image.subscribe(img => {
@@ -21,10 +24,10 @@ export class ConfirmationPageComponent implements OnInit {
 
       console.log(this.image);
 
-      this.readURL();
+      this.readUrl();
   }
 
-  readURL() {
+  readUrl() {
       const reader = new FileReader();
       reader.readAsDataURL(this.image);
       
@@ -32,7 +35,11 @@ export class ConfirmationPageComponent implements OnInit {
         this.imageURL = reader.result;
       }
 
-      this.isImageAvailable = true;
+      //this.sanitizedImageURL = this.domSanitizer.bypassSecurityTrustUrl(this.imageURL);
+  }
+
+  sanitizeImageUrl(imageUrl: string): SafeUrl {
+    return this.domSanitizer.bypassSecurityTrustUrl(imageUrl);
   }
 
   

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
