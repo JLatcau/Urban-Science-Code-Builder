@@ -15,7 +15,3 @@ h6 {
 input[type="file"] {
     display: none;
 }
-
-.button:focus {
-    outline: none;
-}
