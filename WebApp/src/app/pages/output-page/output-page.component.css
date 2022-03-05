@@ -73,7 +73,11 @@ img {
     margin-bottom: 7px;
     position: relative;
     left: 40px;
+    opacity: 1;
 }
+
+.component_button:hover {opacity: 0.6}
+.subcomponent_button:hover {opacity: 0.6}
 
 
 .main_content2 {
