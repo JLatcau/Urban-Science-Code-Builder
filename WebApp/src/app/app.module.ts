@@ -16,9 +16,10 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 import { DownloadPageComponent } from './pages/download-page/download-page.component';
 import { ConfirmationPageComponent } from './pages/confirmation-page/confirmation-page.component';
-
 import { FileService } from './_service/file.service';
 import { HttpClientModule } from '@angular/common/http';
+import { OutputPageComponent } from './pages/output-page/output-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainPageComponent,
     LoadingPageComponent,
     DownloadPageComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    OutputPageComponent
   ],
   imports: [
     BrowserModule,
