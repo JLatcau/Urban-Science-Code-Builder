@@ -8,19 +8,27 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
+import { UploadComponent } from './upload/upload.component';
+import { DownloadComponent } from './download/download.component';
 import { CameraComponent } from './pages/camera-page/camera.component';
 import { WebcamModule } from 'ngx-webcam'
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 import { DownloadPageComponent } from './pages/download-page/download-page.component';
+import { ConfirmationPageComponent } from './pages/confirmation-page/confirmation-page.component';
 
+import { FileService } from './_service/file.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+    UploadComponent,
+    DownloadComponent,
     CameraComponent,
     MainPageComponent,
     LoadingPageComponent,
-    DownloadPageComponent
+    DownloadPageComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +39,10 @@ import { DownloadPageComponent } from './pages/download-page/download-page.compo
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
+    HttpClientModule,
     WebcamModule
   ],
-  providers: [],
+  providers: [FileService],
   bootstrap: [AppComponent],
   schemas: [
     NO_ERRORS_SCHEMA

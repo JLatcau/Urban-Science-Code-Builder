@@ -1,9 +1,9 @@
 a.hleft {
     position:absolute;
-    width:220px;
+    width:240px;
     height:auto;
     left:80px;
-    top:0;
+    top:10px;
     padding:22px 0;
     z-index:1;
     user-select: none;
@@ -15,9 +15,9 @@ a.hleft:hover, a.hleft:focus {
 
 .main_content {
     display: flex;
-    margin: 0px auto 32px;
+    margin: 100px auto 32px;
     padding: 0 16px;
     max-width: 960px;
     flex-direction: column;
     align-items: center;
-}
+} 

@@ -1,7 +1,10 @@
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
+import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
+
 
 @Component({
   selector: 'app-camera',
@@ -12,16 +15,21 @@ export class CameraComponent implements OnInit {
   @Output() getPicture = new EventEmitter<WebcamImage>();
   showWebcam = true;
   isCameraExist = true;
-
+  showSubmit = false;
   errors: WebcamInitError[] = [];
 
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
-  public webcamImage: WebcamImage | undefined;
+  public webcamImage;
+  public imageName = "";
+  public imageFormat= "image/png";
 
-  constructor() { }
+  image;
+
+  constructor(private imageService: ImageSharingServiceService,
+    private router: Router) { }
 
 
   ngOnInit(): void {
@@ -51,6 +59,25 @@ export class CameraComponent implements OnInit {
    // this.getPicture.emit(webcamImage);
     this.webcamImage = webcamImage;
     this.showWebcam = false;
+
+    const arr = this.webcamImage.imageAsDataUrl.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const file: File = new File([u8arr], this.imageName, { type: this.imageFormat })
+    this.image = file;
+
+
+    this.newImage();
+    this.router.navigate(['/confirmation']);
+  }
+
+  toggleSubmit() {
+    this.showSubmit = !this.showSubmit;
   }
 
   get triggerObservable(): Observable<void> {
@@ -59,5 +86,9 @@ export class CameraComponent implements OnInit {
 
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
+  }
+
+  newImage() {
+    this.imageService.newImage(this.image)
   }
 }
