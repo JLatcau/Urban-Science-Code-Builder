@@ -1,0 +1,85 @@
+.main_content{
+    height: 100%;
+    min-width: 100%;
+    background-color: blue;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 8px 0;
+    user-select: none;
+}
+
+.card_holder {
+    padding: 25px;
+    text-align: center;
+}
+
+img {
+    width: 1000px;
+    height: 500px;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.side_content {
+    float: left;
+    min-width: 400px;
+    display: block;
+}
+
+.component_button {
+    background-color: #70c82f;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 70px;
+    cursor: pointer;
+    border-radius: 25px;
+    min-width: 175px;
+    user-select: none;
+    display: block;
+    margin-bottom: 7px;
+    position: relative;
+    right: 60px;
+}
+
+.subcomponent_button {
+    background-color: #70c82f;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 70px;
+    cursor: pointer;
+    border-radius: 25px;
+    min-width: 175px;
+    user-select: none;
+    display: block;
+    margin-bottom: 7px;
+    position: relative;
+    left: 40px;
+    opacity: 1;
+}
+
+.component_button:hover {opacity: 0.6}
+.subcomponent_button:hover {opacity: 0.6}
+
+
+.main_content2 {
+    float: left;
+} 
