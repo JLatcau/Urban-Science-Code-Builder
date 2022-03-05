@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./output-page.component.css']
 })
 export class OutputPageComponent implements OnInit {
+  showSubmit = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleSubmit() {
+    this.showSubmit = !this.showSubmit;
+  }
 }

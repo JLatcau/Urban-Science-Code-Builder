@@ -1,6 +1,10 @@
 <div class="wrapper">
     <div class="side_content">
-        <a class="button">Angular Component</a>
+        <a class="component_button" (click)="toggleSubmit()">AngularComponent</a>
+        <a class="subcomponent_button" *ngIf="showSubmit">AngularComponent.css</a>
+        <a class="subcomponent_button" *ngIf="showSubmit">AngularComponent.html</a>
+        <a class="subcomponent_button" *ngIf="showSubmit">AngularComponent.spec.ts</a>
+        <a class="subcomponent_button" *ngIf="showSubmit">AngularComponent.ts</a>
     </div>
 
     <div class="main_content2">

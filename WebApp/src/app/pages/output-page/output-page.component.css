@@ -32,7 +32,49 @@ img {
 .side_content {
     float: left;
     min-width: 400px;
+    display: block;
 }
+
+.component_button {
+    background-color: #70c82f;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 70px;
+    cursor: pointer;
+    border-radius: 25px;
+    min-width: 175px;
+    user-select: none;
+    display: block;
+    margin-bottom: 7px;
+    position: relative;
+    right: 60px;
+}
+
+.subcomponent_button {
+    background-color: #70c82f;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 70px;
+    cursor: pointer;
+    border-radius: 25px;
+    min-width: 175px;
+    user-select: none;
+    display: block;
+    margin-bottom: 7px;
+    position: relative;
+    left: 40px;
+}
+
 
 .main_content2 {
     float: left;
