@@ -1,3 +1,9 @@
+.main_content{
+    height: 100%;
+    min-width: 100%;
+    background-color: blue;
+}
+
 h1,
 h2,
 h3,
@@ -10,13 +16,24 @@ h6 {
 
 .card_holder {
     padding: 25px;
-}
-
-.temp_spacer {
-    margin: 50px;
+    text-align: center;
 }
 
 img {
     width: 1000px;
     height: 500px;
 }
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.side_content {
+    float: left;
+    min-width: 400px;
+}
+
+.main_content2 {
+    float: left;
+} 
