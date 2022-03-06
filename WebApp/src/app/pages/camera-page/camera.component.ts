@@ -23,7 +23,7 @@ export class CameraComponent implements OnInit {
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   public webcamImage;
-  public imageName = "";
+  public imageName = "webcamCapture.png";
   public imageFormat= "image/png";
 
   image;
