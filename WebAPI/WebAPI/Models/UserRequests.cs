@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class Class1
+public class UserRequests
 {
-	public Class1()
-	{
-	}
+	public int User_ID { get; set; }
+
+	public string UploadedImagePath { get; set; } = default!;
 }
