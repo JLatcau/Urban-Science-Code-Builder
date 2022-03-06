@@ -13,7 +13,7 @@ export class MainPageComponent implements OnInit {
   image;
   files;
 
-  private acceptedFileTypes = "image.png|image.heic|image.jpg|image.jpg"
+  private acceptedFileTypes = "image.png|image.heic|image.jpg|image.jpeg"
 
   constructor(private imageService: ImageSharingServiceService,
     private route: ActivatedRoute,
