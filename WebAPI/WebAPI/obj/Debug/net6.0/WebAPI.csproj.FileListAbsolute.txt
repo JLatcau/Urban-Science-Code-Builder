@@ -54,3 +54,8 @@ C:\Users\mrnoe\Development\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\ne
 C:\Users\mrnoe\Development\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\ref\WebAPI.dll
 C:\Users\mrnoe\Development\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.pdb
 C:\Users\mrnoe\Development\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.genruntimeconfig.cache
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Npgsql.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
