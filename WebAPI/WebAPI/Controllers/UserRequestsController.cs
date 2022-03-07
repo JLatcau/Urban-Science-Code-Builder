@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
-
+                     
                     myReader.Close();
                     myCon.Close();
                 }

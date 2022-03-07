@@ -8,6 +8,11 @@
       "sslPort": 44337
     }
   },
+  "runtimeOptions": {
+    "configProperties": {
+      "Switch.System.Data.AllowArbitraryDataSetTypeInstantiation": true
+    }
+  },
   "profiles": {
     "WebAPI": {
       "commandName": "Project",

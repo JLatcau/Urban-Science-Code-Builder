@@ -6,5 +6,5 @@ public class GeneratedCode
 
 	public int User_ID { get; set; }
 
-	public string GeneratedCodePath { get; set; }
+	public string GeneratedCodePath { get; set; } = default!;
 }
