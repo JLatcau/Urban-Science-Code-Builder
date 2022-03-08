@@ -7,6 +7,9 @@ img {
     float: left;
     min-width: 400px;
     display: block;
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .component_button {
@@ -18,7 +21,7 @@ img {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 70px;
+    margin: 7px 70px;
     cursor: pointer;
     border-radius: 25px;
     min-width: 175px;
@@ -37,7 +40,7 @@ img {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 70px;
+    margin: 7px 70px;
     cursor: pointer;
     border-radius: 25px;
     min-width: 175px;
@@ -69,11 +72,13 @@ img {
     .component_button{
         display: unset !important;
         position: unset !important;
+        margin: 20px 70px;
     }
 
     .subcomponent_button{
         position: unset !important;
         left: unset !important;
+        margin: 20px 70px;
     }
 
     .wrapper{
