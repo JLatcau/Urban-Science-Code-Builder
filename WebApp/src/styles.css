@@ -45,7 +45,7 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .page_actions {
         display: block;
     }
@@ -54,5 +54,4 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
         width: auto !important;
         overflow-x: hidden !important;
     }
-
 }
