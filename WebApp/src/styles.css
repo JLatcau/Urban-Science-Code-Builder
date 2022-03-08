@@ -45,14 +45,18 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .page_actions {
         display: block;
+        margin: 20% 0 0 0;
     }
 
-    html, body { 
+    .button {
+        margin-bottom: 80px;
+    }
+
+    html { 
         width: auto !important;
         overflow-x: hidden !important;
     }
-
 }

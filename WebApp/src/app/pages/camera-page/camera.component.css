@@ -16,4 +16,9 @@ h6 {
     .button.toggle_camera_btn {
         display: none;
     }
+
+    .page_actions {
+        display: block;
+        margin: 0 0 0 0 !important;
+    }
 }
