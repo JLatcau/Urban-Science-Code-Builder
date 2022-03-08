@@ -59,3 +59,7 @@ C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\ne
 C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Jacob\CodeBuilder\Urban-Science-Code-Builder\WebAPI\WebAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
