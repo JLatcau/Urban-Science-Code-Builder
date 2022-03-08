@@ -1,6 +1,6 @@
 a.hleft {
-    position:absolute;
-    width:240px;
+    display: block;
+    width: 240px;
     height:auto;
     left:80px;
     top:10px;
@@ -20,3 +20,15 @@ a.hleft:hover, a.hleft:focus {
     flex-direction: column;
     align-items: center;
 } 
+
+@media screen and (max-width: 400px) {
+    a.hleft {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .main_content {
+        margin: 20px auto 32px;
+    }
+}

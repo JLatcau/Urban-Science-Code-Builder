@@ -25,8 +25,7 @@
 
     <div class="page_actions">
         <a class="button" (click)="takeSnapshot()" (click)="toggleSubmit()">Take Picture</a>
-        <a class="button" (click)="onOffWebCame()">On/Off</a>
-        <a class="button" (click)="changeWebCame(true)">Toggle</a>
+        <a class="button toggle_camera_btn" (click)="changeWebCam(true)">Toggle</a>
     </div>
 
     <div class="page_actions" *ngIf="showSubmit">
