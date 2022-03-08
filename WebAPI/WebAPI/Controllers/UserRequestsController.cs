@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
                 {
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
-                     
+
                     myReader.Close();
                     myCon.Close();
                 }
@@ -128,6 +128,14 @@ namespace WebAPI.Controllers
             }
 
             return new JsonResult("Deleted Successfully");
+        }
+
+        [Route("addImage")]
+        public void addImage([FromQuery] string UploadedImagePath)
+        {
+            UserRequests userRequests = new UserRequests();
+            userRequests.UploadedImagePath = UploadedImagePath;
+            Post(userRequests);
         }
     }
 }
