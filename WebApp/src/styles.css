@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; width:100%}
 body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-align: center; user-select: none;}
 
 .main_content {
@@ -42,4 +42,17 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
     justify-content: center;
     align-items: center;
     padding: 25px;
+}
+
+
+@media screen and (max-width: 400px) {
+    .page_actions {
+        display: block;
+    }
+
+    html, body { 
+        width: auto !important;
+        overflow-x: hidden !important;
+    }
+
 }
