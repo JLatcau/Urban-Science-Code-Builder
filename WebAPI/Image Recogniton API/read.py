@@ -6,7 +6,7 @@ import os
 import shutil
 import glob
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\Dess\\Desktop\\keyFile.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="keyFile.json"
 client = vision.ImageAnnotatorClient()\
 
 bVar = 'B'
@@ -28,8 +28,17 @@ for single_file in filelist:
      # move file with full paths as shutil.move() parameters
     shutil.move(single_file,target_folder) 
 
-# # Pulls Image
-img = cv.imread('ImageInput/B.jpg')
+
+imdir = './ImageInput/'
+images = []
+
+for fileName in os.listdir(imdir):
+    img = cv.imread(os.path.join(imdir, fileName))
+    if img is not None:
+        images.append(img)
+
+# img = images
+img = images[0]
 
 # # Resizes Image
 resized = cv.resize(img, (595, 842))
@@ -37,17 +46,19 @@ resized = cv.resize(img, (595, 842))
 # # Creates a blank image with original image scale
 blank = np.zeros([595, 842], dtype='uint8')
 blank.fill(255) # or img[:] = 255
+blank = cv.resize(blank, (595, 842))
 
 # # Converts to grayscale
 gray = cv.cvtColor(resized, cv.COLOR_BGR2GRAY)
-cv.imshow('Gray', resized)
+cv.imwrite('Output/GrayScale(1).jpg', gray)
 
 # # Blurs the image
 blur = cv.bilateralFilter(gray,9,75,75)
+cv.imwrite('Output/Blur(2).jpg', blur)
 
 # # Finds the Edges
 edges = cv.Canny(blur, 125, 175)
-cv.imshow('Edges', edges)
+cv.imwrite('Output/Edges(3).jpg', edges)
 
 # # Finds the Contours
 contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
@@ -55,18 +66,22 @@ contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIM
 
 # # Displays detected Contours
 cv.drawContours(blank, contours, -1, (0,0,255), 4)
+cv.imwrite('Output/Contours(4).jpg', blank)
+
+# # Duplicates image for bounding box
+blank2 = blank.copy()
 
 # # Converts back to RGB
-blank = cv.cvtColor(blank, cv.COLOR_BGR2RGB)
+blank2 = cv.cvtColor(blank2, cv.COLOR_BGR2RGB)
 
 # # Creates Bounding Boxes
 for cntr in contours:
     area = cv.contourArea(cntr)
     if area > 10 and area < 100:
         x,y,w,h = cv.boundingRect(cntr)
-        cv.rectangle(blank, (x, y), (x+w, y+h), (0,255,0), 2)
+        cv.rectangle(blank2, (x, y), (x+w, y+h), (0,255,0), 2)
+cv.imwrite('Output/BoundedBox(5).jpg', blank2)
 
-cv.imshow('Contours Drawn', blank)
 cv.imwrite('Output/output.jpg', blank)
 
 
@@ -135,9 +150,9 @@ for text in texts:
     #     with open('output.txt', 'w') as f:
     #         f.write('None Detected')
 
-
-cv.waitKey(0)
-
+dir = 'ImageInput'
+for f in os.listdir(dir):
+    os.remove(os.path.join(dir, f))
 
 # # pytesseract.tesseract_cmd = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
 
