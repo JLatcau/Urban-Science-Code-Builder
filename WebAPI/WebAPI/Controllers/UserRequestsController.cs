@@ -130,6 +130,7 @@ namespace WebAPI.Controllers
             return new JsonResult("Deleted Successfully");
         }
 
+        [HttpPost]
         [Route("addImage")]
         public void addImage([FromQuery] string UploadedImagePath)
         {

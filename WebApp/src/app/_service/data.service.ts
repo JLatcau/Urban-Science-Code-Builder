@@ -14,15 +14,15 @@ export class DataService {
   constructor(private http: HttpClient) { 
   }
 
- public  changeImagePath(data: string) {
+ public changeImagePath(data: string) {
     // data=this.url +"/"+"Resources/"+"Images/"+"upload_test_1t.jpg";
     data=this.url +"/"+data;
 
     this.imagePath.next(data)
     console.log("service image path: "+this.imagePath.toString());
-     this.http.post(this.url+'/api/UserRequests/addImage?UploadedImagePath='+this.imagePath, {
-      
+    return this.http.get(this.url+'/api/UserRequests/addImage?UploadedImagePath='+this.imagePath, {
   });
+  console.log("Image should be added here: ");
   }
  
 }
