@@ -17,28 +17,28 @@ nVar = 'N'
 bFile = 'DataChartCode/BarChart.html'
 gFile = 'DataChartCode/DataGrid.html'
 nFile = 'DataChartCode/KPI.html'
-outputPic = 'WaitingRoom/output.jpg'
-outputText = 'WaitingRoom/output.txt'
-step1 = 'WaitingRoom/GrayScale(1).jpg'
-step2 = 'WaitingRoom/Blur(2).jpg'
-step3 = 'WaitingRoom/Edges(3).jpg'
-step4 = 'WaitingRoom/Contours(4).jpg'
-step5 = 'WaitingRoom/BoundedBox(5).jpg'
+# outputPic = 'WaitingRoom/output.jpg'
+# outputText = 'WaitingRoom/output.txt'
+# step1 = 'WaitingRoom/GrayScale(1).jpg'
+# step2 = 'WaitingRoom/Blur(2).jpg'
+# step3 = 'WaitingRoom/Edges(3).jpg'
+# step4 = 'WaitingRoom/Contours(4).jpg'
+# step5 = 'WaitingRoom/BoundedBox(5).jpg'
 
 
 source_files='Output/*.html'
 source_files2='Output/*.jpg'
-source_files3='WaitingRoom/*.jpg'
+# source_files3='WaitingRoom/*.jpg'
 target_folder='DataChartCode'
 target_folder2='Output'
-target_folder3='WaitingRoom'
+# target_folder3='WaitingRoom'
 
 
-# retrieve file list
-filelist=glob.glob(source_files2)
-for single_file in filelist:
-     # move file with full paths as shutil.move() parameters
-    shutil.move(single_file,target_folder3) 
+# # retrieve file list
+# filelist=glob.glob(source_files2)
+# for single_file in filelist:
+#      # move file with full paths as shutil.move() parameters
+#     shutil.move(single_file,target_folder3) 
 
 
 # retrieve file list
@@ -76,15 +76,15 @@ blank = cv.resize(blank, (595, 842))
 
 # # Converts to grayscale
 gray = cv.cvtColor(resized, cv.COLOR_BGR2GRAY)
-cv.imwrite('WaitingRoom/GrayScale(1).jpg', gray)
+cv.imwrite('Output/GrayScale(1).jpg', gray)
 
 # # Blurs the image
-blur = cv.bilateralFilter(gray,9,75,75)
-cv.imwrite('WaitingRoom/Blur(2).jpg', blur)
+blur = cv.bilateralFilter(gray,9,15,75)
+cv.imwrite('Output/Blur(2).jpg', blur)
 
 # # Finds the Edges
 edges = cv.Canny(blur, 125, 175)
-cv.imwrite('WaitingRoom/Edges(3).jpg', edges)
+cv.imwrite('Output/Edges(3).jpg', edges)
 
 # # Finds the Contours
 contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
@@ -92,7 +92,7 @@ contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIM
 
 # # Displays detected Contours
 cv.drawContours(blank, contours, -1, (0,0,255), 4)
-cv.imwrite('WaitingRoom/Contours(4).jpg', blank)
+cv.imwrite('Output/Contours(4).jpg', blank)
 
 # # Duplicates image for bounding box
 blank2 = blank.copy()
@@ -106,12 +106,12 @@ for cntr in contours:
     if area > 10 and area < 100:
         x,y,w,h = cv.boundingRect(cntr)
         cv.rectangle(blank2, (x, y), (x+w, y+h), (0,255,0), 2)
-cv.imwrite('WaitingRoom/BoundedBox(5).jpg', blank2)
+cv.imwrite('Output/BoundedBox(5).jpg', blank2)
 
-cv.imwrite('WaitingRoom/output.jpg', blank)
+cv.imwrite('Output/output.jpg', blank)
 
 
-with io.open('WaitingRoom/output.jpg', 'rb') as image_file:
+with io.open('Output/output.jpg', 'rb') as image_file:
         content = image_file.read()
 
 image = vision.Image(content=content)
@@ -131,12 +131,6 @@ for text in texts:
         vertices = (['({},{})'.format(vertex.x, vertex.y)
             for vertex in text.bounding_poly.vertices])
 
-        # retrieve file list
-        filelist=glob.glob(source_files3)
-        for single_file in filelist:
-            # move file with full paths as shutil.move() parameters
-            shutil.move(single_file,target_folder2) 
-
         with open('Output/output.txt', 'a') as f:
             f.write('Texts: \n{}\n'.format(text.description))
             f.write('Bounds: \n{}\n'.format(','.join(vertices)))
@@ -151,12 +145,6 @@ for text in texts:
         vertices = (['({},{})'.format(vertex.x, vertex.y)
             for vertex in text.bounding_poly.vertices])
 
-        # retrieve file list
-        filelist=glob.glob(source_files3)
-        for single_file in filelist:
-            # move file with full paths as shutil.move() parameters
-            shutil.move(single_file,target_folder2)
-
         with open('Output/output.txt', 'a') as f:
             f.write('Texts: \n{}\n'.format(text.description))
             f.write('Bounds: \n{}\n'.format(','.join(vertices)))
@@ -170,12 +158,6 @@ for text in texts:
         print('KPI')
         vertices = (['({},{})'.format(vertex.x, vertex.y)
             for vertex in text.bounding_poly.vertices])
-
-        # retrieve file list
-        filelist=glob.glob(source_files3)
-        for single_file in filelist:
-            # move file with full paths as shutil.move() parameters
-            shutil.move(single_file,target_folder2)
 
         with open('Output/output.txt', 'a') as f:
             f.write('Texts: \n{}\n'.format(text.description))
