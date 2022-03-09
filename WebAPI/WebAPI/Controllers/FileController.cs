@@ -35,7 +35,8 @@ namespace WebAPI.Controllers
                    var file = formCollection.Files.First();
                 //Path to WebApp assets 
                 // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
-                 var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
+                // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
+                var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput");
 
                 var savePath = Path.Combine(projectParentDirectory, folderName);
 
@@ -50,10 +51,10 @@ namespace WebAPI.Controllers
                         file.CopyTo(stream);
                     }
                     //adding image path to database in UserRequests Controller
-                    UserRequests userRequests = new UserRequests();
-                    userRequests.UploadedImagePath = savePath;
-                    UserRequestsController userRequestsController = new(_configuration);
-                    userRequestsController.addImage(databasePath);
+                    //UserRequests userRequests = new UserRequests();
+                    //userRequests.UploadedImagePath = savePath;
+                    //UserRequestsController userRequestsController = new(_configuration);
+                    //userRequestsController.addImage(databasePath);
 
                     runImageRecognition();
                     return Ok(new { imagePath});
@@ -73,11 +74,14 @@ namespace WebAPI.Controllers
         [HttpGet]
         [Route("imageRecognition")]
         public IActionResult runImageRecognition() {
-            string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image Recognition API","read.py");
+            string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
             Console.WriteLine(fileName);
+
+            string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
+
             // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
             //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
-            string pythonExecutable = "C:\\Python\\python.exe";
+            string pythonExecutable = "C:\\Users\\Jacob\\AppData\\Local\\Programs\\Python\\Python310\\python.exe";
             Process p = new Process();
             // @"C:\Python27\python.exe";
             ProcessStartInfo start = new ProcessStartInfo();
@@ -85,6 +89,7 @@ namespace WebAPI.Controllers
           
             start.Arguments = fileName;// is path to .py file and any cmd line args
             start.UseShellExecute = false;
+            start.WorkingDirectory = workingDirectory;
             start.RedirectStandardOutput = true;
             using (Process process = Process.Start(start))
             {
