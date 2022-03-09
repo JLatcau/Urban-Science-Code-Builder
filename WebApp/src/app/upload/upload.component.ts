@@ -32,15 +32,18 @@ export class UploadComponent implements OnInit {
     })
   }
 
-  public uploadFile = (file) => {
+  public async uploadFile (file) {
     // if(files.length === 0)
     //   return;
 
     let fileToUpload = <File>file;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
+   
+      this.router.navigate(['/loading']);
 
-    this.fileService.upload(formData).subscribe(event => {
+    var event= await this.fileService.upload(formData).toPromise()
+    if (event) {
       if(event.type === HttpEventType.UploadProgress){
         this.progress = Math.round(100 * event.loaded / event.total!);
       }
@@ -53,8 +56,9 @@ export class UploadComponent implements OnInit {
         console.log("image path: "+this.imagePath);
       }      
 
-    });
-    this.router.navigate(['/loading']);
+    };
+   // this.data.addImagePathToDatabase();
+    //this.router.navigate(['/loading']);
 
   }
 

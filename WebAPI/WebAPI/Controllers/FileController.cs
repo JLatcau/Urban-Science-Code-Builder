@@ -8,6 +8,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Diagnostics;
 
 
 
@@ -17,7 +18,8 @@ namespace WebAPI.Controllers
     [ApiController]
     [EnableCors("AllowOrigin")]
     public class FileController : ControllerBase
-    {   
+    {
+        private readonly IConfiguration _configuration;
         //Project parent directory path
         private string projectParentDirectory = Directory.GetParent((Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
         //Swap in commented out code to reroute file storage for download to angular assets folder, or vice versa for image upload.
@@ -33,7 +35,8 @@ namespace WebAPI.Controllers
                    var file = formCollection.Files.First();
                 //Path to WebApp assets 
                 // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
-                 var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
+                // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
+                var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput");
 
                 var savePath = Path.Combine(projectParentDirectory, folderName);
 
@@ -42,10 +45,18 @@ namespace WebAPI.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(savePath, fileName);
                     var imagePath= Path.Combine( "Resources", "Images", fileName);
+                    var databasePath = "https://localhost:7112"+"/"+imagePath;
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
+                    //adding image path to database in UserRequests Controller
+                    //UserRequests userRequests = new UserRequests();
+                    //userRequests.UploadedImagePath = savePath;
+                    //UserRequestsController userRequestsController = new(_configuration);
+                    //userRequestsController.addImage(databasePath);
+
+                    runImageRecognition();
                     return Ok(new { imagePath});
 
                 }
@@ -59,12 +70,46 @@ namespace WebAPI.Controllers
             }
             return null;
         }
+
+        [HttpGet]
+        [Route("imageRecognition")]
+        public IActionResult runImageRecognition() {
+            string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
+            Console.WriteLine(fileName);
+
+            string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
+
+            // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
+            //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
+            string pythonExecutable = "C:\\Python\\python.exe";
+            Process p = new Process();
+            // @"C:\Python27\python.exe";
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = pythonExecutable;// full path to python.exe
+          
+            start.Arguments = fileName;// is path to .py file and any cmd line args
+            start.UseShellExecute = false;
+            start.WorkingDirectory = workingDirectory;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = "test";
+                      result=  reader.ReadToEnd();
+                    Console.Write(result);
+                }
+            }
+                return Ok();
+        }
         [HttpGet, DisableRequestSizeLimit]
         [Route("download")]
         public async Task<IActionResult> Download([FromQuery] string fileUrl)
         {
-            
+
+            //var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
+
             if (!System.IO.File.Exists(filePath))
                 return NotFound();
             var memory = new MemoryStream();
@@ -99,22 +144,25 @@ namespace WebAPI.Controllers
         public IActionResult CreateZIP()
         {
                 var path =Path.Combine("Resources");
-            //var folderName = Path.Combine(projectParentDirectory+"WebApp", "src", "assets", "Resources", "Dashboard");
-            var folderName = Path.Combine("Resources","Dashboard");
-            
+           // var folderName = Path.Combine(projectParentDirectory+"Image_Recognition_API", "s", "assets", "Resources", "Dashboard");
+            var folderName = Path.Combine(projectParentDirectory ,"WebAPI", "Image_Recognition_API", "Output");
+            //var folderName = Path.Combine("Resources","Dashboard");
             var zipPath = path + "\\Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
             //Checking if zip file for generated dashboard code has already been created.
-            if (files.Count() == 0)
+            if (files.Count() == 1)
             {
+                System.IO.File.Delete(files.First());
+            }
                 ZipFile.CreateFromDirectory(
                     folderName,
                      zipPath, includeBaseDirectory: true,
+                     
                       compressionLevel: CompressionLevel.Optimal);
-            }
+            
             return Ok(new { zipPath});
         }
-            [HttpGet, DisableRequestSizeLimit]
+         [HttpGet, DisableRequestSizeLimit]
         [Route("getFolders")]
         public IActionResult GetFolders()
         {

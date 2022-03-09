@@ -16,6 +16,6 @@ export class LoadingPageComponent implements OnInit {
       //For demonstration purposes
       setTimeout(() => {
           this.router.navigate(['download']);
-      }, 5000);  //5s
+      }, 15000);  //15s
   }
 }
