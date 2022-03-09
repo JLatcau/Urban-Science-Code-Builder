@@ -11,8 +11,10 @@ export class DataService {
 
   private imagePath = new BehaviorSubject(this.url);
   currentImagePath = this.imagePath.asObservable();
+  private downloadPath=new BehaviorSubject("");
+  currentDownloadPath=this.downloadPath.asObservable();
 
-//TODO: make api url easily interchangeable between localhost portuse on different machines
+//TODO: make api url easily interchangeable between localhost port use on different machines, port used is curently 
   constructor(private http: HttpClient) { 
   }
 
@@ -22,6 +24,14 @@ export class DataService {
 
     this.imagePath.next(data)
     console.log("service image path: "+this.imagePath.toString());
+    
+  }
+  public changeDownloadPath(data: string) {
+    // data=this.url +"/"+"Resources/"+"Images/"+"upload_test_1t.jpg";
+  
+
+    this.downloadPath.next(data)
+    console.log("service download path: "+this.downloadPath.toString());
     
   }
 

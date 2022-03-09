@@ -33,20 +33,26 @@ export class DownloadComponent implements OnInit {
       });
     }
     });
-    //Zip file generation dashboard code.
-    this.fileService.createZip().subscribe((response) => {
-      this.downloadPath=response['zipPath'];
-    });
+    // //Zip file generation dashboard code.
+    // this.fileService.createZip().subscribe((response) => {
+    //   this.downloadPath=response['zipPath'];
+    // });
     
      }
 
- download(){
+ async download(){
   
   var fileName;
-  
+  //Zip file generation dashboard code.
+  var response=  await this.fileService.createZip().toPromise() 
+    if (response)
+  {
+    this.downloadPath=response['zipPath'];
+  };
   fileName=this.downloadPath;
   fileName=fileName.split("\\");
   //console.log("file name went with: "+fileName[1]);
+  
   this.fileService.download(this.downloadPath).subscribe((event) => {
     
     this.message = 'Download success.';

@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
 
             // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
             //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
-            string pythonExecutable = "C:\\Users\\Jacob\\AppData\\Local\\Programs\\Python\\Python310\\python.exe";
+            string pythonExecutable = "C:\\Python\\python.exe";
             Process p = new Process();
             // @"C:\Python27\python.exe";
             ProcessStartInfo start = new ProcessStartInfo();
@@ -106,8 +106,10 @@ namespace WebAPI.Controllers
         [Route("download")]
         public async Task<IActionResult> Download([FromQuery] string fileUrl)
         {
-            
+
+            //var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
+
             if (!System.IO.File.Exists(filePath))
                 return NotFound();
             var memory = new MemoryStream();
@@ -142,19 +144,22 @@ namespace WebAPI.Controllers
         public IActionResult CreateZIP()
         {
                 var path =Path.Combine("Resources");
-            //var folderName = Path.Combine(projectParentDirectory+"WebApp", "src", "assets", "Resources", "Dashboard");
-            var folderName = Path.Combine("Resources","Dashboard");
-            
+           // var folderName = Path.Combine(projectParentDirectory+"Image_Recognition_API", "s", "assets", "Resources", "Dashboard");
+            var folderName = Path.Combine(projectParentDirectory ,"WebAPI", "Image_Recognition_API", "Output");
+            //var folderName = Path.Combine("Resources","Dashboard");
             var zipPath = path + "\\Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
             //Checking if zip file for generated dashboard code has already been created.
-            if (files.Count() == 0)
+            if (files.Count() == 1)
             {
+                System.IO.File.Delete(files.First());
+            }
                 ZipFile.CreateFromDirectory(
                     folderName,
                      zipPath, includeBaseDirectory: true,
+                     
                       compressionLevel: CompressionLevel.Optimal);
-            }
+            
             return Ok(new { zipPath});
         }
          [HttpGet, DisableRequestSizeLimit]
