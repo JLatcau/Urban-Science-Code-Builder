@@ -67,12 +67,12 @@ if not images:
 img = images[0]
 
 # # Resizes Image
-resized = cv.resize(img, (595, 842))
+resized = cv.resize(img, (553, 800))
 
 # # Creates a blank image with original image scale
 blank = np.zeros([595, 842], dtype='uint8')
 blank.fill(255) # or img[:] = 255
-blank = cv.resize(blank, (595, 842))
+blank = cv.resize(blank, (553, 800))
 
 # # Converts to grayscale
 gray = cv.cvtColor(resized, cv.COLOR_BGR2GRAY)
