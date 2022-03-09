@@ -8,6 +8,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Diagnostics;
 
 
 
@@ -17,7 +18,8 @@ namespace WebAPI.Controllers
     [ApiController]
     [EnableCors("AllowOrigin")]
     public class FileController : ControllerBase
-    {   
+    {
+        private readonly IConfiguration _configuration;
         //Project parent directory path
         private string projectParentDirectory = Directory.GetParent((Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
         //Swap in commented out code to reroute file storage for download to angular assets folder, or vice versa for image upload.
@@ -42,10 +44,18 @@ namespace WebAPI.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(savePath, fileName);
                     var imagePath= Path.Combine( "Resources", "Images", fileName);
+                    var databasePath = "https://localhost:7112"+"/"+imagePath;
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
+                    //adding image path to database in UserRequests Controller
+                    UserRequests userRequests = new UserRequests();
+                    userRequests.UploadedImagePath = savePath;
+                    UserRequestsController userRequestsController = new(_configuration);
+                    userRequestsController.addImage(databasePath);
+
+                    runImageRecognition();
                     return Ok(new { imagePath});
 
                 }
@@ -58,6 +68,34 @@ namespace WebAPI.Controllers
 
             }
             return null;
+        }
+
+        [HttpGet]
+        [Route("imageRecognition")]
+        public IActionResult runImageRecognition() {
+            string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image Recognition API","read.py");
+            Console.WriteLine(fileName);
+            // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
+            //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
+            string pythonExecutable = "C:\\Python\\python.exe";
+            Process p = new Process();
+            // @"C:\Python27\python.exe";
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = pythonExecutable;// full path to python.exe
+          
+            start.Arguments = fileName;// is path to .py file and any cmd line args
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = "test";
+                      result=  reader.ReadToEnd();
+                    Console.Write(result);
+                }
+            }
+                return Ok();
         }
         [HttpGet, DisableRequestSizeLimit]
         [Route("download")]
@@ -114,7 +152,7 @@ namespace WebAPI.Controllers
             }
             return Ok(new { zipPath});
         }
-            [HttpGet, DisableRequestSizeLimit]
+         [HttpGet, DisableRequestSizeLimit]
         [Route("getFolders")]
         public IActionResult GetFolders()
         {
