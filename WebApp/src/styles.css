@@ -13,7 +13,7 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
 
 .code_builder {
     color: #70c82f;
-    margin-top: 100px;
+    margin-top: 30px;
     user-select: none;
 }
 
@@ -45,7 +45,7 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 750px) {
     .page_actions {
         display: block;
         margin: 20% 0 0 0;
@@ -58,5 +58,6 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
     html { 
         width: auto !important;
         overflow-x: hidden !important;
+        overflow-y: hidden !important;
     }
 }

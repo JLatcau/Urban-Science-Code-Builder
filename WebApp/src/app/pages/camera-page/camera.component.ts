@@ -1,5 +1,6 @@
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
@@ -29,8 +30,19 @@ export class CameraComponent implements OnInit {
   image;
 
   constructor(private imageService: ImageSharingServiceService,
-    private router: Router) { }
+    private router: Router) { this.onResize() }
 
+
+    public width: number = 1000;
+    public height: number = 500;
+    private resizeMultiplier = 0.60;
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event?: Event) {
+    const win = !!event ? (event.target as Window) : window;
+    this.width = win.innerWidth * this.resizeMultiplier;
+    this.height = win.innerHeight * this.resizeMultiplier;
+  }
 
   ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs()

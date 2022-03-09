@@ -22,7 +22,7 @@ a.hleft:hover, a.hleft:focus {
     align-items: center;
 } 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 750px) {
     a.hleft {
         display: block;
         width: 80%;
