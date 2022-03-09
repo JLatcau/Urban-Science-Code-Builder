@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class DataService {
 
   private imagePath = new BehaviorSubject(this.url);
   currentImagePath = this.imagePath.asObservable();
+
 //TODO: make api url easily interchangeable between localhost portuse on different machines
   constructor(private http: HttpClient) { 
   }
@@ -20,9 +22,13 @@ export class DataService {
 
     this.imagePath.next(data)
     console.log("service image path: "+this.imagePath.toString());
-    return this.http.get(this.url+'/api/UserRequests/addImage?UploadedImagePath='+this.imagePath, {
-  });
-  console.log("Image should be added here: ");
+    
   }
+
+public addImagePathToDatabase(){
+   this.http.get(this.url+'/api/UserRequests/addImage?UploadedImagePath='+this.currentImagePath,{reportProgress:true,
+    });
+}
+
  
 }

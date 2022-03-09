@@ -54,6 +54,7 @@ export class UploadComponent implements OnInit {
       }      
 
     });
+   // this.data.addImagePathToDatabase();
     this.router.navigate(['/loading']);
 
   }

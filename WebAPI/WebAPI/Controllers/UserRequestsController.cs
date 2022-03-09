@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System.Data;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowOrigin")]
+
     public class UserRequestsController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -54,6 +57,10 @@ namespace WebAPI.Controllers
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("UserRequestsAppCon");
+            if (sqlDataSource == null)
+            {
+                sqlDataSource = "Host=localhost;Database=postgres;Port=5432;User Id=postgres;Password=postgres";
+            }
             NpgsqlDataReader myReader;
             using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
             {
@@ -83,6 +90,10 @@ namespace WebAPI.Controllers
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("UserRequestsAppCon");
+            if (sqlDataSource == null)
+            { 
+                sqlDataSource= "Host=localhost;Database=postgres;Port=5432;User Id=postgres;Password=postgres";
+            }
             NpgsqlDataReader myReader;
             using (NpgsqlConnection myCon = new NpgsqlConnection(sqlDataSource))
             {
@@ -132,11 +143,12 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("addImage")]
-        public void addImage([FromQuery] string UploadedImagePath)
+        public  IActionResult addImage([FromQuery] string UploadedImagePath)
         {
             UserRequests userRequests = new UserRequests();
             userRequests.UploadedImagePath = UploadedImagePath;
             Post(userRequests);
+            return Ok();
         }
     }
 }
