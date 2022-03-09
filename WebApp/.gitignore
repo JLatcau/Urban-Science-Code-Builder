@@ -44,3 +44,23 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# WebApi additions
+../WebAPI/WebAPI/bin/Debug/net6.0/WebAPI.dll
+../WebAPI/WebAPI/bin/Debug/net6.0/WebAPI.exe
+../WebAPI/WebAPI/bin/Debug/net6.0/WebAPI.pdb
+../WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+../WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.assets.cache
+../WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.csproj.AssemblyReference.cache
+../WebAPI/.vs/ProjectSettings.json
+../WebAPI/.vs/VSWorkspaceState.json
+../WebAPI/.vs/WebAPI/v16/
+../WebAPI/.vs/slnx.sqlite
+../WebAPI/WebAPI/.vs/
+../WebAPI/WebAPI/obj/Debug/net5.0/
+../WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.csproj.BuildWithSkipAnalyzers
+../WebAPI/WebAPI/obj/Debug/net6.0/refint/
+../WebAPI/WebAPI/obj/Debug/netcoreapp3.0/
+../WebAPI/WebAPI/obj/Release/net5.0/
+../WebAPI/WebAPI/obj/Release/netcoreapp3.0/
+
