@@ -1,12 +1,13 @@
 a.hleft {
-    position:absolute;
-    width:240px;
+    display: block;
+    width: 240px;
     height:auto;
     left:80px;
     top:10px;
     padding:22px 0;
     z-index:1;
     user-select: none;
+    position: absolute;
 }
 
 a.hleft:hover, a.hleft:focus {
@@ -20,3 +21,16 @@ a.hleft:hover, a.hleft:focus {
     flex-direction: column;
     align-items: center;
 } 
+
+@media screen and (max-width: 750px) {
+    a.hleft {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        position: unset !important;
+    }
+
+    .main_content {
+        margin: 20px auto 32px;
+    }
+}

@@ -2,8 +2,8 @@
     <h3>Take a picture using your camera</h3>
 
     <div *ngIf="isCameraExist; else noCameraExist">
-        <div class="content">
-            <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+        <div class="content" (window:resize)="onResize($event)">
+            <webcam class="camera" [height]="height" [width]="width" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
                 *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
         </div>
 
@@ -25,8 +25,7 @@
 
     <div class="page_actions">
         <a class="button" (click)="takeSnapshot()" (click)="toggleSubmit()">Take Picture</a>
-        <a class="button" (click)="onOffWebCame()">On/Off</a>
-        <a class="button" (click)="changeWebCame(true)">Toggle</a>
+        <a class="button toggle_camera_btn" (click)="changeWebCam(true)">Toggle</a>
     </div>
 
     <div class="page_actions" *ngIf="showSubmit">

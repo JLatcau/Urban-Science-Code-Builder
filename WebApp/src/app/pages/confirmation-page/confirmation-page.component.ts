@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 
@@ -15,7 +15,7 @@ export class ConfirmationPageComponent implements OnInit {
   sanitizedImageURL;
 
   constructor(private imageService: ImageSharingServiceService,
-    private domSanitizer: DomSanitizer) { }
+    private domSanitizer: DomSanitizer) { this.onResize() }
 
   ngOnInit(): void {
       this.imageService.image.subscribe(img => {
@@ -42,6 +42,16 @@ export class ConfirmationPageComponent implements OnInit {
     return this.domSanitizer.bypassSecurityTrustUrl(imageUrl);
   }
 
+    public width: number = 1000;
+    public height: number = 500;
+    private resizeMultiplier = 0.40;
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event?: Event) {
+    const win = !!event ? (event.target as Window) : window;
+    this.width = win.innerWidth * this.resizeMultiplier;
+    this.height = win.innerHeight * this.resizeMultiplier;
+  }
   
 
 

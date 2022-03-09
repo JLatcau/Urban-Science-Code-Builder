@@ -11,3 +11,14 @@ h6 {
 .card_holder {
     padding: 25px;
 }
+
+@media screen and (max-width: 400px) {
+    .button.toggle_camera_btn {
+        display: none;
+    }
+
+    .page_actions {
+        display: block;
+        margin: 0 0 0 0 !important;
+    }
+}
