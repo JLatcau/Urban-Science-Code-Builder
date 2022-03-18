@@ -81,10 +81,29 @@ namespace WebAPI.Controllers
 
             // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
             //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
-            string pythonExecutable = "C:\\Python\\python.exe";
-            Process p = new Process();
-            // @"C:\Python27\python.exe";
+
+            //Finding path to python.exe on local machine
+           string command = "where python";
             ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "cmd.exe";
+            start.Verb = "runas";
+            start.Arguments = "/C " + command;
+            start.RedirectStandardOutput = true;
+            start.UseShellExecute = false;
+            var cmd = Process.Start(start);
+            string output = cmd.StandardOutput.ReadToEnd();
+            cmd.WaitForExit();
+           var pythonExePath= output.Split("python.exe");
+            Console.WriteLine("Python path output:"+pythonExePath[0]);
+            string pythonExecutable = pythonExePath[0]+"python.exe";
+            Console.WriteLine("python exe path: "+pythonExecutable);
+
+            //Hard coded python.exe path, would have to be changed on each machine used
+            // string pythonExecutable = "C:\\Python\\python.exe";
+
+            //Callling Python image recognition script   
+            Process p = new Process();
+            start = new ProcessStartInfo();
             start.FileName = pythonExecutable;// full path to python.exe
           
             start.Arguments = fileName;// is path to .py file and any cmd line args
