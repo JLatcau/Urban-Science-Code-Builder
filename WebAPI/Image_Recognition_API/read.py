@@ -5,6 +5,7 @@ import io
 import os
 import shutil
 import glob
+import sys
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="keyFile.json"
 client = vision.ImageAnnotatorClient()\
@@ -48,7 +49,8 @@ for single_file in filelist:
     shutil.move(single_file,target_folder) 
 
 
-imdir = './ImageInput/'
+imdir = './ImageInput/'+sys.argv[1]
+print(imdir)
 images = []
 
 with open('Output/output.txt', 'w') as f:
@@ -173,7 +175,7 @@ for text in texts:
     #     with open('output.txt', 'w') as f:
     #         f.write('None Detected')
 
-dir = 'ImageInput'
+dir = 'ImageInput/'+sys.argv[1]
 for f in os.listdir(dir):
     os.remove(os.path.join(dir, f))
 
