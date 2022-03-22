@@ -18,8 +18,8 @@ export class FileService {
       });
   }
   
-  public download(fileUrl:string){
-    return this.http.get(this.url+'/api/File/download?fileUrl='+fileUrl,
+  public download(fileUrl:string, user_id:string){
+    return this.http.get(this.url+'/api/File/download?fileUrl='+fileUrl+"&user_id="+user_id,
     {reportProgress:true,
     responseType:'blob',}
     );

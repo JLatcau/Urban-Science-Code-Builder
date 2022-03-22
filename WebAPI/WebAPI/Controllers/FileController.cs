@@ -33,12 +33,29 @@ namespace WebAPI.Controllers
                 //Asynchronous file reading 
                 var formCollection = await Request.ReadFormAsync();
                    var file = formCollection.Files.First();
+                var user_id = formCollection["user_id"];
+                Console.WriteLine("user id: "+user_id);
                 //Path to WebApp assets 
                 // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
                 // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
-                var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput");
+               
+                //Creating input and output folders for each user
+                var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
+                var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
 
-                var savePath = Path.Combine(projectParentDirectory, folderName);
+                //      var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput");
+                Console.WriteLine("input folderName for user: "+inputFolderName);
+                if (!Directory.Exists(inputFolderName))
+                {
+                    Directory.CreateDirectory(inputFolderName);
+                }
+                Console.WriteLine("output folderName for user: " + outputFolderName);
+                if (!Directory.Exists(outputFolderName))
+                {
+                    Directory.CreateDirectory(outputFolderName);
+                }
+                // var savePath = Path.Combine(projectParentDirectory, folderName);
+                var savePath = Path.Combine(projectParentDirectory, inputFolderName);
 
                 if (file.Length > 0)
                 {
@@ -56,7 +73,12 @@ namespace WebAPI.Controllers
                     //UserRequestsController userRequestsController = new(_configuration);
                     //userRequestsController.addImage(databasePath);
 
-                    runImageRecognition();
+                    runImageRecognition(user_id);
+                    //Deleting user input folders after use
+                    if (Directory.Exists(inputFolderName))
+                    {
+                        Directory.Delete(inputFolderName);
+                    }
                     return Ok(new { imagePath});
 
                 }
@@ -73,7 +95,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("imageRecognition")]
-        public IActionResult runImageRecognition() {
+        public IActionResult runImageRecognition(string user_id) {
             string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
             Console.WriteLine(fileName);
 
@@ -81,9 +103,9 @@ namespace WebAPI.Controllers
 
             // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
             //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
-
+           
             //Finding path to python.exe on local machine
-           string command = "where python";
+            string command = "where python";
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = "cmd.exe";
             start.Verb = "runas";
@@ -106,7 +128,7 @@ namespace WebAPI.Controllers
             start = new ProcessStartInfo();
             start.FileName = pythonExecutable;// full path to python.exe
           
-            start.Arguments = fileName;// is path to .py file and any cmd line args
+            start.Arguments = fileName+" "+user_id;// is path to .py file and any cmd line args
             start.UseShellExecute = false;
             start.WorkingDirectory = workingDirectory;
             start.RedirectStandardOutput = true;
@@ -119,11 +141,11 @@ namespace WebAPI.Controllers
                     Console.Write(result);
                 }
             }
-                return Ok();
+            return Ok();
         }
         [HttpGet, DisableRequestSizeLimit]
         [Route("download")]
-        public async Task<IActionResult> Download([FromQuery] string fileUrl)
+        public async Task<IActionResult> Download([FromQuery] string fileUrl, [FromQuery] string user_id )
         {
 
             //var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);

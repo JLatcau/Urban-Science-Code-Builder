@@ -13,6 +13,8 @@ export class DataService {
   currentImagePath = this.imagePath.asObservable();
   private downloadPath=new BehaviorSubject("");
   currentDownloadPath=this.downloadPath.asObservable();
+  private user_id=new BehaviorSubject("0");
+  currentUser_Id=this.user_id.asObservable();
 
 //TODO: make api url easily interchangeable between localhost port use on different machines, port used is curently 
   constructor(private http: HttpClient) { 
@@ -33,6 +35,10 @@ export class DataService {
     this.downloadPath.next(data)
     console.log("service download path: "+this.downloadPath.toString());
     
+  }
+
+  public changeUser_Id(data: string){
+      this.user_id.next(data);
   }
 
 public addImagePathToDatabase(){
