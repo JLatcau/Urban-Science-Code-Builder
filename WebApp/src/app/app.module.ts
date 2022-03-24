@@ -19,6 +19,7 @@ import { ConfirmationPageComponent } from './pages/confirmation-page/confirmatio
 import { FileService } from './_service/file.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OutputPageComponent } from './pages/output-page/output-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { OutputPageComponent } from './pages/output-page/output-page.component';
     MatCardModule,
     MatIconModule,
     HttpClientModule,
-    WebcamModule
+    WebcamModule,
+    MatDialogModule
   ],
   providers: [FileService],
   bootstrap: [AppComponent],

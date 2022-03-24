@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
-
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DownloadComponent } from 'src/app/download/download.component';
 
 @Component({
   selector: 'app-main-page',
@@ -17,7 +18,8 @@ export class MainPageComponent implements OnInit {
 
   constructor(private imageService: ImageSharingServiceService,
     private route: ActivatedRoute,
-    private router: Router) { 
+    private router: Router, 
+    private dialog: MatDialog) { 
   }
 
   ngOnInit(): void {
@@ -59,4 +61,7 @@ export class MainPageComponent implements OnInit {
     this.imageService.newImage(this.image)
   }
 
+  open_help(templateRef) {
+    let dialogRef = this.dialog.open(templateRef);
+  }
 }
