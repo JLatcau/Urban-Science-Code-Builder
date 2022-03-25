@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 import { DataService } from 'src/app/_service/data.service';
 import { Subscription } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -46,7 +47,7 @@ export class UploadComponent implements OnInit {
     //Generating random integer for user id and storing it in data service for use across components , assigned once per instance
     //TODO: replace random user id with client id from Google analytics.
     if (this.user_id==="0"){
-    this.user_id=Math.floor(Math.random() * 10000).toString();
+    this.user_id=uuidv4();
     console.log("user id in web app: "+this.user_id);
     this.data.changeUser_Id(this.user_id);
     }
