@@ -13,14 +13,13 @@
     <a class="floating_help" (click)="open_help(main_help)"><mat-icon>help_outline</mat-icon></a>
 
     <ng-template #main_help>
-        <h1>Help</h1>
-        <h3>You must provide this application with an input image. This page provides you with two ways you can upload an image:</h3>
-
-        <ul>
-            <li>You are able to upload an image from your device. This can be of file type png, jpg, jpeg, and </li>
-            <li>You can also take a picture yourself from the device that you're using.</li>
-        </ul>
+        <div class="main_content">
+            <h1>Help</h1>
+            <h3>You must provide this application with an input image. This page provides you with two ways you can upload an image:</h3>
+            <ul>
+                <li>You are able to upload an image from your device. This can be of file type png, jpg, and heic.</li>
+                <li>You can also take a picture yourself from the device that you're using.</li>
+            </ul>
+        </div>
     </ng-template>
-    <!-- This is for testing purposes only -->
-    <!-- <div class="card_holder"><a class="button" [routerLink]="['loading']">Test Loading Page</a></div> -->
 </div>

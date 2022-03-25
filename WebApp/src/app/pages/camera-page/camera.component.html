@@ -32,4 +32,14 @@
         <a class="button" [routerLink]="['../loading']">Submit</a>
     </div>
 
+    <a class="floating_help" (click)="open_help(camera_help)"><mat-icon>help_outline</mat-icon></a>
+
+    <ng-template #camera_help>
+        <div class="main_content">
+            <h1>Help</h1>
+            <h3>You have selected the option to input an image by taking a picture from your device.</h3>
+            <h3>Pressing the 'Toggle' button will cycle through your devices cameras so you can choose </h3>
+
+        </div>
+    </ng-template>
 </div>

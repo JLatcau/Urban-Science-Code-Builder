@@ -1,9 +1,11 @@
-
-
 .card_holder {
     padding: 75px;
 }
 
 input[type="file"] {
     display: none;
+}
+
+.main_content{
+    text-align: left;
 }
