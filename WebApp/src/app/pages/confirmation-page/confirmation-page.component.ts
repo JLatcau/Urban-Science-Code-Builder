@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmation-page',
@@ -14,7 +15,9 @@ export class ConfirmationPageComponent implements OnInit {
 
   sanitizedImageURL;
 
-  constructor(private imageService: ImageSharingServiceService,
+  constructor(
+    private dialog: MatDialog,
+    private imageService: ImageSharingServiceService,
     private domSanitizer: DomSanitizer) { this.onResize() }
 
   ngOnInit(): void {
@@ -52,7 +55,8 @@ export class ConfirmationPageComponent implements OnInit {
     this.width = win.innerWidth * this.resizeMultiplier;
     this.height = win.innerHeight * this.resizeMultiplier;
   }
-  
 
-
+  open_help(templateRef) {
+    let dialogRef = this.dialog.open(templateRef);
+  }
 }
