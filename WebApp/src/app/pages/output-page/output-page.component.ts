@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-output-page',
@@ -8,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class OutputPageComponent implements OnInit {
   showSubmit = false;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   toggleSubmit() {
     this.showSubmit = !this.showSubmit;
+  }
+
+  open_help(templateRef) {
+    let dialogRef = this.dialog.open(templateRef);
   }
 }
