@@ -16,4 +16,14 @@
     </div>
 
     <div class="side_content"></div>
+
+    <a class="floating_help" (click)="open_help(output_help)"><mat-icon>help_outline</mat-icon></a>
+
+    <ng-template #output_help>
+        <div style="text-align: left;">
+            <h1 style="text-align: center;">Help</h1>
+            <h3>This page offers a menu on the left side of the image for you to view the code that the application has generated.</h3>
+            <h3>You can expand the main compnent to view the subsections of the generated component.</h3>
+        </div>
+    </ng-template>
 </div>
