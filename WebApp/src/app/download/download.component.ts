@@ -2,6 +2,9 @@ import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit,Input, Output, EventEmitter} from '@angular/core';
 import { FileService } from '../_service/file.service';
 import * as FileSaver from 'file-saver';
+import { DataService } from '../_service/data.service';
+import { Subscription } from 'rxjs';
+
 //import { Console } from 'console';
 
 
@@ -12,13 +15,15 @@ import * as FileSaver from 'file-saver';
 })
 export class DownloadComponent implements OnInit {
   
-  constructor(private fileService: FileService) { }
+  constructor(private fileService: FileService, private data: DataService) { }
 
   message!: string;
   progress!: number;
   foldersToDownload;
    filesToDownload: string[] = [];
   downloadPath;
+  user_id!: string;
+  user_IdSubscription!: Subscription;
  
   ngOnInit(): void {
     //Retrieving dashboard folder and file paths.
@@ -33,6 +38,8 @@ export class DownloadComponent implements OnInit {
       });
     }
     });
+    this.user_IdSubscription = this.data.currentUser_Id.subscribe(user_id => this.user_id = user_id);
+
     // //Zip file generation dashboard code.
     // this.fileService.createZip().subscribe((response) => {
     //   this.downloadPath=response['zipPath'];
@@ -53,7 +60,7 @@ export class DownloadComponent implements OnInit {
   fileName=fileName.split("\\");
   //console.log("file name went with: "+fileName[1]);
   
-  this.fileService.download(this.downloadPath).subscribe((event) => {
+  this.fileService.download(this.downloadPath,this.user_id).subscribe((event) => {
     
     this.message = 'Download success.';
         this.downloadFile(event,fileName[1]);

@@ -17,6 +17,20 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
     user-select: none;
 }
 
+.floating_help {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    background: #70c82f;
+    color: #ffffff;
+}
+
 .button {
     background-color: #70c82f; 
     border: none;
@@ -43,7 +57,6 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
     align-items: center;
     padding: 25px;
 }
-
 
 @media screen and (max-width: 750px) {
     .page_actions {

@@ -8,6 +8,18 @@
         <a class="button" routerLink="">Choose Another Image</a>
     </div>
 
+    <a class="floating_help" (click)="open_help(confirmation_help)"><mat-icon>help_outline</mat-icon></a>
+
+    <ng-template #confirmation_help>
+        <div style="text-align: left;">
+            <h1 style="text-align: center;">Help</h1>
+            <h3>You have the option to proceed with the selected image or discard it and choose another.</h3>
+            <li>Press 'Confirm' if you are content with the uploaded image.</li>
+            <li>Press 'Choose Another Image' if you wish to discard the image and navigate back to the home page.</li>
+            <br>
+        </div>
+    </ng-template>
+
     <!-- This is for testing purposes only -->
     <!-- <div class="card_holder"><a class="button" [routerLink]="['loading']">Test Loading Page</a></div> -->
 </div>
