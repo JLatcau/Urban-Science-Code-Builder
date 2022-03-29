@@ -123,7 +123,7 @@ namespace WebAPI.Controllers
             //Hard coded python.exe path, would have to be changed on each machine used
             // string pythonExecutable = "C:\\Python\\python.exe";
 
-            //Callling Python image recognition script   
+            //Calling Python image recognition script   
             Process p = new Process();
             start = new ProcessStartInfo();
             start.FileName = pythonExecutable;// full path to python.exe
@@ -141,14 +141,30 @@ namespace WebAPI.Controllers
                     Console.Write(result);
                 }
             }
+
+            runCodeGeneration(user_id);
             return Ok();
         }
-        [HttpGet, DisableRequestSizeLimit]
+
+        [HttpGet]
+        [Route("codeGeneration")]
+        public IActionResult runCodeGeneration(string user_id)
+        {
+            //Creating user code folder 
+            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","assets", user_id);
+
+            if (!Directory.Exists(codeFolderName))
+            {
+                Directory.CreateDirectory(codeFolderName);
+            }
+            return Ok();
+        }
+
+            [HttpGet, DisableRequestSizeLimit]
         [Route("download")]
         public async Task<IActionResult> Download([FromQuery] string fileUrl, [FromQuery] string user_id )
         {
 
-            //var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
 
             if (!System.IO.File.Exists(filePath))
