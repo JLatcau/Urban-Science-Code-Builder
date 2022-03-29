@@ -7,13 +7,10 @@ input[type="file"] {
 }
 
 .dragarea {
-    border: 3px solid #bbb;
-    background-color: #fff;
-    color: #bbb;
+    background-color: white;
 }
   
 .droparea {
     border: 3px dashed #bbb;
-    background-color: #eff;
-    color: #aaa;
+    background-color: white;
 }
