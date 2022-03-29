@@ -15,6 +15,7 @@ client = vision.ImageAnnotatorClient()
 bVar = 'B'
 gVar = 'G'
 nVar = 'N'
+cellZ = ''
 
 imdir = './ImageInput/'+sys.argv[1]
 print(imdir)
@@ -101,9 +102,24 @@ for text in texts:
         avgX = (sum(listX)/len(listX))
         avgY = (sum(listY)/len(listY))
 
+        print(str(avgX)+','+str(avgY))
+
+        if(avgX<226 and avgY<267):
+            cellZ='00'
+        elif(avgX>226 and avgY<267):
+            cellZ='01'
+        elif(avgX<226 and avgY>267 and avgY<533):
+            cellZ='10'
+        elif(avgX>226 and avgY>267 and avgY<533):
+            cellZ='11'
+        elif(avgX<226 and avgY>533):
+            cellZ='20'
+        elif(avgX>226 and avgY>533):
+            cellZ='21'
+
         with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
             f.write('{}'.format(text.description+' '))
-            f.write(str(avgX)+' '+str(avgY)+'\n')
+            f.write(cellZ+'\n')
 
     if gVar==text.description:
         print('Data Grid')
@@ -117,9 +133,24 @@ for text in texts:
         avgX = (sum(listX)/len(listX))
         avgY = (sum(listY)/len(listY))
 
+        print(str(avgX)+','+str(avgY))
+
+        if(avgX<226 and avgY<267):
+            cellZ='00'
+        elif(avgX>226 and avgY<267):
+            cellZ='01'
+        elif(avgX<226 and avgY>267 and avgY<533):
+            cellZ='10'
+        elif(avgX>226 and avgY>267 and avgY<533):
+            cellZ='11'
+        elif(avgX<226 and avgY>533):
+            cellZ='20'
+        elif(avgX>226 and avgY>533):
+            cellZ='21'
+
         with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
             f.write('{}'.format(text.description+' '))
-            f.write(str(avgX)+' '+str(avgY)+'\n')
+            f.write(cellZ+'\n')
 
     if nVar==text.description:
         print('KPI')
@@ -133,9 +164,24 @@ for text in texts:
         avgX = (sum(listX)/len(listX))
         avgY = (sum(listY)/len(listY))
 
+        print(str(avgX)+','+str(avgY))
+
+        if(avgX<226 and avgY<267):
+            cellZ='00'
+        elif(avgX>226 and avgY<267):
+            cellZ='01'
+        elif(avgX<226 and avgY>267 and avgY<533):
+            cellZ='10'
+        elif(avgX>226 and avgY>267 and avgY<533):
+            cellZ='11'
+        elif(avgX<226 and avgY>533):
+            cellZ='20'
+        elif(avgX>226 and avgY>533):
+            cellZ='21'
+
         with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
             f.write('{}'.format(text.description+' '))
-            f.write(str(avgX)+' '+str(avgY)+'\n')
+            f.write(cellZ+'\n')
 
     # else:
     #     print('None Detected')
