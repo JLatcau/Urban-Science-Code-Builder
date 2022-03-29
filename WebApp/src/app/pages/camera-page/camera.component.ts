@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class CameraComponent implements OnInit {
 
   image;
 
-  constructor(private imageService: ImageSharingServiceService,
+  constructor(
+    private dialog: MatDialog,
+    private imageService: ImageSharingServiceService,
     private router: Router) { this.onResize() }
 
 
@@ -98,5 +101,9 @@ export class CameraComponent implements OnInit {
 
   newImage() {
     this.imageService.newImage(this.image)
+  }
+
+  open_help(templateRef) {
+    let dialogRef = this.dialog.open(templateRef);
   }
 }
