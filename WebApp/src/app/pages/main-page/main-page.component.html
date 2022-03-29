@@ -13,14 +13,17 @@
     <a class="floating_help" (click)="open_help(main_help)"><mat-icon>help_outline</mat-icon></a>
 
     <ng-template #main_help>
-        <div class="main_content">
-            <h1>Help</h1>
-            <h3>You must provide this application with an input image. The input image should have the letters of the components structured in a 2 x 3 column. Below is an example of what your image may look like.</h3>
-            <img src="https://imgur.com/8rIevoL.png" style="max-width: 100%;">
-            <h3 style="margin-right: auto;">This page provides you with two ways you can upload an image:</h3>
-            <ul style="margin-right: auto;">
-                <li>You are able to upload an image from your device. This can be of file type png, jpg, and heic.</li>
-                <li>You can also take a picture of a peice of paper using the camera of device.</li>
+        <div style="max-width: 1000px; text-align: left;">
+            <h1 style="text-align: center;">Help</h1>
+            <h3>You must provide this application with an input image. The input image should have the letters of the components structured in a 3 x 2 table format. Below is an example of what your image may look like.</h3>
+            <figure style="text-align: center;">
+                <img src="https://imgur.com/0x85Vg9.png" style="max-width: 100%;">
+                <figcaption>Do not include the dashed lines in your image upload.</figcaption>
+            </figure>
+            <h3>This page provides you with two ways you can upload an image:</h3>
+            <ul>
+                <li>You are able to upload an image from your device by clicking the 'Upload From Device' button. This can be of file type png, jpg, and heic.</li>
+                <li>You can also take a picture of a peice of paper using the camera of device by clicking the 'Take Picture' button.</li>
             </ul>
         </div>
     </ng-template>
