@@ -1,8 +1,8 @@
-<div class="main_content">
-    <h3>Turn a hand drawn dashboard into a web dashboard</h3>
+<h3>Turn a hand drawn dashboard into a web dashboard</h3>
+<div class="main_content" ngClass="{{dragAreaClass}}">
 
     <div class="page_actions">
-        <div id="dragAndDrop" (drop)="onDrop($event)" (dragover)="allowDrop($event)">
+        <div>
             <label for="image-upload" class="button">Upload Image</label>
             <input id="image-upload" type="file" accept=".png,.jpg,.jpeg,.heic"
                 (change)="onImageSelected($event)">
@@ -22,7 +22,8 @@
             </figure>
             <h3>This page provides you with two ways you can upload an image:</h3>
             <ul>
-                <li>You are able to upload an image from your device by clicking the 'Upload From Device' button. This can be of file type png, jpg, and heic.</li>
+                <li>You are able to upload an image from your device by clicking the 'Upload From Device' button. This can be of file type png, jpg, and heic.<br>
+                You can also drag and drop a file from your file explorer onto anywhere on the the screen.</li>
                 <li>You can also take a picture of a peice of paper using the camera of device by clicking the 'Take Picture' button.</li>
             </ul>
         </div>

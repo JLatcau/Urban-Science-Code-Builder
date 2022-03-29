@@ -5,3 +5,15 @@
 input[type="file"] {
     display: none;
 }
+
+.dragarea {
+    border: 3px solid #bbb;
+    background-color: #fff;
+    color: #bbb;
+}
+  
+.droparea {
+    border: 3px dashed #bbb;
+    background-color: #eff;
+    color: #aaa;
+}
