@@ -105,17 +105,17 @@ for text in texts:
         print(str(avgX)+','+str(avgY))
 
         if(avgX<226 and avgY<267):
-            cellZ='00'
+            cellZ='0 0'
         elif(avgX>226 and avgY<267):
-            cellZ='01'
+            cellZ='0 1'
         elif(avgX<226 and avgY>267 and avgY<533):
-            cellZ='10'
+            cellZ='1 0'
         elif(avgX>226 and avgY>267 and avgY<533):
-            cellZ='11'
+            cellZ='1 1'
         elif(avgX<226 and avgY>533):
-            cellZ='20'
+            cellZ='2 0'
         elif(avgX>226 and avgY>533):
-            cellZ='21'
+            cellZ='2 1'
 
         with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
             f.write('{}'.format(text.description+' '))
@@ -136,17 +136,17 @@ for text in texts:
         print(str(avgX)+','+str(avgY))
 
         if(avgX<226 and avgY<267):
-            cellZ='00'
+            cellZ='0 0'
         elif(avgX>226 and avgY<267):
-            cellZ='01'
+            cellZ='0 1'
         elif(avgX<226 and avgY>267 and avgY<533):
-            cellZ='10'
+            cellZ='1 0'
         elif(avgX>226 and avgY>267 and avgY<533):
-            cellZ='11'
+            cellZ='1 1'
         elif(avgX<226 and avgY>533):
-            cellZ='20'
+            cellZ='2 0'
         elif(avgX>226 and avgY>533):
-            cellZ='21'
+            cellZ='2 1'
 
         with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
             f.write('{}'.format(text.description+' '))
@@ -167,17 +167,17 @@ for text in texts:
         print(str(avgX)+','+str(avgY))
 
         if(avgX<226 and avgY<267):
-            cellZ='00'
+            cellZ='0 0'
         elif(avgX>226 and avgY<267):
-            cellZ='01'
+            cellZ='0 1'
         elif(avgX<226 and avgY>267 and avgY<533):
-            cellZ='10'
+            cellZ='1 0'
         elif(avgX>226 and avgY>267 and avgY<533):
-            cellZ='11'
+            cellZ='1 1'
         elif(avgX<226 and avgY>533):
-            cellZ='20'
+            cellZ='2 0'
         elif(avgX>226 and avgY>533):
-            cellZ='21'
+            cellZ='2 1'
 
         with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
             f.write('{}'.format(text.description+' '))
