@@ -5,3 +5,12 @@
 input[type="file"] {
     display: none;
 }
+
+.dragarea {
+    background-color: white;
+}
+  
+.droparea {
+    border: 3px dashed #bbb;
+    background-color: white;
+}
