@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -13,30 +13,46 @@ export class MainPageComponent implements OnInit {
 
   image;
   files;
-
+  dragAreaClass: string;
+  
   private acceptedFileTypes = "image.png|image.heic|image.jpg|image.jpeg"
 
   constructor(private imageService: ImageSharingServiceService,
     private route: ActivatedRoute,
     private router: Router, 
     private dialog: MatDialog) { 
+      this.dragAreaClass = "dragarea"
   }
 
   ngOnInit(): void {
+    this.dragAreaClass = "dragarea";
   }
 
-  allowDrop(event) {
+  @HostListener("dragover", ["$event"]) onDragOver(event: any) {
+    this.dragAreaClass = "droparea";
+    event.preventDefault();
+  }
+  @HostListener("dragenter", ["$event"]) onDragEnter(event: any) {
+    this.dragAreaClass = "droparea";
+    event.preventDefault();
+  }
+  @HostListener("dragend", ["$event"]) onDragEnd(event: any) {
+    this.dragAreaClass = "dragarea";
+    event.preventDefault();
+  }
+  @HostListener("dragleave", ["$event"]) onDragLeave(event: any) {
+    this.dragAreaClass = "dragarea";
+    event.preventDefault();
+  }
+  @HostListener("drop", ["$event"]) onDrop(event: any) {
+    this.dragAreaClass = "dragarea";
     event.preventDefault();
     event.stopPropagation();
-  }
-
-  onDrop(event) {
-    event.preventDefault();
-  
-    const files = event.dataTransfer.files;
-    const file:File = files[0]; // Should only accept 1 file for the time being
-
-    this.validateImage(file);
+    if (event.dataTransfer.files) {
+      let files:FileList =  event.dataTransfer.files;
+      const file:File = files[0]
+      this.validateImage(file);
+    }
   }
 
   onImageSelected(event) {
