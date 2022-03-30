@@ -33,7 +33,7 @@ export class FileService {
   public getFiles(path: string){
     return this.http.get(this.url+'/api/File/getFiles?path='+path);
   }
-  public createZip(){
-    return this.http.get(this.url+'/api/File/createZIP');
+  public createZip(user_id:string){
+    return this.http.get(this.url+'/api/File/createZIP?user_id='+user_id);
   }
 }

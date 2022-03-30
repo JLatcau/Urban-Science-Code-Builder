@@ -38,7 +38,9 @@ namespace WebAPI.Controllers
                 //Path to WebApp assets 
                 // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
                 // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
-               
+
+                //deleting unneeded user data
+              //  deleteUserData(user_id);
                 //Creating input and output folders for each user
                 var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
                 var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
@@ -151,11 +153,60 @@ namespace WebAPI.Controllers
         public IActionResult runCodeGeneration(string user_id)
         {
             //Creating user code folder 
-            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","assets", user_id);
-
-            if (!Directory.Exists(codeFolderName))
+            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app", user_id);
+            if (Directory.Exists(codeFolderName))
             {
-                Directory.CreateDirectory(codeFolderName);
+                Directory.Delete(codeFolderName);
+            }
+            Directory.CreateDirectory(codeFolderName);
+
+            var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
+            string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
+            Console.WriteLine("User output file contents:");
+            int componentCount = 1;
+            foreach (string component in fileComponents) { 
+                Console.WriteLine(component);
+               string[] lineValues = component.Split(" ");
+                Console.WriteLine(lineValues[2]);
+                ProcessStartInfo start = new ProcessStartInfo();
+                string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API");
+                string command="";
+                string userComponemtFolder;
+                switch (lineValues[0])
+                    {
+                    case "B":
+                        //string userComponentFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src", "assets", user_id);
+                        //string userComponentFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","src","assets",user_id);
+
+                        //string command = "ng generate "+user_id+"\\bar-chart";
+                        //string command = "ng generate " + user_id + "\\bar-chart";
+                        //string command = "ng generate component "+"src" +"\\assets\\"+ user_id + "\\bar-chart";
+                         userComponemtFolder= Path.Combine( user_id,"bar-chart"+componentCount);
+                       // string command = "ng generate component "+"bar-chart";
+                         command = "ng generate component "+userComponemtFolder;
+
+                       
+
+                        break;
+                    case "N":
+                        break;
+                    case "G":
+                        break;
+                    default:
+                        break;
+
+                    }
+                Console.WriteLine("command: " + command);
+                start.FileName = "cmd.exe";
+                start.Verb = "runas";
+                start.Arguments = "/C " + command;
+                start.RedirectStandardOutput = true;
+                start.UseShellExecute = false;
+                start.WorkingDirectory = projectFolder;
+                var cmd = Process.Start(start);
+                string output = cmd.StandardOutput.ReadToEnd();
+                cmd.WaitForExit();
+                componentCount++;
             }
             return Ok();
         }
@@ -198,11 +249,18 @@ namespace WebAPI.Controllers
         }
         [HttpGet, DisableRequestSizeLimit]
         [Route("createZIP")]
-        public IActionResult CreateZIP()
+        public IActionResult CreateZIP([FromQuery]string user_id)
         {
-                var path =Path.Combine("Resources");
-           // var folderName = Path.Combine(projectParentDirectory+"Image_Recognition_API", "s", "assets", "Resources", "Dashboard");
-            var folderName = Path.Combine(projectParentDirectory ,"WebAPI", "Image_Recognition_API", "Output");
+                var path =Path.Combine("Resources","Dashboard",user_id);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            // var folderName = Path.Combine(projectParentDirectory+"Image_Recognition_API", "s", "assets", "Resources", "Dashboard");
+            //var folderName = Path.Combine(projectParentDirectory ,"WebAPI", "Image_Recognition_API", "Output");
+            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app",user_id);
+
             //var folderName = Path.Combine("Resources","Dashboard");
             var zipPath = path + "\\Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
@@ -213,7 +271,7 @@ namespace WebAPI.Controllers
             }
                 ZipFile.CreateFromDirectory(
                     folderName,
-                     zipPath, includeBaseDirectory: true,
+                     zipPath, includeBaseDirectory: false,
                      
                       compressionLevel: CompressionLevel.Optimal);
             
@@ -234,7 +292,30 @@ namespace WebAPI.Controllers
             { return StatusCode(500, $"Internal server error: {ex}"); }
         }
 
-        private string GetFileType(string path)
+        //TODO: call this from angular project on app or tab close to clear uneeded user data from webAPI
+        [HttpGet, DisableRequestSizeLimit]
+        [Route("deleteUserData")]
+        public IActionResult deleteUserData([FromQuery] string user_id)
+        {
+           string dashboardPath= Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src", "app", user_id);
+            string zipPath = Path.Combine("Resources", "Dashboard", user_id) + "\\Dashboard.zip";
+            string outputFolder= Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
+            if (Directory.Exists(dashboardPath))
+            {
+                Directory.Delete(dashboardPath);
+            }
+            if (Directory.Exists(zipPath))
+            {
+                Directory.Delete(zipPath);
+            }
+            if (Directory.Exists(outputFolder))
+            {
+                Directory.Delete(outputFolder);
+            }
+
+            return Ok();    
+        }
+            private string GetFileType(string path)
         {
             var provider = new FileExtensionContentTypeProvider();
             string fileType;
