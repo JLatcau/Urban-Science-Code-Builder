@@ -99,7 +99,7 @@ namespace WebAPI.Controllers
         [Route("imageRecognition")]
         public IActionResult runImageRecognition(string user_id) {
             string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
-            Console.WriteLine(fileName);
+            //Console.WriteLine(fileName);
 
             string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
            
@@ -116,7 +116,7 @@ namespace WebAPI.Controllers
             cmd.WaitForExit();
            var pythonExePath= output.Split("python.exe");
             string pythonExecutable = pythonExePath[0]+"python.exe";
-            Console.WriteLine("python exe path: "+pythonExecutable);
+           // Console.WriteLine("python exe path: "+pythonExecutable);
 
             //Hard coded python.exe path, would have to be changed on each machine used
             // string pythonExecutable = "C:\\Python\\python.exe";
@@ -159,7 +159,6 @@ namespace WebAPI.Controllers
 
             var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
             string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
-            Console.WriteLine("User output file contents:");
             int componentCount = 0;
             string userComponemtFolder=user_id;
             string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API");
@@ -191,11 +190,9 @@ namespace WebAPI.Controllers
                 slotConflict = false;
                 for (int i = 0; i < componentCount && i < 6; i++)
                 {
-                    Console.WriteLine("Compare 1:" + lineValues[1] + lineValues[2]);
-                    Console.WriteLine("Compare 2: " + dashboardSlots[i]);
+                   
                     if (dashboardSlots[i].Equals(lineValues[1] + lineValues[2]))
                     {
-                        Console.WriteLine("hit");
                         slotConflict = true;
                         break;
                     }
@@ -204,7 +201,6 @@ namespace WebAPI.Controllers
                 if (componentCount < 6&&slotConflict==false)
                 {
                     dashboardSlots[componentCount] = lineValues[1] + lineValues[2];
-                    Console.WriteLine("dasboard slots:" + dashboardSlots[componentCount]);
                     switch (lineValues[0])
                     {
                         case "B":
