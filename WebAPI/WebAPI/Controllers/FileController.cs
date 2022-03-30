@@ -160,7 +160,7 @@ namespace WebAPI.Controllers
             var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
             string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
             Console.WriteLine("User output file contents:");
-            int componentCount = 1;
+            int componentCount = 0;
             string userComponemtFolder=user_id;
             string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API");
 
@@ -179,51 +179,61 @@ namespace WebAPI.Controllers
             var cmd = Process.Start(start);
             string output = cmd.StandardOutput.ReadToEnd();
             cmd.WaitForExit();
+            string[] dashboardSlots = new string[6] { "0", "0", "0", "0", "0", "0" };
+            bool slotConflict;
             //Run schematic for each component
             foreach (string component in fileComponents) { 
                 Console.WriteLine(component);
                string[] lineValues = component.Split(" ");
                  start = new ProcessStartInfo();
                  command="";
-                string[] dashboardSlots =new string[6];
-                switch (lineValues[0])
+                //Preventing conflicting dashboard slot assignment for components. TODO: add slot reassignment
+                slotConflict = false;
+                for (int i = 0; i < componentCount && i < 6; i++)
+                {
+                    Console.WriteLine("Compare 1:" + lineValues[1] + lineValues[2]);
+                    Console.WriteLine("Compare 2: " + dashboardSlots[i]);
+                    if (dashboardSlots[i].Equals(lineValues[1] + lineValues[2]))
                     {
-                    case "B":
-                        // string command = "ng generate component "+"bar-chart";
-                        //  command = "ng generate component "+userComponemtFolder;
-                        //for (int i = 0; i < componentCount; i++)
-                        //{ 
-                        //    if()
-                        //}
-                               // dashboardSlots[componentCount] = lineValues[1] + lineValues[2]; 
-                        Console.WriteLine("Line values "+lineValues[1]+" "+lineValues[2]);
-                        command = "ng g @schematics/code-builder:bar-chart --name=\""+user_id+"/Web_Dashboard/bar-chart"+componentCount+"\" --row=\""+lineValues[1]+"\" --col=\""+lineValues[2]+"\"";
-                       // ng g @schematics / code - builder:bar - chart "123aq3q2d-123awdasd/bar-chart1" --row = "0" --col = "1"
-
-
+                        Console.WriteLine("hit");
+                        slotConflict = true;
                         break;
-                    case "N":
-                        command = "ng g @schematics/code-builder:kpi --name=\"" + user_id + "/Web_Dashboard/kpi" + componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
-                        break;
-                    case "G":
-                        command = "ng g @schematics/code-builder:data-grid --name=\"" + user_id + "/Web_Dashboard/data-grid" + componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
-                        break;
-                    default:
-                        break;
+                    }
+                     
+                }
+                if (componentCount < 6&&slotConflict==false)
+                {
+                    dashboardSlots[componentCount] = lineValues[1] + lineValues[2];
+                    Console.WriteLine("dasboard slots:" + dashboardSlots[componentCount]);
+                    switch (lineValues[0])
+                    {
+                        case "B":
+                            command = "ng g @schematics/code-builder:bar-chart --name=\"" + user_id + "/Web_Dashboard/bar-chart" + ++componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
+                            break;
+                        case "N":
+                            command = "ng g @schematics/code-builder:kpi --name=\"" + user_id + "/Web_Dashboard/kpi" + ++componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
+                            break;
+                        case "G":
+                            command = "ng g @schematics/code-builder:data-grid --name=\"" + user_id + "/Web_Dashboard/data-grid" + ++componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
+                            break;
+                        default:
+                            break;
 
                     }
-                Console.WriteLine("command: " + command);
-                start.FileName = "cmd.exe";
-                start.Verb = "runas";
-                start.Arguments = "/C " + command;
-                start.RedirectStandardOutput = true;
-                start.UseShellExecute = false;
-                start.WorkingDirectory = projectFolder;
-                 cmd = Process.Start(start);
-                 output = cmd.StandardOutput.ReadToEnd();
-                cmd.WaitForExit();
-                componentCount++;
-            }
+                    Console.WriteLine("command: " + command);
+                    start.FileName = "cmd.exe";
+                    start.Verb = "runas";
+                    start.Arguments = "/C " + command;
+                    start.RedirectStandardOutput = true;
+                    start.UseShellExecute = false;
+                    start.WorkingDirectory = projectFolder;
+                    cmd = Process.Start(start);
+                    output = cmd.StandardOutput.ReadToEnd();
+                    cmd.WaitForExit();
+                }
+                
+                }
+                
             //Deleting user output folder from image recognition script after use.
             if (Directory.Exists(outputFolderName))
             {
