@@ -38,7 +38,9 @@ namespace WebAPI.Controllers
                 //Path to WebApp assets 
                 // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
                 // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
-               
+
+                //deleting unneeded user data
+              //  deleteUserData(user_id);
                 //Creating input and output folders for each user
                 var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
                 var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
@@ -100,9 +102,6 @@ namespace WebAPI.Controllers
             Console.WriteLine(fileName);
 
             string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
-
-            // string pythonExecutable = Path.Combine(projectParentDirectory, "WebAPI", "WebAPI","python.exe");
-            //string pythonExecutable = "C:\\Users\\mrnoe\\AppData\\Local\\Programs\\Python\\Python310";
            
             //Finding path to python.exe on local machine
             string command = "where python";
@@ -116,14 +115,13 @@ namespace WebAPI.Controllers
             string output = cmd.StandardOutput.ReadToEnd();
             cmd.WaitForExit();
            var pythonExePath= output.Split("python.exe");
-            Console.WriteLine("Python path output:"+pythonExePath[0]);
             string pythonExecutable = pythonExePath[0]+"python.exe";
             Console.WriteLine("python exe path: "+pythonExecutable);
 
             //Hard coded python.exe path, would have to be changed on each machine used
             // string pythonExecutable = "C:\\Python\\python.exe";
 
-            //Callling Python image recognition script   
+            //Calling Python image recognition script   
             Process p = new Process();
             start = new ProcessStartInfo();
             start.FileName = pythonExecutable;// full path to python.exe
@@ -141,14 +139,114 @@ namespace WebAPI.Controllers
                     Console.Write(result);
                 }
             }
+
+            runCodeGeneration(user_id);
             return Ok();
         }
-        [HttpGet, DisableRequestSizeLimit]
+
+        [HttpGet]
+        [Route("codeGeneration")]
+        public IActionResult runCodeGeneration(string user_id)
+        {
+            //Creating user code folder 
+            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app", user_id,"Web_Dashboard");
+            if (Directory.Exists(codeFolderName))
+            {
+          
+                Directory.Delete(codeFolderName, true);
+            }
+            Directory.CreateDirectory(codeFolderName);
+
+            var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
+            string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
+            Console.WriteLine("User output file contents:");
+            int componentCount = 0;
+            string userComponemtFolder=user_id;
+            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API");
+
+
+
+            //Run schematic to create dashboard template
+            string command = "ng g @schematics/code-builder:dashboard \"" + user_id + "\\Web_Dashboard\\dashboard\"";
+            ProcessStartInfo start = new ProcessStartInfo();
+            Console.WriteLine("command: " + command);
+            start.FileName = "cmd.exe";
+            start.Verb = "runas";
+            start.Arguments = "/C " + command;
+            start.RedirectStandardOutput = true;
+            start.UseShellExecute = false;
+            start.WorkingDirectory = projectFolder;
+            var cmd = Process.Start(start);
+            string output = cmd.StandardOutput.ReadToEnd();
+            cmd.WaitForExit();
+            string[] dashboardSlots = new string[6] { "0", "0", "0", "0", "0", "0" };
+            bool slotConflict;
+            //Run schematic for each component
+            foreach (string component in fileComponents) { 
+                Console.WriteLine(component);
+               string[] lineValues = component.Split(" ");
+                 start = new ProcessStartInfo();
+                 command="";
+                //Preventing conflicting dashboard slot assignment for components. TODO: add slot reassignment
+                slotConflict = false;
+                for (int i = 0; i < componentCount && i < 6; i++)
+                {
+                    Console.WriteLine("Compare 1:" + lineValues[1] + lineValues[2]);
+                    Console.WriteLine("Compare 2: " + dashboardSlots[i]);
+                    if (dashboardSlots[i].Equals(lineValues[1] + lineValues[2]))
+                    {
+                        Console.WriteLine("hit");
+                        slotConflict = true;
+                        break;
+                    }
+                     
+                }
+                if (componentCount < 6&&slotConflict==false)
+                {
+                    dashboardSlots[componentCount] = lineValues[1] + lineValues[2];
+                    Console.WriteLine("dasboard slots:" + dashboardSlots[componentCount]);
+                    switch (lineValues[0])
+                    {
+                        case "B":
+                            command = "ng g @schematics/code-builder:bar-chart --name=\"" + user_id + "/Web_Dashboard/bar-chart" + ++componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
+                            break;
+                        case "N":
+                            command = "ng g @schematics/code-builder:kpi --name=\"" + user_id + "/Web_Dashboard/kpi" + ++componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
+                            break;
+                        case "G":
+                            command = "ng g @schematics/code-builder:data-grid --name=\"" + user_id + "/Web_Dashboard/data-grid" + ++componentCount + "\" --row=\"" + lineValues[1] + "\" --col=\"" + lineValues[2] + "\"";
+                            break;
+                        default:
+                            break;
+
+                    }
+                    Console.WriteLine("command: " + command);
+                    start.FileName = "cmd.exe";
+                    start.Verb = "runas";
+                    start.Arguments = "/C " + command;
+                    start.RedirectStandardOutput = true;
+                    start.UseShellExecute = false;
+                    start.WorkingDirectory = projectFolder;
+                    cmd = Process.Start(start);
+                    output = cmd.StandardOutput.ReadToEnd();
+                    cmd.WaitForExit();
+                }
+                
+                }
+                
+            //Deleting user output folder from image recognition script after use.
+            if (Directory.Exists(outputFolderName))
+            {
+                Directory.Delete(outputFolderName);
+            }
+            return Ok();
+        }
+
+            [HttpGet, DisableRequestSizeLimit]
         [Route("download")]
         public async Task<IActionResult> Download([FromQuery] string fileUrl, [FromQuery] string user_id )
         {
 
-            //var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
 
             if (!System.IO.File.Exists(filePath))
@@ -182,13 +280,16 @@ namespace WebAPI.Controllers
         }
         [HttpGet, DisableRequestSizeLimit]
         [Route("createZIP")]
-        public IActionResult CreateZIP()
+        public IActionResult CreateZIP([FromQuery]string user_id)
         {
-                var path =Path.Combine("Resources");
-           // var folderName = Path.Combine(projectParentDirectory+"Image_Recognition_API", "s", "assets", "Resources", "Dashboard");
-            var folderName = Path.Combine(projectParentDirectory ,"WebAPI", "Image_Recognition_API", "Output");
-            //var folderName = Path.Combine("Resources","Dashboard");
-            var zipPath = path + "\\Dashboard.zip";
+                var path =Path.Combine("Resources","Dashboard",user_id);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app",user_id,"Web_Dashboard");
+
+            var zipPath = path + "\\Web_Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
             //Checking if zip file for generated dashboard code has already been created.
             if (files.Count() == 1)
@@ -218,7 +319,30 @@ namespace WebAPI.Controllers
             { return StatusCode(500, $"Internal server error: {ex}"); }
         }
 
-        private string GetFileType(string path)
+        //TODO: call this from angular project on app or tab close to clear uneeded user data from webAPI
+        [HttpGet, DisableRequestSizeLimit]
+        [Route("deleteUserData")]
+        public IActionResult deleteUserData([FromQuery] string user_id)
+        {
+           string dashboardPath= Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src", "app", user_id);
+            string zipPath = Path.Combine("Resources", "Dashboard", user_id) + "\\Dashboard.zip";
+            string outputFolder= Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
+            if (Directory.Exists(dashboardPath))
+            {
+                Directory.Delete(dashboardPath);
+            }
+            if (Directory.Exists(zipPath))
+            {
+                Directory.Delete(zipPath);
+            }
+            if (Directory.Exists(outputFolder))
+            {
+                Directory.Delete(outputFolder);
+            }
+
+            return Ok();    
+        }
+            private string GetFileType(string path)
         {
             var provider = new FileExtensionContentTypeProvider();
             string fileType;

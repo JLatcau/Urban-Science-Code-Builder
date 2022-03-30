@@ -51,7 +51,7 @@ export class DownloadComponent implements OnInit {
   
   var fileName;
   //Zip file generation dashboard code.
-  var response=  await this.fileService.createZip().toPromise() 
+  var response=  await this.fileService.createZip(this.user_id).toPromise() 
     if (response)
   {
     this.downloadPath=response['zipPath'];
