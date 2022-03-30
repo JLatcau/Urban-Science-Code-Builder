@@ -255,6 +255,9 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "node-uuid/1.4.0": {
+        "type": "package"
+      },
       "Npgsql/6.0.3": {
         "type": "package",
         "dependencies": {
@@ -864,6 +867,18 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
+    "node-uuid/1.4.0": {
+      "sha512": "zEmtQ8DvgS356ztVAOUvFuZzrFkAOgkqiM8fCM87wND3l1LDhHG3bNNcCFft6SRzlBU4OuJy/OEvGBGG8jUiHw==",
+      "type": "package",
+      "path": "node-uuid/1.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/uuid.js",
+        "node-uuid.1.4.0.nupkg.sha512",
+        "node-uuid.nuspec"
+      ]
+    },
     "Npgsql/6.0.3": {
       "sha512": "yt/3XFRhHsJ01a4+qHM9+0mtitQ3DY2wJLyGP9vtvZa1cB1nSAw762GJGdSX3Bbc7wZKzeo4dc4drD3yvQe7gA==",
       "type": "package",
@@ -1099,23 +1114,29 @@
       "Npgsql >= 6.0.3",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.3",
       "Swashbuckle.AspNetCore >= 6.2.3",
-      "System.Threading.Tasks.Extensions >= 4.6.0-preview.18571.3"
+      "System.Threading.Tasks.Extensions >= 4.6.0-preview.18571.3",
+      "node-uuid >= 1.4.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dess\\.nuget\\packages\\": {}
+    "C:\\Users\\Jacob\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjectRepos\\test2\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Prototype3\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "D:\\ProjectRepos\\test2\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "packagesPath": "C:\\Users\\Dess\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjectRepos\\test2\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+      "projectPath": "C:\\Users\\Jacob\\Desktop\\Prototype3\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jacob\\Desktop\\Prototype3\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dess\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1160,6 +1181,10 @@
           "System.Threading.Tasks.Extensions": {
             "target": "Package",
             "version": "[4.6.0-preview.18571.3, )"
+          },
+          "node-uuid": {
+            "target": "Package",
+            "version": "[1.4.0, )"
           }
         },
         "imports": [
