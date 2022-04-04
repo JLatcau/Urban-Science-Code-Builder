@@ -149,7 +149,7 @@ namespace WebAPI.Controllers
         public IActionResult runCodeGeneration(string user_id)
         {
             //Creating user code folder 
-            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app", user_id,"Web_Dashboard");
+            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Enviroment", "src", "app", user_id, "Web_Dashboard");
             if (Directory.Exists(codeFolderName))
             {
           
@@ -162,7 +162,7 @@ namespace WebAPI.Controllers
             Console.WriteLine("User output file contents:");
             int componentCount = 0;
             string userComponemtFolder=user_id;
-            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API");
+            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Enviroment");
 
 
 
