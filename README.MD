@@ -9,7 +9,7 @@ Dependencies needed BEFORE setup
 Node JS 16.14.2 LTS (installed addition tools, unsure if that was necessary)
 
 Angular 12 (specifically 12.2.16)
-Install with `npm install -g @angular/cli@12`
+Install with `npm install -g @angular/cli@12.2.16`
 
 ** I used Visual Studio Community 2022 and VS Code (latest version)
 ** Used .NET install is Visual Studios Community 2022
