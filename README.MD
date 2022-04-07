@@ -17,13 +17,13 @@ Install with `npm install -g @angular/cli@12`
 Python310
 
 Open CV
-pip install opencv-python
+`pip install opencv-python`
 
 Google Cloud Vision
-pip install google-cloud-vision
+`pip install google-cloud-vision`
 
 Pillow
-pip install pillow
+`pip install pillow`
 
 ========================
 
