@@ -55,7 +55,7 @@ Running the project
 
 1) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studios and click run
 2) Navigate to Urban-Science-Code-Builder\WebApp in the terminal
-3) Type 'ng serve --open`
+3) Type `ng serve --open`
 4) Project should now be running
 
 
