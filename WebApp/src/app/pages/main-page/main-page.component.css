@@ -7,10 +7,22 @@ input[type="file"] {
 }
 
 .dragarea {
-    background-color: white;
+    border: 3px dashed #bbb;
+    border-radius: 20px;
 }
   
 .droparea {
     border: 3px dashed #bbb;
-    background-color: white;
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+.drop_box {
+    width: 100%;
+    height: 400px;
+    color: #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
