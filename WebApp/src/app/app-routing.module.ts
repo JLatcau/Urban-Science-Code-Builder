@@ -8,11 +8,11 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { OutputPageComponent } from './pages/output-page/output-page.component';
 
 const routes: Routes = [
-  {path:'', component: MainPageComponent},
-  {path:'loading', component: LoadingPageComponent},
-  {path:'camera', component: CameraComponent},
-  {path:'download', component: DownloadPageComponent},
-  {path:'confirmation', component: ConfirmationPageComponent},
+  {path:'', component: MainPageComponent, data: {depth: 1}},
+  {path:'loading', component: LoadingPageComponent, data: {depth: 4}},
+  {path:'camera', component: CameraComponent, data: {depth: 2}},
+  {path:'download', component: DownloadPageComponent, data: {depth: 5}},
+  {path:'confirmation', component: ConfirmationPageComponent, data: {depth: 3}},
   {path:'output', component: OutputPageComponent}
 ];
 

@@ -7,7 +7,7 @@
   </a>
 </div>
 
-<div class="main_content">
+<div class="main_content" [@routeAnimation]="getDepth(myOutlet)">
   <h1 class="code_builder">Code Builder</h1>
-  <router-outlet></router-outlet>
+    <router-outlet #myOutlet="outlet"></router-outlet>
 </div>  

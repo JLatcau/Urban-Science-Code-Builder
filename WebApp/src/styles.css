@@ -9,7 +9,12 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
     padding: 0 16px;
     flex-direction: column;
     align-items: center;
+    position: relative;
 } 
+
+.main_content>* {
+    display: block;
+}
 
 .code_builder {
     color: #70c82f;

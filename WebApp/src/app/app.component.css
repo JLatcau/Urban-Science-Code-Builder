@@ -20,7 +20,12 @@ a.hleft:hover, a.hleft:focus {
     padding: 0 16px;
     flex-direction: column;
     align-items: center;
+    position: relative;
 } 
+
+.main_content>* {
+    display: block;
+}
 
 @media screen and (max-width: 750px) {
     a.hleft {
@@ -34,3 +39,4 @@ a.hleft:hover, a.hleft:focus {
         margin: 20px auto 32px;
     }
 }
+
