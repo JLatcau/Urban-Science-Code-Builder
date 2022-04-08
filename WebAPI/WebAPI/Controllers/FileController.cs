@@ -22,7 +22,6 @@ namespace WebAPI.Controllers
         private readonly IConfiguration _configuration;
         //Project parent directory path
         private string projectParentDirectory = Directory.GetParent((Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
-        //Swap in commented out code to reroute file storage for download to angular assets folder, or vice versa for image upload.
         //add IFormFile fileInput parameter to upload function for testing in swaggerui
         [HttpPost, DisableRequestSizeLimit]
         [Route("upload")]
@@ -35,9 +34,7 @@ namespace WebAPI.Controllers
                    var file = formCollection.Files.First();
                 var user_id = formCollection["user_id"];
                 Console.WriteLine("user id: "+user_id);
-                //Path to WebApp assets 
-                // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
-                // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
+               
 
                 //deleting unneeded user data
               //  deleteUserData(user_id);
@@ -45,7 +42,6 @@ namespace WebAPI.Controllers
                 var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
                 var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
 
-                //      var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput");
                 Console.WriteLine("input folderName for user: "+inputFolderName);
                 if (!Directory.Exists(inputFolderName))
                 {
@@ -56,7 +52,6 @@ namespace WebAPI.Controllers
                 {
                     Directory.CreateDirectory(outputFolderName);
                 }
-                // var savePath = Path.Combine(projectParentDirectory, folderName);
                 var savePath = Path.Combine(projectParentDirectory, inputFolderName);
 
                 if (file.Length > 0)
@@ -99,7 +94,6 @@ namespace WebAPI.Controllers
         [Route("imageRecognition")]
         public IActionResult runImageRecognition(string user_id) {
             string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
-            //Console.WriteLine(fileName);
 
             string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
            
@@ -116,7 +110,6 @@ namespace WebAPI.Controllers
             cmd.WaitForExit();
            var pythonExePath= output.Split("python.exe");
             string pythonExecutable = pythonExePath[0]+"python.exe";
-           // Console.WriteLine("python exe path: "+pythonExecutable);
 
             //Hard coded python.exe path, would have to be changed on each machine used
             // string pythonExecutable = "C:\\Python\\python.exe";
@@ -256,7 +249,7 @@ namespace WebAPI.Controllers
             return File(memory, GetFileType(filePath), filePath);
         }
 
-
+        //TODO: elimate path parameter
         [HttpGet, DisableRequestSizeLimit]
         [Route("getFiles")]
         public IActionResult GetFiles([FromQuery] string path)
@@ -264,8 +257,7 @@ namespace WebAPI.Controllers
             try
             {
                 //TODO: elimate path parameter
-                //var folderName = Path.Combine("WebApp","src","assets","Resources", "Dashboard");
-                //var readPath = Path.Combine(projectParentDirectory, folderName);
+                
                 var readPath = Path.Combine(projectParentDirectory, "WebAPI","WebAPI","Resources","DashBoard");
 
                 var files = Directory.EnumerateFiles(readPath);
