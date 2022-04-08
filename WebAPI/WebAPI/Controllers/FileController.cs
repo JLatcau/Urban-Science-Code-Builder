@@ -140,7 +140,7 @@ namespace WebAPI.Controllers
         public IActionResult runCodeGeneration(string user_id)
         {
             //Creating user code folder 
-            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Enviroment", "src", "app", user_id, "Web_Dashboard");
+            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment", "src", "app", user_id, "Web_Dashboard");
             if (Directory.Exists(codeFolderName))
             {
           
@@ -152,7 +152,7 @@ namespace WebAPI.Controllers
             string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
             int componentCount = 0;
             string userComponemtFolder=user_id;
-            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Enviroment");
+            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment");
 
 
 
@@ -273,9 +273,9 @@ namespace WebAPI.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app",user_id,"Web_Dashboard");
-
-            var zipPath = path + "\\Web_Dashboard.zip";
+            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src","app",user_id,"Web_Dashboard");
+        //C: \Users\mrnoe\Development\Urban - Science - Code - Builder\WebAPI\Code - Generation - API\Generation_Environment\src\app\15464842 - 33e1 - 40f3 - 9908 - a4b478109a4e\Web_Dashboard
+                           var zipPath = path + "\\Web_Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
             //Checking if zip file for generated dashboard code has already been created.
             if (files.Count() == 1)
