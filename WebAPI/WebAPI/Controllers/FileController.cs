@@ -42,12 +42,10 @@ namespace WebAPI.Controllers
                 var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
                 var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
 
-                Console.WriteLine("input folderName for user: "+inputFolderName);
                 if (!Directory.Exists(inputFolderName))
                 {
                     Directory.CreateDirectory(inputFolderName);
                 }
-                Console.WriteLine("output folderName for user: " + outputFolderName);
                 if (!Directory.Exists(outputFolderName))
                 {
                     Directory.CreateDirectory(outputFolderName);
