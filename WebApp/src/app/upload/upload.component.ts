@@ -40,7 +40,6 @@ export class UploadComponent implements OnInit {
   public async uploadFile (file) {
     // if(files.length === 0)
     //   return;
-    console.log("image path before change: "+this.imagePath);
     let fileToUpload = <File>file;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);

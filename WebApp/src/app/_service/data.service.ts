@@ -25,13 +25,11 @@ export class DataService {
     data=this.url +"/"+data;
 
     this.imagePath.next(data)
-    console.log("service image path: "+this.imagePath.toString());
     
   }
   public changeDownloadPath(data: string) {
   
     this.downloadPath.next(data)
-    console.log("service download path: "+this.downloadPath.toString());
     
   }
 
