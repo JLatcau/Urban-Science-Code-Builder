@@ -307,12 +307,7 @@ namespace WebAPI.Controllers
            string dashboardPath= Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src", "app", user_id);
             string zipPath = Path.Combine("Resources", "Dashboard", user_id);
             string outputFolder= Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
-            string inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput", user_id);
-
-            if (Directory.Exists(inputFolderName))
-            {
-                Directory.Delete(inputFolderName, true);
-            }
+           
             if (Directory.Exists(dashboardPath))
             {
                 Directory.Delete(dashboardPath,true);

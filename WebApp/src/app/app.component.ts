@@ -24,7 +24,7 @@ export class AppComponent implements OnInit,OnDestroy{
 
   @HostListener('window:beforeunload')
   async ngOnDestroy() {
-    await this.fileService.deleteUserData(this.user_id).subscribe();
+    var response=await this.fileService.deleteUserData(this.user_id).subscribe();
 
     if (this.user_IdSubscription) {
       this.user_IdSubscription.unsubscribe();
