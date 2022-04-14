@@ -6,25 +6,31 @@ Dependencies needed BEFORE setup
 
 *** NOTE: If any installs fail, try to run as administrator, this usually fixes a failed install
 
-Node JS 16.14.2 LTS (installed addition tools, unsure if that was necessary)
+Node JS 16.14.2 LTS (installed additional tools during installation process)
+Link to download: https://nodejs.org/en/download/
 
 Angular 12 (specifically 12.2.16)
 Install with `npm install -g @angular/cli@12.2.16`
 
-** I used Visual Studio Community 2022 and VS Code (latest version)
-
-** Used .NET install in Visual Studios Community 2022
-
-Python310
+Python 3.10.0
+Link to download: https://www.python.org/downloads/release/python-3100/
 
 Open CV
-`pip install opencv-python`
+Install with `pip install opencv-python`
 
 Google Cloud Vision
-`pip install google-cloud-vision`
+Install with `pip install google-cloud-vision`
 
 Pillow
-`pip install pillow`
+Install with `pip install pillow`
+
+Visual Studio Community 2022 and VS Code (latest version)
+** Used .NET install in Visual Studios Community 2022
+Link to download Visual Studio Community 2022: https://visualstudio.microsoft.com/vs/ (Make sure you choose Community version)
+Link to download Visual Studio Code: https://code.visualstudio.com/
+
+If you chose not to or for some reason .NET 6 was not installed during the Visual Studio Community installation, you can download that here: 
+https://dotnet.microsoft.com/en-us/download
 
 ========================
 
@@ -58,7 +64,3 @@ Running the project
 2) Navigate to Urban-Science-Code-Builder\WebApp in the terminal
 3) Type `ng serve --open`
 4) Project should now be running
-
-
-
-NOTE: ** means dev tool, not needed, or can be of a different version
