@@ -5,32 +5,41 @@ Dependencies needed BEFORE setup
 ======================================
 
 *** NOTE: If any installs fail, try to run as administrator, this usually fixes a failed install
+</br > </br > 
 
-Node JS 16.14.2 LTS (installed additional tools during installation process)
+Node JS 16.14.2 LTS (installed additional tools during installation process) </br > 
 Link to download: https://nodejs.org/en/download/
+</br > </br > 
 
-Angular 12 (specifically 12.2.16)
+Angular 12 (specifically 12.2.16) </br > 
 Install with `npm install -g @angular/cli@12.2.16`
+</br > </br >
 
-Python 3.10.0
+Python 3.10.0 </br > 
 Link to download: https://www.python.org/downloads/release/python-3100/
+</br > </br >
 
-Open CV
+Open CV </br > 
 Install with `pip install opencv-python`
+</br > </br >
 
-Google Cloud Vision
+Google Cloud Vision </br > 
 Install with `pip install google-cloud-vision`
+</br > </br >
 
-Pillow
+Pillow </br > 
 Install with `pip install pillow`
+</br > </br >
 
-Visual Studio Community 2022 and VS Code (latest version)
-** Used .NET install in Visual Studios Community 2022
-Link to download Visual Studio Community 2022: https://visualstudio.microsoft.com/vs/ (Make sure you choose Community version)
+Visual Studio Community 2022 and VS Code (latest version) </br > 
+** Used .NET install in Visual Studios Community 2022</br > 
+Link to download Visual Studio Community 2022: https://visualstudio.microsoft.com/vs/ (Make sure you choose Community version)</br > 
 Link to download Visual Studio Code: https://code.visualstudio.com/
+</br > </br >
 
-If you chose not to or for some reason .NET 6 was not installed during the Visual Studio Community installation, you can download that here: 
-https://dotnet.microsoft.com/en-us/download
+If you chose not to or for some reason .NET 6 was not installed during the Visual Studio Community installation, you can download that here: </br > 
+https://dotnet.microsoft.com/en-us/download (Specifically .NET 6)
+</br > </br >
 
 ========================
 
