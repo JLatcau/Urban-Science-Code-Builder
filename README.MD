@@ -31,7 +31,7 @@ Pillow </br >
 Install with `pip install pillow`
 </br > </br >
 
-Visual Studio Community 2022 and VS Code (latest version) </br > 
+Visual Studio Community 2022 (VS) and VS Code (VS Code). VS was used for the .NET back end and VS Code was used for the Anuglar front end portion.</br > 
 ** Used .NET install in Visual Studios Community 2022</br > 
 Link to download Visual Studio Community 2022: https://visualstudio.microsoft.com/vs/ (Make sure you choose Community version)</br > 
 Link to download Visual Studio Code: https://code.visualstudio.com/
