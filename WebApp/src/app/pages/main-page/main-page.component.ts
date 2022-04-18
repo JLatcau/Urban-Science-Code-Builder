@@ -67,6 +67,7 @@ export class MainPageComponent implements OnInit {
         this.notifier.notify('error', 'Wrong file type. Please input an appropriate image file type.')
       }
     }
+    
     this.validateImage(file);
   }
 
