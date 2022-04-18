@@ -1,16 +1,9 @@
 import { strings } from '@angular-devkit/core';
-import { dasherize } from '@angular-devkit/core/src/utils/strings';
 import { Rule, SchematicContext, Tree, apply, url, template, mergeWith, SchematicsException, move, chain } from '@angular-devkit/schematics';
 
 import { parseName } from '@schematics/angular/utility/parse-name'
 import { addComponentToDashboardRule } from '../utils/add-component-to-dashboard-rule';
-
-function getCode(_options: any): string {
-  let dashed = dasherize(_options.name);
-  let string = "<app-" + dashed + "></app-" + dashed + ">";
-
-  return string;
-}
+import { getCodeInsert } from '../utils/get-code-insert';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -35,7 +28,7 @@ export function dataGrid(_options: any): Rule {
 
     _options.path = parsed.path;
 
-    _options.toAdd = getCode(_options);
+    _options.toAdd = getCodeInsert(_options);
 
     const sourceTemplate = url(`./files`);
     const sourceTemplateParametrized = apply(sourceTemplate, [
