@@ -9,8 +9,7 @@ using System.IO.Compression;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Diagnostics;
-
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace WebAPI.Controllers
 {
@@ -19,9 +18,12 @@ namespace WebAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class FileController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
+        protected readonly ILogger<FileController> _logger;
         //Project parent directory path
-        private string projectParentDirectory = Directory.GetParent((Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
+        private string _projectParentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory())!.ToString())!.ToString();
+        public FileController([NotNull] ILogger<FileController> logger) {
+            _logger = logger; 
+        }
         //add IFormFile fileInput parameter to upload function for testing in swaggerui
         [HttpPost, DisableRequestSizeLimit]
         [Route("upload")]
@@ -33,11 +35,14 @@ namespace WebAPI.Controllers
                 var formCollection = await Request.ReadFormAsync();
                    var file = formCollection.Files.First();
                 var user_id = formCollection["user_id"];
+                _logger.LogInformation("Run upload for user_id " +user_id);
+                var timer=new Stopwatch();
+                timer.Start();
                 Console.WriteLine("user id: "+user_id);
                 
                 //Creating input and output folders for each user
-                var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
-                var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
+                var inputFolderName = Path.Combine(_projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
+                var outputFolderName = Path.Combine(_projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
 
                 if (!Directory.Exists(inputFolderName))
                 {
@@ -47,30 +52,27 @@ namespace WebAPI.Controllers
                 {
                     Directory.CreateDirectory(outputFolderName);
                 }
-                var savePath = Path.Combine(projectParentDirectory, inputFolderName);
+                var savePath = Path.Combine(_projectParentDirectory, inputFolderName);
 
                 if (file.Length > 0)
                 {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName!.Trim('"');
                     var fullPath = Path.Combine(savePath, fileName);
                     var imagePath= Path.Combine( "Resources", "Images", fileName);
                     var databasePath = "https://localhost:7112"+"/"+imagePath;
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
-                    }
-                    //adding image path to database in UserRequests Controller
-                    //UserRequests userRequests = new UserRequests();
-                    //userRequests.UploadedImagePath = savePath;
-                    //UserRequestsController userRequestsController = new(_configuration);
-                    //userRequestsController.addImage(databasePath);
+                    }                   
 
                     RunImageRecognition(user_id);
                     //Deleting user input folders after use
                     if (Directory.Exists(inputFolderName))
                     {
-                        Directory.Delete(inputFolderName);
+                        Directory.Delete(inputFolderName,true);
                     }
+                    timer.Stop();
+                    _logger.LogInformation("Code generation for {user_id} completed in {seconds} seconds",user_id,timer.Elapsed.TotalSeconds.ToString("0.0"));
                     return Ok(new { imagePath});
 
                 }
@@ -79,55 +81,59 @@ namespace WebAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return StatusCode(500, $"Internal error: {ex}");
 
             }
-            return null;
         }
 
         [HttpGet]
         [Route("imageRecognition")]
         public IActionResult RunImageRecognition(string user_id) {
-            string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
+            string fileName= Path.Combine(_projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
 
-            string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
-           
-            //Finding path to python.exe on local machine
-            string command = "where python";
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "cmd.exe";
-            start.Verb = "runas";
-            start.Arguments = "/C " + command;
-            start.RedirectStandardOutput = true;
-            start.UseShellExecute = false;
-            var cmd = Process.Start(start);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
-           var pythonExePath= output.Split("python.exe");
-            string pythonExecutable = pythonExePath[0]+"python.exe";
-
-            //Hard coded python.exe path, would have to be changed on each machine used
-            // string pythonExecutable = "C:\\Python\\python.exe";
-
-            //Calling Python image recognition script   
-            Process p = new Process();
-            start = new ProcessStartInfo();
-            start.FileName = pythonExecutable;// full path to python.exe
-          
-            start.Arguments = fileName+" "+user_id;// is path to .py file and any cmd line args
-            start.UseShellExecute = false;
-            start.WorkingDirectory = workingDirectory;
-            start.RedirectStandardOutput = true;
-            using (Process process = Process.Start(start))
+            string workingDirectory = Path.Combine(_projectParentDirectory, "WebAPI", "Image_Recognition_API");
+            try
             {
-                using (StreamReader reader = process.StandardOutput)
+                //Finding path to python.exe on local machine
+                string command = "where python";
+                ProcessStartInfo start = new ProcessStartInfo();
+                start.FileName = "cmd.exe";
+                start.Verb = "runas";
+                start.Arguments = "/C " + command;
+                start.RedirectStandardOutput = true;
+                start.UseShellExecute = false;
+                var cmd = Process.Start(start);
+                string output = cmd!.StandardOutput.ReadToEnd();
+                cmd.WaitForExit();
+                var pythonExePath = output.Split("python.exe");
+                string pythonExecutable = pythonExePath[0] + "python.exe";
+
+
+                //Calling Python image recognition script   
+                Process p = new Process();
+                start = new ProcessStartInfo();
+                start.FileName = pythonExecutable;// full path to python.exe
+
+                start.Arguments = fileName + " " + user_id;// is path to .py file and any cmd line args
+                start.UseShellExecute = false;
+                start.WorkingDirectory = workingDirectory;
+                start.RedirectStandardOutput = true;
+                using (Process process = Process.Start(start)!)
                 {
-                    string result = "test";
-                      result=  reader.ReadToEnd();
-                    Console.Write(result);
+                    using (StreamReader reader = process!.StandardOutput)
+                    {
+                        string result = "test";
+                        result = reader.ReadToEnd();
+                        Console.Write(result);
+                    }
                 }
             }
+            catch(Exception ex){
+                _logger.LogError(ex.ToString());
+                return StatusCode(500, $"Internal error: {ex}");
 
+            }
             RunCodeGeneration(user_id);
             return Ok();
         }
@@ -137,7 +143,7 @@ namespace WebAPI.Controllers
         public IActionResult RunCodeGeneration(string user_id)
         {
             //Creating user code folder 
-            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment", "src", "app", user_id, "Web_Dashboard");
+            var codeFolderName = Path.Combine(_projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment", "src", "app", user_id, "Web_Dashboard");
             if (Directory.Exists(codeFolderName))
             {
           
@@ -145,11 +151,11 @@ namespace WebAPI.Controllers
             }
             Directory.CreateDirectory(codeFolderName);
 
-            var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
+            var outputFolderName = Path.Combine(_projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
             string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
             int componentCount = 0;
             string userComponemtFolder=user_id;
-            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment");
+            string projectFolder = Path.Combine(_projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment");
 
             //Run schematic to create dashboard template
             string command = "ng g @schematics/code-builder:dashboard \"" + user_id + "\\Web_Dashboard\\dashboard\"";
@@ -162,7 +168,7 @@ namespace WebAPI.Controllers
             start.UseShellExecute = false;
             start.WorkingDirectory = projectFolder;
             var cmd = Process.Start(start);
-            string output = cmd.StandardOutput.ReadToEnd();
+            string output = cmd!.StandardOutput.ReadToEnd();
             cmd.WaitForExit();
             string[] dashboardSlots = new string[6] { "0", "0", "0", "0", "0", "0" };
             bool slotConflict;
@@ -172,13 +178,14 @@ namespace WebAPI.Controllers
                string[] lineValues = component.Split(" ");
                  start = new ProcessStartInfo();
                  command="";
-                //Preventing conflicting dashboard slot assignment for components. TODO: add slot reassignment
+                //Preventing conflicting dashboard slot assignment for components. 
                 slotConflict = false;
                 for (int i = 0; i < componentCount && i < 6; i++)
                 {
                    
                     if (dashboardSlots[i].Equals(lineValues[1] + lineValues[2]))
                     {
+
                         slotConflict = true;
                         break;
                     }
@@ -210,13 +217,12 @@ namespace WebAPI.Controllers
                     start.UseShellExecute = false;
                     start.WorkingDirectory = projectFolder;
                     cmd = Process.Start(start);
-                    output = cmd.StandardOutput.ReadToEnd();
+                    output = cmd!.StandardOutput.ReadToEnd();
                     cmd.WaitForExit();
                 }
                 
                 }
                 
-            //Deleting user output folder from image recognition script after use.
             if (Directory.Exists(outputFolderName))
             {
                 Directory.Delete(outputFolderName);
@@ -241,7 +247,6 @@ namespace WebAPI.Controllers
             return File(memory, GetFileType(filePath), filePath);
         }
 
-        //TODO: elimate path parameter
         [HttpGet, DisableRequestSizeLimit]
         [Route("getFiles")]
         public IActionResult GetFiles([FromQuery] string path)
@@ -249,7 +254,7 @@ namespace WebAPI.Controllers
             try
             {
                 
-                var readPath = Path.Combine(projectParentDirectory, "WebAPI","WebAPI","Resources","DashBoard");
+                var readPath = Path.Combine(_projectParentDirectory, "WebAPI","WebAPI","Resources","DashBoard");
 
                 var files = Directory.EnumerateFiles(readPath);
                 return Ok(new { files });
@@ -267,7 +272,7 @@ namespace WebAPI.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src","app",user_id,"Web_Dashboard");
+            var folderName = Path.Combine(_projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src","app",user_id,"Web_Dashboard");
                            var zipPath = path + "\\Web_Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
             //Checking if zip file for generated dashboard code has already been created.
@@ -292,21 +297,24 @@ namespace WebAPI.Controllers
             try
             {
                 var folderName = Path.Combine("WebAPI","WebAPI","Resources","Dashboard");
-                var readPath = Path.Combine(projectParentDirectory, folderName);
+                var readPath = Path.Combine(_projectParentDirectory, folderName);
                 var folders = Directory.EnumerateDirectories(readPath);
                 return Ok(new { folders });
             }
             catch (Exception ex)
-            { return StatusCode(500, $"Internal server error: {ex}"); }
+            {
+                _logger.LogError(ex.ToString());
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
         }
 
         [HttpGet, DisableRequestSizeLimit]
         [Route("deleteUserData")]
         public IActionResult DeleteUserData([FromQuery] string user_id)
         {
-           string dashboardPath= Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src", "app", user_id);
+           string dashboardPath= Path.Combine(_projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src", "app", user_id);
             string zipPath = Path.Combine("Resources", "Dashboard", user_id);
-            string outputFolder= Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
+            string outputFolder= Path.Combine(_projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
            
             if (Directory.Exists(dashboardPath))
             {
@@ -327,7 +335,7 @@ namespace WebAPI.Controllers
         {
             var provider = new FileExtensionContentTypeProvider();
             string fileType;
-            if (!provider.TryGetContentType(path, out fileType))
+            if (!provider.TryGetContentType(path, out fileType!))
                 fileType = "application/octet-stream";
             return fileType;
         }
