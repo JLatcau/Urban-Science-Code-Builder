@@ -5,15 +5,20 @@ body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-al
 
 .main_content {
     display: flex;
-    margin: 15px auto 32px;
+    margin: 0px auto 32px;
     padding: 0 16px;
     flex-direction: column;
     align-items: center;
+    position: relative;
 } 
+
+.main_content>* {
+    display: block;
+}
 
 .code_builder {
     color: #70c82f;
-    margin-top: 30px;
+    margin: 0px auto 32px !important;
     user-select: none;
 }
 
