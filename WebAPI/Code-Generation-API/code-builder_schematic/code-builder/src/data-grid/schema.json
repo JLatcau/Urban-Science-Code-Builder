@@ -16,12 +16,20 @@
         
         "row": {
             "type": "string",
-            "description": "row value"
+            "description": "row value",
+            "$default": {
+                "$source": "argv",
+                "index": 1
+            }
         },
 
         "col": {
             "type": "string",
-            "description": "col value"
+            "description": "col value",
+            "$default": {
+                "$source": "argv",
+                "index": 2
+            }
         },
         
         "toAdd": {

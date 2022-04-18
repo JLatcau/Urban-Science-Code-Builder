@@ -1,18 +1,9 @@
 import { strings } from '@angular-devkit/core';
-import { dasherize } from '@angular-devkit/core/src/utils/strings';
 import { Rule, SchematicContext, Tree, apply, url, template, mergeWith, SchematicsException, move, chain } from '@angular-devkit/schematics';
 
 import { parseName } from '@schematics/angular/utility/parse-name'
 import { addComponentToDashboardRule } from '../utils/add-component-to-dashboard-rule';
-
-// TO DO: Make getCode() a helper util function //
-
-function getCode(_options: any): string {
-  let dashed = dasherize(_options.name);
-  let string = "<app-" + dashed + "></app-" + dashed + ">";
-
-  return string;
-}
+import { getCodeInsert } from '../utils/get-code-insert';
 
 export function barChart(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
@@ -39,7 +30,7 @@ export function barChart(_options: any): Rule {
 
     // END (1) - can either end here or at 2 //
 
-    _options.toAdd = getCode(_options);
+    _options.toAdd = getCodeInsert(_options);
 
     // END (2) // 
 
