@@ -1,13 +1,22 @@
-<h3>Turn a hand drawn dashboard into a web dashboard</h3>
-<div class="main_content" ngClass="{{dragAreaClass}}">
+<div class="main_content">
+    <h1 class="code_builder">Code Builder</h1>
+    <h3>Turn a hand drawn dashboard into a web dashboard</h3>
 
     <div class="page_actions">
         <div>
             <label for="image-upload" class="button">Upload Image</label>
-            <input id="image-upload" type="file" accept=".png,.jpg,.jpeg,.heic"
-                (change)="onImageSelected($event)">
+            <input id="image-upload" type="file" accept=".png,.jpg,.jpeg,.heic" (change)="onImageSelected($event)">
         </div>
         <a class="button" routerLink="/camera">Use Camera</a>
+    </div>
+
+    <div class="drop_box" ngClass="{{dragAreaClass}}">
+        <div style="position: relative; bottom: 15%; display:inline-flex;">
+            <h3 style="letter-spacing: -1px; width: 100px;">-------------------------</h3>
+            <h3>  OR  </h3>
+            <h3 style="letter-spacing: -1px; width: 100px">-------------------------</h3>
+        </div>
+        <h3>Drag and drop an image here</h3>
     </div>
 
     <a class="floating_help" (click)="open_help(main_help)"><mat-icon>help_outline</mat-icon></a>
