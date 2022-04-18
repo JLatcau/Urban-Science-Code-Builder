@@ -18,7 +18,6 @@ import { DownloadPageComponent } from './pages/download-page/download-page.compo
 import { ConfirmationPageComponent } from './pages/confirmation-page/confirmation-page.component';
 import { FileService } from './_service/file.service';
 import { HttpClientModule } from '@angular/common/http';
-import { OutputPageComponent } from './pages/output-page/output-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoadingPageComponent,
     DownloadPageComponent,
     ConfirmationPageComponent,
-    OutputPageComponent
   ],
   imports: [
     BrowserModule,
