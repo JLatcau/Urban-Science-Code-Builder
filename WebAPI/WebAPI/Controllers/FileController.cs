@@ -22,7 +22,6 @@ namespace WebAPI.Controllers
         private readonly IConfiguration _configuration;
         //Project parent directory path
         private string projectParentDirectory = Directory.GetParent((Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
-        //Swap in commented out code to reroute file storage for download to angular assets folder, or vice versa for image upload.
         //add IFormFile fileInput parameter to upload function for testing in swaggerui
         [HttpPost, DisableRequestSizeLimit]
         [Route("upload")]
@@ -35,28 +34,19 @@ namespace WebAPI.Controllers
                    var file = formCollection.Files.First();
                 var user_id = formCollection["user_id"];
                 Console.WriteLine("user id: "+user_id);
-                //Path to WebApp assets 
-                // var folderName = Path.Combine("WebApp","src","assets","Resources", "Images");
-                // var folderName = Path.Combine("WebAPI","WebAPI","Resources", "Images");
-
-                //deleting unneeded user data
-              //  deleteUserData(user_id);
+                
                 //Creating input and output folders for each user
                 var inputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput",user_id);
                 var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
 
-                //      var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "ImageInput");
-                Console.WriteLine("input folderName for user: "+inputFolderName);
                 if (!Directory.Exists(inputFolderName))
                 {
                     Directory.CreateDirectory(inputFolderName);
                 }
-                Console.WriteLine("output folderName for user: " + outputFolderName);
                 if (!Directory.Exists(outputFolderName))
                 {
                     Directory.CreateDirectory(outputFolderName);
                 }
-                // var savePath = Path.Combine(projectParentDirectory, folderName);
                 var savePath = Path.Combine(projectParentDirectory, inputFolderName);
 
                 if (file.Length > 0)
@@ -75,7 +65,7 @@ namespace WebAPI.Controllers
                     //UserRequestsController userRequestsController = new(_configuration);
                     //userRequestsController.addImage(databasePath);
 
-                    runImageRecognition(user_id);
+                    RunImageRecognition(user_id);
                     //Deleting user input folders after use
                     if (Directory.Exists(inputFolderName))
                     {
@@ -97,9 +87,8 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("imageRecognition")]
-        public IActionResult runImageRecognition(string user_id) {
+        public IActionResult RunImageRecognition(string user_id) {
             string fileName= Path.Combine(projectParentDirectory,"WebAPI","Image_Recognition_API","read.py");
-            Console.WriteLine(fileName);
 
             string workingDirectory = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API");
            
@@ -116,7 +105,6 @@ namespace WebAPI.Controllers
             cmd.WaitForExit();
            var pythonExePath= output.Split("python.exe");
             string pythonExecutable = pythonExePath[0]+"python.exe";
-            Console.WriteLine("python exe path: "+pythonExecutable);
 
             //Hard coded python.exe path, would have to be changed on each machine used
             // string pythonExecutable = "C:\\Python\\python.exe";
@@ -140,16 +128,16 @@ namespace WebAPI.Controllers
                 }
             }
 
-            runCodeGeneration(user_id);
+            RunCodeGeneration(user_id);
             return Ok();
         }
 
         [HttpGet]
         [Route("codeGeneration")]
-        public IActionResult runCodeGeneration(string user_id)
+        public IActionResult RunCodeGeneration(string user_id)
         {
             //Creating user code folder 
-            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app", user_id,"Web_Dashboard");
+            var codeFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment", "src", "app", user_id, "Web_Dashboard");
             if (Directory.Exists(codeFolderName))
             {
           
@@ -159,12 +147,9 @@ namespace WebAPI.Controllers
 
             var outputFolderName = Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id,"output.txt");
             string[] fileComponents = System.IO.File.ReadAllLines(outputFolderName);
-            Console.WriteLine("User output file contents:");
             int componentCount = 0;
             string userComponemtFolder=user_id;
-            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API");
-
-
+            string projectFolder = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "Generation_Environment");
 
             //Run schematic to create dashboard template
             string command = "ng g @schematics/code-builder:dashboard \"" + user_id + "\\Web_Dashboard\\dashboard\"";
@@ -191,11 +176,9 @@ namespace WebAPI.Controllers
                 slotConflict = false;
                 for (int i = 0; i < componentCount && i < 6; i++)
                 {
-                    Console.WriteLine("Compare 1:" + lineValues[1] + lineValues[2]);
-                    Console.WriteLine("Compare 2: " + dashboardSlots[i]);
+                   
                     if (dashboardSlots[i].Equals(lineValues[1] + lineValues[2]))
                     {
-                        Console.WriteLine("hit");
                         slotConflict = true;
                         break;
                     }
@@ -204,7 +187,6 @@ namespace WebAPI.Controllers
                 if (componentCount < 6&&slotConflict==false)
                 {
                     dashboardSlots[componentCount] = lineValues[1] + lineValues[2];
-                    Console.WriteLine("dasboard slots:" + dashboardSlots[componentCount]);
                     switch (lineValues[0])
                     {
                         case "B":
@@ -248,7 +230,6 @@ namespace WebAPI.Controllers
         {
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), fileUrl);
-
             if (!System.IO.File.Exists(filePath))
                 return NotFound();
             var memory = new MemoryStream();
@@ -260,16 +241,14 @@ namespace WebAPI.Controllers
             return File(memory, GetFileType(filePath), filePath);
         }
 
-
+        //TODO: elimate path parameter
         [HttpGet, DisableRequestSizeLimit]
         [Route("getFiles")]
         public IActionResult GetFiles([FromQuery] string path)
         {
             try
             {
-                //TODO: elimate path parameter
-                //var folderName = Path.Combine("WebApp","src","assets","Resources", "Dashboard");
-                //var readPath = Path.Combine(projectParentDirectory, folderName);
+                
                 var readPath = Path.Combine(projectParentDirectory, "WebAPI","WebAPI","Resources","DashBoard");
 
                 var files = Directory.EnumerateFiles(readPath);
@@ -278,6 +257,7 @@ namespace WebAPI.Controllers
             catch (Exception ex)
             { return StatusCode(500, $"Internal server error: {ex}"); }
         }
+
         [HttpGet, DisableRequestSizeLimit]
         [Route("createZIP")]
         public IActionResult CreateZIP([FromQuery]string user_id)
@@ -287,23 +267,24 @@ namespace WebAPI.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src","app",user_id,"Web_Dashboard");
-
-            var zipPath = path + "\\Web_Dashboard.zip";
+            var folderName = Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src","app",user_id,"Web_Dashboard");
+                           var zipPath = path + "\\Web_Dashboard.zip";
             var files = Directory.EnumerateFiles(path);
             //Checking if zip file for generated dashboard code has already been created.
             if (files.Count() == 1)
             {
                 System.IO.File.Delete(files.First());
+
+                
             }
-                ZipFile.CreateFromDirectory(
+            ZipFile.CreateFromDirectory(
                     folderName,
                      zipPath, includeBaseDirectory: true,
-                     
                       compressionLevel: CompressionLevel.Optimal);
-            
+
             return Ok(new { zipPath});
         }
+
          [HttpGet, DisableRequestSizeLimit]
         [Route("getFolders")]
         public IActionResult GetFolders()
@@ -319,25 +300,25 @@ namespace WebAPI.Controllers
             { return StatusCode(500, $"Internal server error: {ex}"); }
         }
 
-        //TODO: call this from angular project on app or tab close to clear uneeded user data from webAPI
         [HttpGet, DisableRequestSizeLimit]
         [Route("deleteUserData")]
-        public IActionResult deleteUserData([FromQuery] string user_id)
+        public IActionResult DeleteUserData([FromQuery] string user_id)
         {
-           string dashboardPath= Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API", "src", "app", user_id);
-            string zipPath = Path.Combine("Resources", "Dashboard", user_id) + "\\Dashboard.zip";
+           string dashboardPath= Path.Combine(projectParentDirectory, "WebAPI", "Code-Generation-API","Generation_Environment", "src", "app", user_id);
+            string zipPath = Path.Combine("Resources", "Dashboard", user_id);
             string outputFolder= Path.Combine(projectParentDirectory, "WebAPI", "Image_Recognition_API", "Output", user_id);
+           
             if (Directory.Exists(dashboardPath))
             {
-                Directory.Delete(dashboardPath);
+                Directory.Delete(dashboardPath,true);
             }
             if (Directory.Exists(zipPath))
             {
-                Directory.Delete(zipPath);
+                Directory.Delete(zipPath,true);
             }
             if (Directory.Exists(outputFolder))
             {
-                Directory.Delete(outputFolder);
+                Directory.Delete(outputFolder,true);
             }
 
             return Ok();    

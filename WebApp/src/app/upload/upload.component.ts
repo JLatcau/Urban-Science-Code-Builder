@@ -40,12 +40,10 @@ export class UploadComponent implements OnInit {
   public async uploadFile (file) {
     // if(files.length === 0)
     //   return;
-    console.log("image path before change: "+this.imagePath);
     let fileToUpload = <File>file;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    //Generating random integer for user id and storing it in data service for use across components , assigned once per instance
-    //TODO: replace random user id with client id from Google analytics.
+   
     if (this.user_id==="0"){
     this.user_id=uuidv4();
     console.log("user id in web app: "+this.user_id);
@@ -73,8 +71,7 @@ export class UploadComponent implements OnInit {
       }      
 
     };
-   // this.data.addImagePathToDatabase();
-    //this.router.navigate(['/loading']);
+  
 
   }
 

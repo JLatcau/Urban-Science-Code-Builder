@@ -1,0 +1,29 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {  
+    "code-builder": {
+      "description": "Schematic that generates the html dasboard, uses all current components in the directory to generate the neccesary files for a visual web dashboard.",
+      "factory": "./code-builder/index#codeBuilder"
+    },
+    "bar-chart": {
+      "description": "Schematic that generates a bar chart component.",
+      "factory": "./bar-chart/index#barChart",
+      "schema": "./bar-chart/schema.json"
+    },
+    "data-grid": {
+      "description": "Schematic that generates a data grid component.",
+      "factory": "./data-grid/index#dataGrid",
+      "schema": "./data-grid/schema.json"
+    },
+    "kpi": {
+      "description": "Schematic that generates a key performance indicator (kpi) component.",
+      "factory": "./kpi/index#kpi",
+      "schema": "./kpi/schema.json"
+    },
+    "dashboard": {
+      "description": "Schematics that generates a dashboard component.",
+      "factory": "./dashboard/index#dashboard",
+      "schema": "./dashboard/schema.json"
+    }
+  }
+}

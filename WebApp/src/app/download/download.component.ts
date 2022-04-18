@@ -5,7 +5,6 @@ import * as FileSaver from 'file-saver';
 import { DataService } from '../_service/data.service';
 import { Subscription } from 'rxjs';
 
-//import { Console } from 'console';
 
 
 @Component({
@@ -40,47 +39,39 @@ export class DownloadComponent implements OnInit {
     });
     this.user_IdSubscription = this.data.currentUser_Id.subscribe(user_id => this.user_id = user_id);
 
-    // //Zip file generation dashboard code.
-    // this.fileService.createZip().subscribe((response) => {
-    //   this.downloadPath=response['zipPath'];
-    // });
-    
      }
 
- async download(){
-  
-  var fileName;
-  //Zip file generation dashboard code.
-  var response=  await this.fileService.createZip(this.user_id).toPromise() 
-    if (response)
-  {
-    this.downloadPath=response['zipPath'];
-  };
-  fileName=this.downloadPath;
-  fileName=fileName.split("\\");
-  //console.log("file name went with: "+fileName[1]);
-  
-  this.fileService.download(this.downloadPath,this.user_id).subscribe((event) => {
+  async download(){
     
-    this.message = 'Download success.';
-        this.downloadFile(event,fileName[1]);
-  
-});
- }
+    var fileName;
+    //Zip file generation pf dashboard code.
+    var response=  await this.fileService.createZip(this.user_id).toPromise() 
+      if (response)
+    {
+      this.downloadPath=response['zipPath'];
+    };
+    fileName=this.downloadPath;
+    fileName=fileName.split("\\");
+    
+    this.fileService.download(this.downloadPath,this.user_id).subscribe((event) => {
+      this.message = 'Download success.';
+          this.downloadFile(event,fileName[1]);
+    });
+  }
 
- private downloadFile(data: Blob,fileName: string) {
-   console.log("now in download file");
+  private downloadFile(data: Blob,fileName: string) {
+    console.log("now in download file");
 
-  const downloadedFile = new Blob([data], { type: data.type });
-  const a = document.createElement('a');
-  a.setAttribute('style', 'display:none;');
-  document.body.appendChild(a);
-  a.download = fileName;
-  a.href = URL.createObjectURL(downloadedFile);
-  a.target = '_blank';
-  a.click();
-  document.body.removeChild(a);
-}
+    const downloadedFile = new Blob([data], { type: data.type });
+    const a = document.createElement('a');
+    a.setAttribute('style', 'display:none;');
+    document.body.appendChild(a);
+    a.download = fileName;
+    a.href = URL.createObjectURL(downloadedFile);
+    a.target = '_blank';
+    a.click();
+    document.body.removeChild(a);
+  }
   
     
 }
