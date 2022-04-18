@@ -1,4 +1,3 @@
-//import { dasherize } from "@angular-devkit/core/src/utils/strings";
 import { DirEntry, SchematicsException, Tree } from "@angular-devkit/schematics";
 
 export interface AddComponentToDashboardContext {
@@ -9,6 +8,8 @@ export interface AddComponentToDashboardContext {
     dashboardComponentFileName: string;
 }
 
+// Creates context to the change being requested. Allows a lot of information to be passed to other
+// functions within a single object
 export function createAddComponentToDashboardContext(_options: any, tree: Tree): AddComponentToDashboardContext {
 
     let path = '/dashboard/dashboard.component.html';
@@ -26,11 +27,8 @@ export function createAddComponentToDashboardContext(_options: any, tree: Tree):
     }
 }
 
-/*
-function constructDestinationPath(_options: any): string {
-    return '/' + (_options.sourceDir? _options.sourceDir + '/' : '') + (_options.path || '') + (_options.flat ? '' : '/' + dasherize(_options.name))
-} */
-
+// locates a file in the host directory or specified directory and returns the relative path
+// in terms of the Angular projects root.
 function findFileByName(file: string, path: string, host: Tree): string {
     let dir: DirEntry | null = host.getDir(path);
 
