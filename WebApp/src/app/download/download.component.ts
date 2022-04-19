@@ -45,11 +45,9 @@ export class DownloadComponent implements OnInit {
     }
     });
     this.user_IdSubscription = this.data.currentUser_Id.subscribe(user_id => this.user_id = user_id);
-
-     }
+  }
 
   async download(){
-    
     var fileName;
     //Zip file generation pf dashboard code.
     var response=  await this.fileService.createZip(this.user_id).toPromise() 
@@ -69,6 +67,8 @@ export class DownloadComponent implements OnInit {
   private downloadFile(data: Blob,fileName: string) {
     console.log("now in download file");
 
+    this.notifier.notify('success', 'Your output is being downloaded to your system!')
+
     const downloadedFile = new Blob([data], { type: data.type });
     const a = document.createElement('a');
     a.setAttribute('style', 'display:none;');
@@ -78,7 +78,7 @@ export class DownloadComponent implements OnInit {
     a.target = '_blank';
     a.click();
     document.body.removeChild(a);
-  }
+  } 
 }
 
 
