@@ -18,7 +18,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
-    "@schematics/code-builder": "file:schematics-code-builder-1.0.1.tgz",
+    "@schematics/code-builder": "file:schematics-code-builder-1.1.0.tgz",
     "jsdom": "^19.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

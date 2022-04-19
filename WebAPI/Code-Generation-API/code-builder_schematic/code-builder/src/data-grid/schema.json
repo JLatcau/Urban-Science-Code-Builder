@@ -7,7 +7,7 @@
     "properties": {
         "name": {
             "type":"string",
-            "description": "Component name",
+            "description": "Name of component",
             "$default": {
                 "$source": "argv",
                 "index": 0
@@ -34,7 +34,7 @@
         
         "toAdd": {
             "type":"string",
-            "description": "Code insert."
+            "description": "code insert"
         },
 
         "path": {

@@ -34,7 +34,7 @@
         
         "toAdd": {
             "type":"string",
-            "description": "Code insert."
+            "description": "code insert"
         },
 
         "path": {
