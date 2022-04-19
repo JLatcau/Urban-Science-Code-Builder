@@ -1,19 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~angular-notifier/styles";
 
 html, body { height: 100%; width:100%}
 body { margin: 8px 0; font-family: Roboto, "Helvetica Neue", sans-serif; text-align: center; user-select: none;}
 
 .main_content {
     display: flex;
-    margin: 15px auto 32px;
+    margin: 0px auto 32px;
     padding: 0 16px;
     flex-direction: column;
     align-items: center;
+    position: relative;
 } 
+
+.main_content>* {
+    display: block;
+}
 
 .code_builder {
     color: #70c82f;
-    margin-top: 30px;
+    margin: 0px auto 32px !important;
     user-select: none;
 }
 

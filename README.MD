@@ -5,26 +5,41 @@ Dependencies needed BEFORE setup
 ======================================
 
 *** NOTE: If any installs fail, try to run as administrator, this usually fixes a failed install
+</br > </br > 
 
-Node JS 16.14.2 LTS (installed addition tools, unsure if that was necessary)
+Node JS 16.14.2 LTS (installed additional tools during installation process) </br > 
+Link to download: https://nodejs.org/en/download/
+</br > </br > 
 
-Angular 12 (specifically 12.2.16)
+Angular 12 (specifically 12.2.16) </br > 
 Install with `npm install -g @angular/cli@12.2.16`
+</br > </br >
 
-** I used Visual Studio Community 2022 and VS Code (latest version)
+Python 3.10.0 </br > 
+Link to download: https://www.python.org/downloads/release/python-3100/
+</br > </br >
 
-** Used .NET install in Visual Studios Community 2022
+Open CV </br > 
+Install with `pip install opencv-python`
+</br > </br >
 
-Python310
+Google Cloud Vision </br > 
+Install with `pip install google-cloud-vision`
+</br > </br >
 
-Open CV
-`pip install opencv-python`
+Pillow </br > 
+Install with `pip install pillow`
+</br > </br >
 
-Google Cloud Vision
-`pip install google-cloud-vision`
+Visual Studio Community 2022 (VS) and VS Code (VS Code). VS was used for the .NET back end and VS Code was used for the Anuglar front end portion.</br > 
+** Used .NET install in Visual Studios Community 2022</br > 
+Link to download Visual Studio Community 2022: https://visualstudio.microsoft.com/vs/ (Make sure you choose Community version)</br > 
+Link to download Visual Studio Code: https://code.visualstudio.com/
+</br > </br >
 
-Pillow
-`pip install pillow`
+If you chose not to or for some reason .NET 6 was not installed during the Visual Studio Community installation, you can download that here: </br > 
+https://dotnet.microsoft.com/en-us/download (Specifically .NET 6)
+</br > </br >
 
 ========================
 
@@ -43,7 +58,7 @@ Setup
 6) Type `npm install` in this directory
 7) Type `npm install --save schematics-code-builder-1.0.1.tgz`
 
-8) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studios
+8) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studio
 9) Will be asked about SSL, click Yes
 
 
@@ -54,11 +69,7 @@ Running the project
 
 ======================
 
-1) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studios and click run
+1) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studio and click run
 2) Navigate to Urban-Science-Code-Builder\WebApp in the terminal
 3) Type `ng serve --open`
 4) Project should now be running
-
-
-
-NOTE: ** means dev tool, not needed, or can be of a different version
