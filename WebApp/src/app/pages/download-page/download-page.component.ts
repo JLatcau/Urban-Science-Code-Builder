@@ -5,10 +5,11 @@ import { NotifierService } from 'angular-notifier';
 @Component({
   selector: 'app-download-page',
   templateUrl: './download-page.component.html',
-  styleUrls: ['./download-page.component.css']
+  styleUrls: ['./download-page.component.css'],
 })
 export class DownloadPageComponent implements OnInit {
   private notifier: NotifierService;
+
 
   constructor(private dialog: MatDialog, notifier: NotifierService) {
     this.notifier = notifier;
