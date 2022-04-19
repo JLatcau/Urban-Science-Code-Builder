@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-main-page',
@@ -13,14 +14,18 @@ export class MainPageComponent implements OnInit {
   image;
   files;
   dragAreaClass: string;
+  private notifier: NotifierService;
+
   
   private acceptedFileTypes = "image.png|image.heic|image.jpg|image.jpeg"
 
   constructor(private imageService: ImageSharingServiceService,
     private route: ActivatedRoute,
     private router: Router, 
-    private dialog: MatDialog) { 
-      this.dragAreaClass = "dragarea"
+    private dialog: MatDialog,
+    notifier: NotifierService) { 
+      this.dragAreaClass = "dragarea";
+      this.notifier = notifier;
   }
 
   ngOnInit(): void {
@@ -57,6 +62,12 @@ export class MainPageComponent implements OnInit {
   onImageSelected(event) {
     const file:File = event.target.files[0];
 
+    if(file) {
+      if(!(file.type.match(this.acceptedFileTypes))) {
+        this.notifier.notify('error', 'Wrong file type. Please input an appropriate image file type.')
+      }
+    }
+    
     this.validateImage(file);
   }
 

@@ -6,6 +6,7 @@ import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
 import { ImageSharingServiceService } from 'src/app/shared/image-sharing-service/image-sharing-service.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NotifierService } from 'angular-notifier';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class CameraComponent implements OnInit {
   isCameraExist = true;
   showSubmit = false;
   errors: WebcamInitError[] = [];
+  private notifier: NotifierService;
+
 
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
@@ -33,7 +36,11 @@ export class CameraComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private imageService: ImageSharingServiceService,
-    private router: Router) { this.onResize() }
+    private router: Router,
+    notifier: NotifierService) { 
+      this.onResize();
+      this.notifier = notifier;
+    }
 
 
     public width: number = 1000;
@@ -52,6 +59,8 @@ export class CameraComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.isCameraExist = mediaDevices && mediaDevices.length > 0;
       });
+
+      this.notifier.notify('info','Check "help" for optimal results.');
   }
 
   takeSnapshot(): void {
