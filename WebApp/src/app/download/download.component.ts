@@ -4,6 +4,7 @@ import { FileService } from '../_service/file.service';
 import * as FileSaver from 'file-saver';
 import { DataService } from '../_service/data.service';
 import { Subscription } from 'rxjs';
+import { NotifierService } from 'angular-notifier';
 
 //import { Console } from 'console';
 
@@ -15,16 +16,22 @@ import { Subscription } from 'rxjs';
 })
 export class DownloadComponent implements OnInit {
   
-  constructor(private fileService: FileService, private data: DataService) { }
-
   message!: string;
   progress!: number;
   foldersToDownload;
-   filesToDownload: string[] = [];
+  filesToDownload: string[] = [];
   downloadPath;
   user_id!: string;
   user_IdSubscription!: Subscription;
- 
+  private notifier: NotifierService;
+
+  constructor(
+    private fileService: FileService, 
+    private data: DataService,
+    notifier: NotifierService) {
+      this.notifier = notifier;
+    }
+
   ngOnInit(): void {
     //Retrieving dashboard folder and file paths.
     this.fileService.getFolders().subscribe((response) => {
@@ -64,12 +71,13 @@ export class DownloadComponent implements OnInit {
     
     this.message = 'Download success.';
         this.downloadFile(event,fileName[1]);
-  
-});
+  });
  }
 
  private downloadFile(data: Blob,fileName: string) {
    console.log("now in download file");
+
+   this.notifier.notify('success', 'Your output is being downloaded to your system!')
 
   const downloadedFile = new Blob([data], { type: data.type });
   const a = document.createElement('a');
