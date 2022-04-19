@@ -16,3 +16,13 @@ WebAPI/WebAPI/obj/staticwebassets.pack.sentinel
 WebAPI/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json
 WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.csproj.CoreCompileInputs.cache
 WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.csproj.AssemblyReference.cache
+WebAPI/.vs/WebAPI/DesignTimeBuild/.dtbcache.v2
+WebAPI/.vs/WebAPI/v17/.futdcache.v1
+WebAPI/.vs/WebAPI/v17/.suo
+WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.assets.cache
+WebAPI/WebAPI/obj/Debug/net6.0/WebAPI.csproj.AssemblyReference.cache
+WebAPI/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json
+WebAPI/WebAPI/obj/project.assets.json
+WebAPI/WebAPI/obj/project.nuget.cache
+WebApp/src/app/download/download.component.ts
