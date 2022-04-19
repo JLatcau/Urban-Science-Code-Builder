@@ -58,7 +58,7 @@ Setup
 6) Type `npm install` in this directory
 7) Type `npm install --save schematics-code-builder-1.0.1.tgz`
 
-8) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studios
+8) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studio
 9) Will be asked about SSL, click Yes
 
 
@@ -69,7 +69,7 @@ Running the project
 
 ======================
 
-1) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studios and click run
+1) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studio and click run
 2) Navigate to Urban-Science-Code-Builder\WebApp in the terminal
 3) Type `ng serve --open`
 4) Project should now be running
