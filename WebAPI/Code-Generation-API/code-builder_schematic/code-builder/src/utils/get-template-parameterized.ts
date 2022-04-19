@@ -2,6 +2,7 @@ import { strings } from '@angular-devkit/core';
 import { Tree, apply, url, template, SchematicsException, move, Source } from '@angular-devkit/schematics';
 
 import { parseName } from '@schematics/angular/utility/parse-name'
+import { getCodeInsert } from './get-code-insert';
 
 export function getTemplateParameterized(tree: Tree, _options: any): Source {
     // Check if the currenty workspace is an Angular project
@@ -24,6 +25,13 @@ export function getTemplateParameterized(tree: Tree, _options: any): Source {
     // Reset's the name to the new name in path form after it's been normalized (ex: dashboard -> /dashboard)
     const parsed = parseName(path, _options.name);
     _options.name = parsed.name;
+
+    if ('path' in _options)
+    {
+        _options.path = parsed.path;
+
+        _options.toAdd = getCodeInsert(_options);
+    }
 
     // Sets sourceTemplate equal to the template files
     const sourceTemplate = url(`./files`);

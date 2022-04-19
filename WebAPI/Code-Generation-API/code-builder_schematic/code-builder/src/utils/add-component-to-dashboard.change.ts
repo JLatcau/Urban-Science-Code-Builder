@@ -25,8 +25,8 @@ export function addComponentToDashboardChange (context: AddComponentToDashboardC
     // Get the node location of the element found above
     const locations = dom.nodeLocation(element);
 
-    let query = '[cellLocation="' + position + '"]';
-    if(!locations) throw new SchematicsException('<div> could not be found. Query: ' + query);
+    let query = position;
+    if(!locations) throw new SchematicsException('<app-card id="' + query + '"> could not be found');
 
     let toAdd = context.toAdd;
 

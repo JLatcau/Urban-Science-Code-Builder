@@ -31,7 +31,7 @@ export function createAddComponentToDashboardContext(_options: any, tree: Tree):
 // in terms of the Angular projects root.
 function findFileByName(file: string, path: string, host: Tree): string {
     let dir: DirEntry | null = host.getDir(path);
-
+    
     while(dir) {
         let dashboardComponentFileName = dir.path + '/' + file;
         if (host.exists(dashboardComponentFileName)) {
