@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "data-gridSchema",
+    "title": "Data Grid Schema",
+    "type": "object",
+    "description": "Create a data-grid component",
+    "properties": {
+        "name": {
+            "type":"string",
+            "description": "Component name",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            }
+        },
+        
+        "row": {
+            "type": "string",
+            "description": "row value"
+        },
+
+        "col": {
+            "type": "string",
+            "description": "col value"
+        },
+        
+        "toAdd": {
+            "type":"string",
+            "description": "Code insert."
+        },
+
+        "path": {
+            "type":"string",
+            "description": "path"
+        }
+    }
+}

@@ -7,6 +7,8 @@ import { ThisReceiver, ThrowStmt } from '@angular/compiler';
   providedIn: 'root'
 })
 export class DataService {
+  //TODO: make api url easily interchangeable between localhost port use on different machines, port used is curently 
+
   private url='https://localhost:7112';
 
   private imagePath = new BehaviorSubject(this.url);
@@ -16,24 +18,18 @@ export class DataService {
   private user_id=new BehaviorSubject("0");
   currentUser_Id=this.user_id.asObservable();
 
-//TODO: make api url easily interchangeable between localhost port use on different machines, port used is curently 
   constructor(private http: HttpClient) { 
   }
 
  public changeImagePath(data: string) {
-    // data=this.url +"/"+"Resources/"+"Images/"+"upload_test_1t.jpg";
     data=this.url +"/"+data;
 
     this.imagePath.next(data)
-    console.log("service image path: "+this.imagePath.toString());
     
   }
   public changeDownloadPath(data: string) {
-    // data=this.url +"/"+"Resources/"+"Images/"+"upload_test_1t.jpg";
   
-
     this.downloadPath.next(data)
-    console.log("service download path: "+this.downloadPath.toString());
     
   }
 
@@ -41,10 +37,10 @@ export class DataService {
       this.user_id.next(data);
   }
 
-public addImagePathToDatabase(){
-   this.http.get(this.url+'/api/UserRequests/addImage?UploadedImagePath='+this.currentImagePath,{reportProgress:true,
-    });
-}
+  public addImagePathToDatabase(){
+    this.http.get(this.url+'/api/UserRequests/addImage?UploadedImagePath='+this.currentImagePath,{reportProgress:true,
+      });
+  }
 
  
 }

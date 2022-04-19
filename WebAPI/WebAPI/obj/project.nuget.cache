@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "K/pjHkMeTwc0ukOygVwp7aNywbs9yq4a4FURzsx+h9Fg4oiaX86ix9M3tkRP3rl3OnDVE8AYy7TTV06MR9TsFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+=======
+  "dgSpecHash": "jIA0Ml41QV5ZuO+Y97TithLDKiMp1r2tTidmznlh/L5q65Dtd0JGF5M6E6XbJoino1XrkJqDBslaezn3dc3ZDA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+>>>>>>> main
   "expectedPackageFiles": [
     "C:\\Users\\sheev_jy3joub\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.2\\microsoft.aspnetcore.jsonpatch.6.0.2.nupkg.sha512",
     "C:\\Users\\sheev_jy3joub\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.2\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.2.nupkg.sha512",

@@ -36,4 +36,9 @@ export class FileService {
   public createZip(user_id:string){
     return this.http.get(this.url+'/api/File/createZIP?user_id='+user_id);
   }
+
+  public deleteUserData(user_id: string){
+      return this.http.get(this.url+'/api/File/deleteUserData?user_id='+user_id);
+
+  }
 }
