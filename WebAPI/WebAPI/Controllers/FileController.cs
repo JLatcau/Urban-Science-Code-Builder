@@ -247,26 +247,13 @@ namespace WebAPI.Controllers
             return File(memory, GetFileType(filePath), filePath);
         }
 
-        [HttpGet, DisableRequestSizeLimit]
-        [Route("getFiles")]
-        public IActionResult GetFiles([FromQuery] string path)
-        {
-            try
-            {
-                
-                var readPath = Path.Combine(_projectParentDirectory, "WebAPI","WebAPI","Resources","DashBoard");
-
-                var files = Directory.EnumerateFiles(readPath);
-                return Ok(new { files });
-            }
-            catch (Exception ex)
-            { return StatusCode(500, $"Internal server error: {ex}"); }
-        }
+       
 
         [HttpGet, DisableRequestSizeLimit]
         [Route("createZIP")]
         public IActionResult CreateZIP([FromQuery]string user_id)
         {
+
                 var path =Path.Combine("Resources","Dashboard",user_id);
             if (!Directory.Exists(path))
             {
@@ -290,23 +277,7 @@ namespace WebAPI.Controllers
             return Ok(new { zipPath});
         }
 
-         [HttpGet, DisableRequestSizeLimit]
-        [Route("getFolders")]
-        public IActionResult GetFolders()
-        {
-            try
-            {
-                var folderName = Path.Combine("WebAPI","WebAPI","Resources","Dashboard");
-                var readPath = Path.Combine(_projectParentDirectory, folderName);
-                var folders = Directory.EnumerateDirectories(readPath);
-                return Ok(new { folders });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-                return StatusCode(500, $"Internal server error: {ex}");
-            }
-        }
+
 
         [HttpGet, DisableRequestSizeLimit]
         [Route("deleteUserData")]
