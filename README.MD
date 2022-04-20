@@ -23,8 +23,11 @@ Open CV </br >
 Install with `pip install opencv-python`
 </br > </br >
 
-Google Cloud Vision </br > 
-Install with `pip install google-cloud-vision`
+Image Detection </br > 
+Install with `pip install tensorflow`
+Install with `pip install keras`
+Install with `pip install matplotlib`
+Install with `pip install imutils`
 </br > </br >
 
 Pillow </br > 

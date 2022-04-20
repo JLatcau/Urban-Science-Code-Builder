@@ -1,6 +1,5 @@
 import cv2 as cv
 import numpy as np
-from google.cloud import vision
 import io
 import os
 import shutil
@@ -8,22 +7,31 @@ import glob
 import sys
 import argparse
 from PIL import Image, ImageDraw
+from keras.models import load_model
+import tensorflow as tf
+import matplotlib.pyplot as plt
+from matplotlib import cm
+import imutils
+from imutils.contours import sort_contours
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="keyFile.json"
-client = vision.ImageAnnotatorClient()
-
+# Letters registered as detectable
 bVar = 'B'
 gVar = 'G'
 nVar = 'N'
+
+# Creates dead space to write cell values
 cellZ = ''
 
+# Picks up the image from the user key
 imdir = './ImageInput/'+sys.argv[1]
 print(imdir)
 images = []
 
+# Clears text output
 with open('Output/'+sys.argv[1]+'/output.txt', 'w') as f:
     f.write('')
 
+# Imports image
 for fileName in os.listdir(imdir):
     img = cv.imread(os.path.join(imdir, fileName))
     if img is not None:
@@ -32,6 +40,14 @@ for fileName in os.listdir(imdir):
 if not images:
     with open('Output/'+sys.argv[1]+'/output.txt', 'w') as f:
         f.write('No Images Detected.')
+
+
+# Loads custom CNN detection
+model_path = 'model_v2'
+print("Loading CNN model...")
+model = load_model(model_path)
+print("Done")
+
 
 # img = images
 img = images[0]
@@ -60,134 +76,164 @@ contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIM
 # # Displays detected Contours
 cv.drawContours(blank, contours, -1, (0,0,255), 4)
 
-# # Duplicates image for bounding box
-blank2 = blank.copy()
+# Creates crop variable
+cropped = blank
+blurred = cv.GaussianBlur(cropped, (5, 5), 0)
 
-# # Converts back to RGB
-blank2 = cv.cvtColor(blank2, cv.COLOR_BGR2RGB)
+# Detects contour of images for computer vision
+edged = cv.Canny(blurred, 30, 250) #low_threshold, high_threshold
+cnts = cv.findContours(edged.copy(), cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+cnts = imutils.grab_contours(cnts)
+cnts = sort_contours(cnts, method="left-to-right")[0]
 
-# # Creates Bounding Boxes
-for cntr in contours:
-    area = cv.contourArea(cntr)
-    if area > 10 and area < 100:
-        x,y,w,h = cv.boundingRect(cntr)
-        cv.rectangle(blank2, (x, y), (x+w, y+h), (0,255,0), 2)
+# Detects characters hidden in the contours
+chars = []
+# Loop over the contours
+for c in cnts:
+	# Compute the bounding box of the contour and isolate ROI
+    (x, y, w, h) = cv.boundingRect(c)
+    roi = cropped[y:y + h, x:x + w]
+    
+    # Binarize image, finds threshold with OTSU method
+    thresh = cv.threshold(roi, 0, 255,cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
+    
+    # Resize largest dimension to input size
+    (tH, tW) = thresh.shape
+    if tW > tH:
+        thresh = imutils.resize(thresh, width=28)
+    # Otherwise, resize along the height
+    else:
+        thresh = imutils.resize(thresh, height=28)
 
-cv.imwrite('Output/'+sys.argv[1]+'/output.jpg', blank)
+    # Find how much is needed to pad
+    (tH, tW) = thresh.shape
+    dX = int(max(0, 28 - tW) / 2.0)
+    dY = int(max(0, 28 - tH) / 2.0)
+    # Pad the image and force 28 x 28 dimensions
+    padded = cv.copyMakeBorder(thresh, top=dY, bottom=dY,
+        left=dX, right=dX, borderType=cv.BORDER_CONSTANT,
+        value=(0, 0, 0))
+    padded = cv.resize(padded, (28, 28))
+    # Reshape and rescale padded image for the model
+    padded = padded.astype("float32") / 255.0
+    padded = np.expand_dims(padded, axis=-1)
+
+    # Append image and bounding box data in char list
+    chars.append((padded, (x, y, w, h)))
 
 
-with io.open('Output/'+sys.argv[1]+'/output.jpg', 'rb') as image_file:
-        content = image_file.read()
+boxes = [b[1] for b in chars]
+chars = np.array([c[0] for c in chars], dtype="float32")
 
-image = vision.Image(content=content)
+# OCR the characters using the handwriting recognition model
+preds = model.predict(chars)
 
-response = client.text_detection(image=image)
-texts = response.text_annotations
+# Define the list of label names
+labelNames = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-if response.error.message:
-    raise Exception(
-        '{}\nError has occured'.format(
-            response.error.message))
 
-for text in texts:
-    if bVar==text.description:
-        print('Bar Chart')
+cropped = img[:,:]
+cropped = cv.resize(cropped, (553, 800))
 
-        listX = ([vertex.x
-            for vertex in text.bounding_poly.vertices])
+# # # Isolates detected characters and outputs any detected registered characters and their location
+for (pred, (x, y, w, h)) in zip(preds, boxes):
+	# Find the index of the label with the largest corresponding
+	# Probability, then extract the probability and label
+    i = np.argmax(pred)
+    prob = pred[i]
+    label = labelNames[i]
 
-        listY = ([vertex.y
-            for vertex in text.bounding_poly.vertices])
+    # Prints all detected characters into console
+    print(label)
 
-        avgX = (sum(listX)/len(listX))
-        avgY = (sum(listY)/len(listY))
+    # Checks if probability is over 60% then outputs character and cell location into text
+    if prob >= .50:
+        if bVar == label:
+            print('Bar Chart')
 
-        print(str(avgX)+','+str(avgY))
+            avgX = ((x+w))
+            avgY = ((y+h))
 
-        if(avgX<226 and avgY<267):
-            cellZ='0 0'
-        elif(avgX>226 and avgY<267):
-            cellZ='0 1'
-        elif(avgX<226 and avgY>267 and avgY<533):
-            cellZ='1 0'
-        elif(avgX>226 and avgY>267 and avgY<533):
-            cellZ='1 1'
-        elif(avgX<226 and avgY>533):
-            cellZ='2 0'
-        elif(avgX>226 and avgY>533):
-            cellZ='2 1'
+            print(str(avgX)+','+str(avgY))
 
-        with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
-            f.write('{}'.format(text.description+' '))
-            f.write(cellZ+'\n')
+            if(avgX<226 and avgY<267):
+                cellZ='0 0'
+            elif(avgX>226 and avgY<267):
+                cellZ='0 1'
+            elif(avgX<226 and avgY>267 and avgY<533):
+                cellZ='1 0'
+            elif(avgX>226 and avgY>267 and avgY<533):
+                cellZ='1 1'
+            elif(avgX<226 and avgY>533):
+                cellZ='2 0'
+            elif(avgX>226 and avgY>533):
+                cellZ='2 1'
 
-    if gVar==text.description:
-        print('Data Grid')
+            with open('Output/output.txt', 'a') as f:
+                f.write('{}'.format(bVar+' '))
+                f.write(cellZ+'\n')
+
+    if prob >= .50:
+        if gVar==label:
+            print('Data Grid')
         
-        listX = ([vertex.x
-            for vertex in text.bounding_poly.vertices])
+            avgX = ((x+w))
+            avgY = ((y+h))
 
-        listY = ([vertex.y
-            for vertex in text.bounding_poly.vertices])
+            print(str(avgX)+','+str(avgY))
 
-        avgX = (sum(listX)/len(listX))
-        avgY = (sum(listY)/len(listY))
+            if(avgX<226 and avgY<267):
+                cellZ='0 0'
+            elif(avgX>226 and avgY<267):
+                cellZ='0 1'
+            elif(avgX<226 and avgY>267 and avgY<533):
+                cellZ='1 0'
+            elif(avgX>226 and avgY>267 and avgY<533):
+                cellZ='1 1'
+            elif(avgX<226 and avgY>533):
+                cellZ='2 0'
+            elif(avgX>226 and avgY>533):
+                cellZ='2 1'
 
-        print(str(avgX)+','+str(avgY))
+            with open('Output/output.txt', 'a') as f:
+                f.write('{}'.format(gVar+' '))
+                f.write(cellZ+'\n')
 
-        if(avgX<226 and avgY<267):
-            cellZ='0 0'
-        elif(avgX>226 and avgY<267):
-            cellZ='0 1'
-        elif(avgX<226 and avgY>267 and avgY<533):
-            cellZ='1 0'
-        elif(avgX>226 and avgY>267 and avgY<533):
-            cellZ='1 1'
-        elif(avgX<226 and avgY>533):
-            cellZ='2 0'
-        elif(avgX>226 and avgY>533):
-            cellZ='2 1'
-
-        with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
-            f.write('{}'.format(text.description+' '))
-            f.write(cellZ+'\n')
-
-    if nVar==text.description:
-        print('KPI')
+    if prob >= .50:
+        if nVar==label:
+            print('KPI')
         
-        listX = ([vertex.x
-            for vertex in text.bounding_poly.vertices])
+            avgX = ((x+w))
+            avgY = ((y+h))
 
-        listY = ([vertex.y
-            for vertex in text.bounding_poly.vertices])
+            print(str(avgX)+','+str(avgY))
 
-        avgX = (sum(listX)/len(listX))
-        avgY = (sum(listY)/len(listY))
+            if(avgX<226 and avgY<267):
+                cellZ='0 0'
+            elif(avgX>226 and avgY<267):
+                cellZ='0 1'
+            elif(avgX<226 and avgY>267 and avgY<533):
+                cellZ='1 0'
+            elif(avgX>226 and avgY>267 and avgY<533):
+                cellZ='1 1'
+            elif(avgX<226 and avgY>533):
+                cellZ='2 0'
+            elif(avgX>226 and avgY>533):
+                cellZ='2 1'
 
-        print(str(avgX)+','+str(avgY))
+            with open('Output/output.txt', 'a') as f:
+                f.write('{}'.format(nVar+' '))
+                f.write(cellZ+'\n')
+    
+    label_text = f"{label},{prob * 100:.1f}%"
+    cv.rectangle(cropped, (x, y), (x + w, y + h), (0,255 , 0), 2)
+    cv.putText(cropped, label_text, (x - 10, y - 10),cv.FONT_HERSHEY_SIMPLEX,0.5, (0,255, 0), 1)
 
-        if(avgX<226 and avgY<267):
-            cellZ='0 0'
-        elif(avgX>226 and avgY<267):
-            cellZ='0 1'
-        elif(avgX<226 and avgY>267 and avgY<533):
-            cellZ='1 0'
-        elif(avgX>226 and avgY>267 and avgY<533):
-            cellZ='1 1'
-        elif(avgX<226 and avgY>533):
-            cellZ='2 0'
-        elif(avgX>226 and avgY>533):
-            cellZ='2 1'
+# # Remove comment for 2 lines below to see output of detections
+# cv.imshow('Contours Drawn', cropped)
+# cv.waitKey(0)
 
-        with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
-            f.write('{}'.format(text.description+' '))
-            f.write(cellZ+'\n')
-
-    # else:
-    #     print('None Detected')
-    #     with open('output.txt', 'w') as f:
-    #         f.write('None Detected')
-
+# Clears the input folder
 dir = 'ImageInput/'+sys.argv[1]
 for f in os.listdir(dir):
     os.remove(os.path.join(dir, f))
