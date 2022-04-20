@@ -1,6 +1,6 @@
 {
   "name": "@schematics/code-builder",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "Schematics for Urban Science Code Builder. Provides 3 schematics for 3 data visualization components and 1 to generate a host file.",
   "scripts": {
     "build": "tsc -p tsconfig.json",

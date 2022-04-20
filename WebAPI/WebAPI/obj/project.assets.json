@@ -1125,6 +1125,9 @@
     "version": "1.0.0",
     "restore": {
 <<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Schematic_Updates\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+=======
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
       "projectPath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
@@ -1132,10 +1135,15 @@
       "outputPath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
 =======
       "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+>>>>>>> main
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectPath": "C:\\Users\\Jacob\\Desktop\\Schematic_Updates\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
+<<<<<<< HEAD
+      "outputPath": "C:\\Users\\Jacob\\Desktop\\Schematic_Updates\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+=======
       "outputPath": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+>>>>>>> main
 >>>>>>> main
       "projectStyle": "PackageReference",
       "configFilePaths": [
