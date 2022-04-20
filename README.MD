@@ -24,9 +24,9 @@ Install with `pip install opencv-python`
 </br > </br >
 
 Image Detection </br > 
-Install with `pip install tensorflow`
-Install with `pip install keras`
-Install with `pip install matplotlib`
+Install with `pip install tensorflow`</br > 
+Install with `pip install keras`</br > 
+Install with `pip install matplotlib`</br > 
 Install with `pip install imutils`
 </br > </br >
 
