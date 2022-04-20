@@ -8,17 +8,9 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebAPI
 build_property.RootNamespace = WebAPI
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\Jacob\Desktop\Schematic_Updates\Urban-Science-Code-Builder\WebAPI\WebAPI\
+build_property.ProjectDir = C:\Users\ThaAceKlepto\Desktop\VS_Obj_Bug_Fix\Urban-Science-Code-Builder\WebAPI\WebAPI\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Jacob\Desktop\Schematic_Updates\Urban-Science-Code-Builder\WebAPI\WebAPI
-=======
-build_property.ProjectDir = C:\Users\sheev_jy3joub\OneDrive\Desktop\Projects\Urban-Science-Code-Builder\WebAPI\WebAPI\
-build_property.RazorLangVersion = 6.0
-build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\sheev_jy3joub\OneDrive\Desktop\Projects\Urban-Science-Code-Builder\WebAPI\WebAPI
->>>>>>> main
+build_property.MSBuildProjectDirectory = C:\Users\ThaAceKlepto\Desktop\VS_Obj_Bug_Fix\Urban-Science-Code-Builder\WebAPI\WebAPI
 build_property._RazorSourceGeneratorDebug = 
