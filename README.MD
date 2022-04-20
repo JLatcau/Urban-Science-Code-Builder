@@ -54,7 +54,7 @@ Setup
 3) Type `npm install` in this directory
 4) Run `ng serve --open` to ensure the frontend is working properly
 
-5) Navigate to Urban-Science-Code-Builder\WebAPI\Code-Generation-API in the terminal
+5) Navigate to Urban-Science-Code-Builder\WebAPI\Code-Generation-API\Generation_Environment in the terminal
 6) Type `npm install` in this directory
 7) Type `npm install --save schematics-code-builder-1.0.1.tgz`
 
