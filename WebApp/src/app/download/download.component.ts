@@ -33,17 +33,7 @@ export class DownloadComponent implements OnInit {
 
   ngOnInit(): void {
     //Retrieving dashboard folder and file paths.
-    this.fileService.getFolders().subscribe((response) => {
-      this.message = response['message'];
-      this.foldersToDownload=response['folders'];
-      for(var i =0;i<this.foldersToDownload.length;i++)
-      {
-      this.fileService.getFiles(this.foldersToDownload[0]).subscribe((response) => {
-        this.message = response['message'];
-        this.filesToDownload.push(response['files']);
-      });
-    }
-    });
+    
     this.user_IdSubscription = this.data.currentUser_Id.subscribe(user_id => this.user_id = user_id);
   }
 

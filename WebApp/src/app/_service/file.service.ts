@@ -25,14 +25,6 @@ export class FileService {
     );
     
   }
-//Retrieving Dashboard folders from WebAPI Resources folder for download
-  public getFolders(){
-    return this.http.get(this.url+'/api/File/getFolders');
-  }
-//Retrieving Dashboard files from Web APIResources folder for download
-  public getFiles(path: string){
-    return this.http.get(this.url+'/api/File/getFiles?path='+path);
-  }
   public createZip(user_id:string){
     return this.http.get(this.url+'/api/File/createZIP?user_id='+user_id);
   }
