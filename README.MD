@@ -77,3 +77,11 @@ Running the project
 2) Navigate to Urban-Science-Code-Builder\WebApp in the terminal
 3) Type `ng serve --open`
 4) Project should now be running
+
+======================
+
+Troubleshooting
+
+======================
+
+* Exceptions that occur during the WebAPI's runtime are logged in the "error_log.log" file in the "WebAPI\Logging\Logs" folder.
