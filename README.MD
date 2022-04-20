@@ -75,7 +75,7 @@ Running the project
 
 1) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studio and click run
 2) Navigate to Urban-Science-Code-Builder\WebApp in the terminal
-3) Type `ng serve --open`
+3) Type `ng serve --open --ssl`. Using the --ssl flag with enable HTTPS.
 4) Project should now be running
 
 ======================
