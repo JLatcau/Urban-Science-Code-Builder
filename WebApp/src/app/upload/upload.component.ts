@@ -62,10 +62,8 @@ export class UploadComponent implements OnInit {
         this.message = 'upload success.';
         this.onUploadFinished.emit(event.body);
         this.response=event.body;
-        //img path to store in database entry for retrieval, localhost API link
         this.data.changeImagePath(this.response.imagePath);
-        console.log("image path: "+this.imagePath);
-        //Navigaring to download page after image processing is complete and files ready for download
+        // Navigating to download page after image processing is complete and files ready for download
         this.router.navigate(['download']);
 
       }      

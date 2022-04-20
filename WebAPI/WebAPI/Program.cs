@@ -1,15 +1,17 @@
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Serialization;
+using WebAPI.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+WebAPIFileLoggerExtension.AddWebAPIFileLogger(builder.Logging,options => builder.Configuration.GetSection("Logging").GetSection("WebAPILoggerProvider").GetSection("Options").Bind(options));
+
 //Preventing multipart file error
 builder.Services.Configure<FormOptions>(o => {
     o.ValueLengthLimit = int.MaxValue;

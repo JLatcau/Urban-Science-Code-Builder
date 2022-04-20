@@ -1119,24 +1119,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jacob\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sheev_jy3joub\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Schematic_Updates\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+=======
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectName": "WebAPI",
+      "projectPath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "packagesPath": "C:\\Users\\sheev_jy3joub\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+>>>>>>> main
       "projectName": "WebAPI",
       "projectPath": "C:\\Users\\Jacob\\Desktop\\Schematic_Updates\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
+<<<<<<< HEAD
       "outputPath": "C:\\Users\\Jacob\\Desktop\\Schematic_Updates\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+=======
+      "outputPath": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+>>>>>>> main
+>>>>>>> main
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sheev_jy3joub\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1205,7 +1216,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

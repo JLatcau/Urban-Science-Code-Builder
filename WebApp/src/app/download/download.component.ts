@@ -4,6 +4,7 @@ import { FileService } from '../_service/file.service';
 import * as FileSaver from 'file-saver';
 import { DataService } from '../_service/data.service';
 import { Subscription } from 'rxjs';
+import { NotifierService } from 'angular-notifier';
 
 
 
@@ -14,16 +15,22 @@ import { Subscription } from 'rxjs';
 })
 export class DownloadComponent implements OnInit {
   
-  constructor(private fileService: FileService, private data: DataService) { }
-
   message!: string;
   progress!: number;
   foldersToDownload;
-   filesToDownload: string[] = [];
+  filesToDownload: string[] = [];
   downloadPath;
   user_id!: string;
   user_IdSubscription!: Subscription;
- 
+  private notifier: NotifierService;
+
+  constructor(
+    private fileService: FileService, 
+    private data: DataService,
+    notifier: NotifierService) {
+      this.notifier = notifier;
+    }
+
   ngOnInit(): void {
     //Retrieving dashboard folder and file paths.
     this.fileService.getFolders().subscribe((response) => {
@@ -38,11 +45,9 @@ export class DownloadComponent implements OnInit {
     }
     });
     this.user_IdSubscription = this.data.currentUser_Id.subscribe(user_id => this.user_id = user_id);
-
-     }
+  }
 
   async download(){
-    
     var fileName;
     //Zip file generation pf dashboard code.
     var response=  await this.fileService.createZip(this.user_id).toPromise() 
@@ -62,6 +67,9 @@ export class DownloadComponent implements OnInit {
   private downloadFile(data: Blob,fileName: string) {
     console.log("now in download file");
 
+    this.notifier.notify('success', 'Your output is being downloaded to your system!')
+
+    // Sending file as a blob and actually starting the download
     const downloadedFile = new Blob([data], { type: data.type });
     const a = document.createElement('a');
     a.setAttribute('style', 'display:none;');
@@ -71,9 +79,8 @@ export class DownloadComponent implements OnInit {
     a.target = '_blank';
     a.click();
     document.body.removeChild(a);
-  }
-  
-    
+  } 
 }
+
 
 
