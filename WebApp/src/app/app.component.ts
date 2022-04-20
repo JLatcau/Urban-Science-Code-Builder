@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  
+  // Angular page routing animations. The numbers in the transition function correlate to the pages in the application
   animations: [
     trigger('routeAnimation', [
       transition('1 => 3', [
@@ -101,6 +103,7 @@ export class AppComponent implements OnInit,OnDestroy{
     this.router.navigate(['']);
   }
 
+  // For specefic user instance
   @HostListener('window:beforeunload')
   async ngOnDestroy() {
     var response=this.fileService.deleteUserData(this.user_id).subscribe();
@@ -109,6 +112,7 @@ export class AppComponent implements OnInit,OnDestroy{
       this.user_IdSubscription.unsubscribe();
   }
   }
+  // Webcam image
   handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;
   }

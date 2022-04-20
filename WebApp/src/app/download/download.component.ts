@@ -59,6 +59,7 @@ export class DownloadComponent implements OnInit {
 
     this.notifier.notify('success', 'Your output is being downloaded to your system!')
 
+    // Sending file as a blob and actually starting the download
     const downloadedFile = new Blob([data], { type: data.type });
     const a = document.createElement('a');
     a.setAttribute('style', 'display:none;');

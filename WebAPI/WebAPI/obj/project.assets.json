@@ -1119,27 +1119,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sheev_jy3joub\\.nuget\\packages\\": {}
+    "C:\\Users\\ThaAceKlepto\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ThaAceKlepto\\Desktop\\VS_Obj_Bug_Fix\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "packagesPath": "C:\\Users\\sheev_jy3joub\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sheev_jy3joub\\OneDrive\\Desktop\\Projects\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jacob\\Desktop\\Custom_Schematic\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
->>>>>>> main
+      "projectPath": "C:\\Users\\ThaAceKlepto\\Desktop\\VS_Obj_Bug_Fix\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "packagesPath": "C:\\Users\\ThaAceKlepto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ThaAceKlepto\\Desktop\\VS_Obj_Bug_Fix\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sheev_jy3joub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ThaAceKlepto\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1208,7 +1200,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200-preview.22055.15\\RuntimeIdentifierGraph.json"
       }
     }
   }

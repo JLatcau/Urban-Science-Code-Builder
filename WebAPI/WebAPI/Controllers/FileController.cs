@@ -185,7 +185,7 @@ namespace WebAPI.Controllers
                    
                     if (dashboardSlots[i].Equals(lineValues[1] + lineValues[2]))
                     {
-
+                        _logger.LogError(lineValues[0]+" has a conflicting dashboard slot assignment in row "+lineValues[1]+" column "+lineValues[2]);
                         slotConflict = true;
                         break;
                     }
