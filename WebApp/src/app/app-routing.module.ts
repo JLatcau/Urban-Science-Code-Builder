@@ -6,6 +6,7 @@ import { DownloadPageComponent } from './pages/download-page/download-page.compo
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
+// Designating a number to each page for animation transition
 const routes: Routes = [
   {path:'', component: MainPageComponent, data: {depth: 1}},
   {path:'loading', component: LoadingPageComponent, data: {depth: 4}},

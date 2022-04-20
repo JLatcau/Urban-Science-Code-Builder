@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files. The styles specified in this 
+file can be accessed by any file in the project. Common css elements are included in this file. Ex. Button styling */
+/* This import is for the notification feature*/
 @import "~angular-notifier/styles";
 
 html, body { height: 100%; width:100%}
