@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
+// Styling for notification feature
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {

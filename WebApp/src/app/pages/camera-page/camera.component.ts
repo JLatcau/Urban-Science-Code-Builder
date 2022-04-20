@@ -23,7 +23,7 @@ export class CameraComponent implements OnInit {
   private notifier: NotifierService;
 
 
-  // webcam snapshot trigger
+  // Webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
@@ -42,7 +42,7 @@ export class CameraComponent implements OnInit {
       this.notifier = notifier;
     }
 
-
+    // Size
     public width: number = 1000;
     public height: number = 500;
     private resizeMultiplier = 0.60;
@@ -104,10 +104,12 @@ export class CameraComponent implements OnInit {
     return this.trigger.asObservable();
   }
 
+  // This will get next observable webcam, if available
   get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
 
+  // Send over function, finalizes image
   newImage() {
     this.imageService.newImage(this.image)
   }

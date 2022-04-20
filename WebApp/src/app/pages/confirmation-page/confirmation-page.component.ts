@@ -31,6 +31,7 @@ export class ConfirmationPageComponent implements OnInit {
       this.readUrl();
   }
 
+  // Image pre processing
   readUrl() {
       const reader = new FileReader();
       reader.readAsDataURL(this.image);
@@ -42,6 +43,7 @@ export class ConfirmationPageComponent implements OnInit {
       //this.sanitizedImageURL = this.domSanitizer.bypassSecurityTrustUrl(this.imageURL);
   }
 
+  // Cleaning url
   sanitizeImageUrl(imageUrl: string): SafeUrl {
     return this.domSanitizer.bypassSecurityTrustUrl(imageUrl);
   }
@@ -50,12 +52,14 @@ export class ConfirmationPageComponent implements OnInit {
   public height: number = 500;
   private resizeMultiplier = 0.40;
 
+  // Resizing
   @HostListener('window:resize', ['$event']) onResize(event?: Event) {
     const win = !!event ? (event.target as Window) : window;
     this.width = win.innerWidth * this.resizeMultiplier;
     this.height = win.innerHeight * this.resizeMultiplier;
   }
 
+  // For help feature
   open_help(templateRef) {
     let dialogRef = this.dialog.open(templateRef);
   }

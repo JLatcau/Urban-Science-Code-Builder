@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
   dragAreaClass: string;
   private notifier: NotifierService;
 
-  
+  // Acceptable file types for input
   private acceptedFileTypes = "image.png|image.heic|image.jpg|image.jpeg"
 
   constructor(private imageService: ImageSharingServiceService,
@@ -28,6 +28,7 @@ export class MainPageComponent implements OnInit {
       this.notifier = notifier;
   }
 
+  // Drag and drop feature. Host listeners set up as event handlers. See function name
   ngOnInit(): void {
     this.dragAreaClass = "dragarea";
   }
@@ -62,6 +63,7 @@ export class MainPageComponent implements OnInit {
   onImageSelected(event) {
     const file:File = event.target.files[0];
 
+    // Validating file type
     if(file) {
       if(!(file.type.match(this.acceptedFileTypes))) {
         this.notifier.notify('error', 'Wrong file type. Please input an appropriate image file type.')
@@ -71,6 +73,7 @@ export class MainPageComponent implements OnInit {
     this.validateImage(file);
   }
 
+  // Validating image
   validateImage(file) {
     if(file) {
       if(file.type.match(this.acceptedFileTypes)) {
@@ -83,10 +86,12 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  // Finalizing image
   newImage() {
     this.imageService.newImage(this.image)
   }
 
+  // For help feature
   open_help(templateRef) {
     let dialogRef = this.dialog.open(templateRef);
   }

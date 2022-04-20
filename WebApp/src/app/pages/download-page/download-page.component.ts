@@ -15,10 +15,13 @@ export class DownloadPageComponent implements OnInit {
     this.notifier = notifier;
   }
 
+  // Notifier Service like this one is commonly used throughout the application to send notifications. The first parameter of this
+  // notify() function is the notification type. Each type is a different color
   ngOnInit(): void {
     this.notifier.notify('success','Your image has been succesfully processed!');
   }
 
+  // For help feature
   open_help(templateRef) {
     let dialogRef = this.dialog.open(templateRef);
   }
