@@ -56,15 +56,16 @@ Setup
 
 5) Navigate to Urban-Science-Code-Builder\WebAPI\Code-Generation-API\Generation_Environment in the terminal
 6) Type `npm install` in this directory
-7) In the same directory as step 6, type `npm install --save ..\code-builder_schematic\packed_files\schematics-code-builder-1.1.1.tgz`
-(Step 7 Note: 
-  * schematics-code-builder-1.1.1.tgz is the latest version, if there happens to be a version higher use that one instead
-  * This module should already be installed, but step 7 is to ensure it is installed correctly).
+7) In the same directory as step 6, type `npm install --save ..\code-builder_schematic\packed_files\schematics-code-builder-1.1.1.tgz` (See note below)
 
 8) Open "WebAPI.sln" in Urban-Science-Code-Builder\WebAPI using Visual Studio
 9) Will be asked about SSL, click Yes
 
+</br >
 
+Step 7 Note: 
+  * schematics-code-builder-1.1.1.tgz is the latest version, if there happens to be a version higher use that one instead
+  * This module should already be installed, but step 7 is to ensure it is installed correctly
 
 ======================
 
