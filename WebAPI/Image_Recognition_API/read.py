@@ -169,7 +169,7 @@ for (pred, (x, y, w, h)) in zip(preds, boxes):
             elif(avgX>226 and avgY>533):
                 cellZ='2 1'
 
-            with open('Output/output.txt', 'a') as f:
+            with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
                 f.write('{}'.format(bVar+' '))
                 f.write(cellZ+'\n')
 
@@ -195,7 +195,7 @@ for (pred, (x, y, w, h)) in zip(preds, boxes):
             elif(avgX>226 and avgY>533):
                 cellZ='2 1'
 
-            with open('Output/output.txt', 'a') as f:
+            with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
                 f.write('{}'.format(gVar+' '))
                 f.write(cellZ+'\n')
 
@@ -221,7 +221,7 @@ for (pred, (x, y, w, h)) in zip(preds, boxes):
             elif(avgX>226 and avgY>533):
                 cellZ='2 1'
 
-            with open('Output/output.txt', 'a') as f:
+            with open('Output/'+sys.argv[1]+'/output.txt', 'a') as f:
                 f.write('{}'.format(nVar+' '))
                 f.write(cellZ+'\n')
     
