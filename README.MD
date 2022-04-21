@@ -24,10 +24,16 @@ Install with `pip install opencv-python`
 </br > </br >
 
 Image Detection </br > 
-Install with `pip install tensorflow`</br > 
-Install with `pip install keras`</br > 
-Install with `pip install matplotlib`</br > 
-Install with `pip install imutils`
+1) Install with `pip install tensorflow`</br > 
+2) Install with `pip install keras`</br > 
+3) Install with `pip install matplotlib`</br > 
+4) Install with `pip install imutils`</br > 
+5) Install with `pip install pandas`</br > 
+6) Install with `pip install numpy`</br > 
+7) Download the data folder from 'https://drive.google.com/file/d/1fYbCPbc8EyEOERceZ_bDcN-1pxd69UtX/view?usp=sharing'</br > 
+8) Extract the data folder into /Urban-Science-Code-Builder/WebAPI/Image_Recognition_API/</br > 
+9) Navigate to /Urban-Science-Code-Builder/WebAPI/Image_Recognition_API/ in the terminal</br > 
+10) Build the model by typing `python tf.py` in this directory</br > 
 </br > </br >
 
 Pillow </br > 
