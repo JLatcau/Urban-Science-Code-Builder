@@ -4,7 +4,7 @@ import { dasherize } from "@angular-devkit/core/src/utils/strings";
 // into dashboard.html
 export function getCodeInsert(_options: any): string {
     let dashed = dasherize(_options.name);
-    let string = "<app-" + dashed + "></app-" + dashed + ">";
+    let string = "<app-card><app-" + dashed + "></app-" + dashed + "></app-card>";
 
     return string;
 }
