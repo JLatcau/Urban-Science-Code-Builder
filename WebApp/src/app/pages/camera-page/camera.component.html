@@ -4,7 +4,7 @@
 
     <div *ngIf="isCameraExist; else noCameraExist">
         <div class="content" (window:resize)="onResize($event)">
-            <webcam class="camera" [height]="height" [width]="width" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            <webcam class="camera" [height]="height" [width]="width" [imageQuality]="1" [mirrorImage]="mirrorImage" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
                 *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
         </div>
 

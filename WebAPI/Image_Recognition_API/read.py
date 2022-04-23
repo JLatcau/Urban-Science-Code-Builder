@@ -67,7 +67,7 @@ gray = cv.cvtColor(resized, cv.COLOR_BGR2GRAY)
 blur = cv.bilateralFilter(gray,9,15,75)
 
 # # Finds the Edges
-edges = cv.Canny(blur, 125, 175)
+edges = cv.Canny(blur, 125, 175)  
 
 # # Finds the Contours
 contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
@@ -75,6 +75,8 @@ contours, hierarchies = cv.findContours(edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIM
 
 # # Displays detected Contours
 cv.drawContours(blank, contours, -1, (0,0,255), 4)
+
+cv.imwrite('WaitingRoom/Output.jpg',blank)
 
 # Creates crop variable
 cropped = blank
@@ -100,9 +102,25 @@ for c in cnts:
     # Resize largest dimension to input size
     (tH, tW) = thresh.shape
     if tW > tH:
+        # Calculate the ratio for the new height (new width / old width = scalar)
+        r = 28 / float(tW)
+        rescaledHeight = int(r * tH)
+
+        # If new height is 0, skip this contour (otherwise opencv.resize() will throw an assertion)
+        if rescaledHeight == 0:
+            continue
+
         thresh = imutils.resize(thresh, width=28)
     # Otherwise, resize along the height
     else:
+        # Calculate the ratio for the new width (new height / old height = scalar)
+        r = 28 / float(tH)
+        rescaledWidth = int(r * tW)
+
+        # If new width is 0, skip this contour (otherwise opencv.resize() will throw an assertion)
+        if rescaledWidth == 0:
+            continue
+
         thresh = imutils.resize(thresh, height=28)
 
     # Find how much is needed to pad
@@ -144,10 +162,11 @@ for (pred, (x, y, w, h)) in zip(preds, boxes):
     label = labelNames[i]
 
     # Prints all detected characters into console
-    print(label)
+    if prob>= .5:
+        print(label)
 
-    # Checks if probability is over 60% then outputs character and cell location into text
-    if prob >= .50:
+    # Checks if probability is over 75% then outputs character and cell location into text
+    if prob >= .75:
         if bVar == label:
             print('Bar Chart')
 

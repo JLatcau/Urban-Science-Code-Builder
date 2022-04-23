@@ -14,3 +14,125 @@
 2022-04-22 07:03:51 Error N has a conflicting dashboard slot assignment in row 0 column 1 
 2022-04-22 07:03:51 Error N has a conflicting dashboard slot assignment in row 0 column 1 
 2022-04-22 07:03:51 Information Code generation for aedbaa01-fae4-464e-b543-2c8720952911 completed in 23.9 seconds 
+2022-04-22 08:19:44 Information Now listening on: https://localhost:7112 
+2022-04-22 08:19:44 Information Now listening on: http://localhost:5112 
+2022-04-22 08:19:44 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 08:19:44 Information Hosting environment: Development 
+2022-04-22 08:19:44 Information Content root path: C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 08:20:18 Information Run upload for user_id fe76e7ee-1530-48f1-a22b-193128877d51 
+2022-04-22 08:20:40 Error B has a conflicting dashboard slot assignment in row 2 column 1 
+2022-04-22 08:20:40 Error B has a conflicting dashboard slot assignment in row 1 column 1 
+2022-04-22 08:20:40 Error N has a conflicting dashboard slot assignment in row 0 column 1 
+2022-04-22 08:20:40 Information Code generation for fe76e7ee-1530-48f1-a22b-193128877d51 completed in 22.6 seconds 
+2022-04-22 14:05:44 Information Now listening on: https://localhost:7112 
+2022-04-22 14:05:44 Information Now listening on: http://localhost:5112 
+2022-04-22 14:05:44 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 14:05:44 Information Hosting environment: Development 
+2022-04-22 14:05:44 Information Content root path: C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 14:06:12 Information Run upload for user_id 19caec47-9e16-4605-91d7-3435b3291c07 
+2022-04-22 14:06:27 Information Code generation for 19caec47-9e16-4605-91d7-3435b3291c07 completed in 15.2 seconds 
+2022-04-22 14:38:28 Information Now listening on: https://localhost:7112 
+2022-04-22 14:38:28 Information Now listening on: http://localhost:5112 
+2022-04-22 14:38:28 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 14:38:28 Information Hosting environment: Development 
+2022-04-22 14:38:28 Information Content root path: C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 14:38:42 Information Run upload for user_id 13bdf1e9-7865-4da2-a44d-205f30f3ae4a 
+2022-04-22 14:38:51 Information Code generation for 13bdf1e9-7865-4da2-a44d-205f30f3ae4a completed in 8.6 seconds 
+2022-04-22 14:40:01 Information Run upload for user_id 13bdf1e9-7865-4da2-a44d-205f30f3ae4a 
+2022-04-22 14:40:08 Information Code generation for 13bdf1e9-7865-4da2-a44d-205f30f3ae4a completed in 7.3 seconds 
+2022-04-22 14:43:35 Information Run upload for user_id 3503a7d6-1aca-45fd-86b2-88df47dcecbd 
+2022-04-22 14:43:42 Information Code generation for 3503a7d6-1aca-45fd-86b2-88df47dcecbd completed in 7.1 seconds 
+2022-04-22 14:45:13 Information Run upload for user_id 10affaf2-dc21-4fa7-8966-9af1a4a34933 
+2022-04-22 14:45:22 Information Code generation for 10affaf2-dc21-4fa7-8966-9af1a4a34933 completed in 9.6 seconds 
+2022-04-22 14:47:19 Information Run upload for user_id 090edaa2-1af1-49a5-a032-d1ccc075a017 
+2022-04-22 14:47:28 Information Code generation for 090edaa2-1af1-49a5-a032-d1ccc075a017 completed in 9.5 seconds 
+2022-04-22 14:49:31 Information Run upload for user_id e374813b-07f4-4c76-855e-a9bf94a3c288 
+2022-04-22 14:49:38 Information Code generation for e374813b-07f4-4c76-855e-a9bf94a3c288 completed in 7.1 seconds 
+2022-04-22 14:50:38 Information Run upload for user_id 448ca513-0dc9-4247-9bd4-64912583158f 
+2022-04-22 14:50:47 Information Code generation for 448ca513-0dc9-4247-9bd4-64912583158f completed in 9.1 seconds 
+2022-04-22 14:52:08 Information Run upload for user_id 8c3b83f3-6972-4f67-90ac-b1eee7c1ad7a 
+2022-04-22 14:52:14 Information Code generation for 8c3b83f3-6972-4f67-90ac-b1eee7c1ad7a completed in 6.1 seconds 
+2022-04-22 17:09:05 Information Now listening on: https://localhost:7112 
+2022-04-22 17:09:05 Information Now listening on: http://localhost:5112 
+2022-04-22 17:09:05 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 17:09:05 Information Hosting environment: Development 
+2022-04-22 17:09:05 Information Content root path: C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 17:09:32 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:09:51 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 19.6 seconds 
+2022-04-22 17:11:05 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:11:18 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 13.2 seconds 
+2022-04-22 17:13:19 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:13:30 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 11.2 seconds 
+2022-04-22 17:14:05 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:14:24 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 19.6 seconds 
+2022-04-22 17:15:15 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:15:30 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 15.7 seconds 
+2022-04-22 17:17:04 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:17:12 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 8.6 seconds 
+2022-04-22 17:18:31 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:18:40 Error B has a conflicting dashboard slot assignment in row 1 column 1 
+2022-04-22 17:18:40 Error B has a conflicting dashboard slot assignment in row 1 column 1 
+2022-04-22 17:18:40 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 8.5 seconds 
+2022-04-22 17:20:57 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:21:08 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 11.4 seconds 
+2022-04-22 17:22:08 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:22:14 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 6.4 seconds 
+2022-04-22 17:23:37 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:23:43 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 6.6 seconds 
+2022-04-22 17:28:31 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:28:38 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 6.7 seconds 
+2022-04-22 17:29:34 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:29:49 Error B has a conflicting dashboard slot assignment in row 1 column 1 
+2022-04-22 17:29:49 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 14.9 seconds 
+2022-04-22 17:31:02 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:31:13 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 11.6 seconds 
+2022-04-22 17:31:38 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:31:47 Error B has a conflicting dashboard slot assignment in row 0 column 1 
+2022-04-22 17:31:47 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 8.9 seconds 
+2022-04-22 17:34:31 Information Now listening on: https://localhost:7112 
+2022-04-22 17:34:31 Information Now listening on: http://localhost:5112 
+2022-04-22 17:34:31 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 17:34:31 Information Hosting environment: Development 
+2022-04-22 17:34:31 Information Content root path: C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 17:35:06 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:35:13 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 6.2 seconds 
+2022-04-22 17:41:39 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:41:45 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 6.4 seconds 
+2022-04-22 17:42:34 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:42:40 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 6.5 seconds 
+2022-04-22 17:43:05 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:43:18 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 13.0 seconds 
+2022-04-22 17:48:23 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:48:38 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 14.6 seconds 
+2022-04-22 17:54:27 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 17:54:35 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 8.5 seconds 
+2022-04-22 18:02:53 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 18:03:01 Error B has a conflicting dashboard slot assignment in row 2 column 1 
+2022-04-22 18:03:01 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 8.7 seconds 
+2022-04-22 18:12:45 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 18:12:55 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 10.7 seconds 
+2022-04-22 18:17:58 Information Run upload for user_id 309169d6-3737-4118-9260-a7b7f02e94b8 
+2022-04-22 18:18:11 Information Code generation for 309169d6-3737-4118-9260-a7b7f02e94b8 completed in 12.7 seconds 
+2022-04-22 18:41:46 Information Run upload for user_id 13bd2b26-4da2-4d1f-8674-8ae43f48beeb 
+2022-04-22 18:41:57 Information Code generation for 13bd2b26-4da2-4d1f-8674-8ae43f48beeb completed in 10.8 seconds 
+2022-04-22 18:45:43 Information Run upload for user_id 13bd2b26-4da2-4d1f-8674-8ae43f48beeb 
+2022-04-22 18:45:56 Error N has a conflicting dashboard slot assignment in row 2 column 1 
+2022-04-22 18:45:56 Error G has a conflicting dashboard slot assignment in row 1 column 1 
+2022-04-22 18:45:56 Information Code generation for 13bd2b26-4da2-4d1f-8674-8ae43f48beeb completed in 12.9 seconds 
+2022-04-22 18:49:21 Information Run upload for user_id 13bd2b26-4da2-4d1f-8674-8ae43f48beeb 
+2022-04-22 18:49:29 Information Code generation for 13bd2b26-4da2-4d1f-8674-8ae43f48beeb completed in 8.9 seconds 
+2022-04-22 19:01:41 Information Run upload for user_id 13bd2b26-4da2-4d1f-8674-8ae43f48beeb 
+2022-04-22 19:01:49 Information Code generation for 13bd2b26-4da2-4d1f-8674-8ae43f48beeb completed in 7.2 seconds 
+2022-04-22 19:19:22 Information Run upload for user_id 13bd2b26-4da2-4d1f-8674-8ae43f48beeb 
+2022-04-22 19:19:32 Information Code generation for 13bd2b26-4da2-4d1f-8674-8ae43f48beeb completed in 9.9 seconds 
+2022-04-22 19:31:55 Information Now listening on: https://localhost:7112 
+2022-04-22 19:31:55 Information Now listening on: http://localhost:5112 
+2022-04-22 19:31:55 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 19:31:55 Information Hosting environment: Development 
+2022-04-22 19:31:55 Information Content root path: C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 19:32:14 Information Run upload for user_id 8e5217e7-d3d1-4509-b16e-3e749ed12e05 
+2022-04-22 19:32:38 Information Code generation for 8e5217e7-d3d1-4509-b16e-3e749ed12e05 completed in 24.4 seconds 
+2022-04-22 19:35:13 Information Run upload for user_id 8e5217e7-d3d1-4509-b16e-3e749ed12e05 
+2022-04-22 19:35:35 Information Code generation for 8e5217e7-d3d1-4509-b16e-3e749ed12e05 completed in 21.7 seconds 
+2022-04-22 19:36:16 Information Run upload for user_id 8e5217e7-d3d1-4509-b16e-3e749ed12e05 
+2022-04-22 19:36:53 Information Code generation for 8e5217e7-d3d1-4509-b16e-3e749ed12e05 completed in 37.0 seconds 
