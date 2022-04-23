@@ -3,3 +3,14 @@
 2022-04-20 15:50:18 Information Application started. Press Ctrl+C to shut down. 
 2022-04-20 15:50:18 Information Hosting environment: Development 
 2022-04-20 15:50:18 Information Content root path: C:\Users\ThaAceKlepto\Desktop\VS_Obj_Bug_Fix\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 07:03:08 Information Now listening on: https://localhost:7112 
+2022-04-22 07:03:08 Information Now listening on: http://localhost:5112 
+2022-04-22 07:03:08 Information Application started. Press Ctrl+C to shut down. 
+2022-04-22 07:03:08 Information Hosting environment: Development 
+2022-04-22 07:03:08 Information Content root path: C:\Users\Jacob\Desktop\Schematics_Card_Update\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-22 07:03:27 Information Run upload for user_id aedbaa01-fae4-464e-b543-2c8720952911 
+2022-04-22 07:03:51 Error B has a conflicting dashboard slot assignment in row 2 column 1 
+2022-04-22 07:03:51 Error B has a conflicting dashboard slot assignment in row 1 column 1 
+2022-04-22 07:03:51 Error N has a conflicting dashboard slot assignment in row 0 column 1 
+2022-04-22 07:03:51 Error N has a conflicting dashboard slot assignment in row 0 column 1 
+2022-04-22 07:03:51 Information Code generation for aedbaa01-fae4-464e-b543-2c8720952911 completed in 23.9 seconds 

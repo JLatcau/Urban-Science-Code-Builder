@@ -1119,19 +1119,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ThaAceKlepto\\.nuget\\packages\\": {}
+    "C:\\Users\\Jacob\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ThaAceKlepto\\Desktop\\VS_Obj_Bug_Fix\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Schematics_Card_Update\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\ThaAceKlepto\\Desktop\\VS_Obj_Bug_Fix\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "packagesPath": "C:\\Users\\ThaAceKlepto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ThaAceKlepto\\Desktop\\VS_Obj_Bug_Fix\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+      "projectPath": "C:\\Users\\Jacob\\Desktop\\Schematics_Card_Update\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jacob\\Desktop\\Schematics_Card_Update\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ThaAceKlepto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1200,7 +1205,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200-preview.22055.15\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
