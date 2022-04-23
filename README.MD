@@ -95,3 +95,11 @@ Troubleshooting
 ======================
 
 * Exceptions that occur during the WebAPI's runtime are logged in the "error_log.log" file in the "WebAPI\Logging\Logs" folder.
+
+======================
+
+Deployment
+
+======================
+
+Both the Web App and Web API are currently configured to run on localhost. The Web API's "applicationURL" is set to https://localhost:7112/;http://localhost:5112 in the "WebPI\Properties\launchSettings.json" file, which is also specified in the corresponding "app\_service\file.service.ts" file of the Web App for server requests and API calls.
