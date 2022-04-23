@@ -101,6 +101,8 @@ export class AppComponent implements OnInit,OnDestroy{
   ngOnInit(){ 
     this.user_IdSubscription = this.data.currentUser_Id.subscribe(user_id => this.user_id = user_id);
     this.router.navigate(['']);
+    if (localStorage.getItem("user_id")!==null)
+      console.log("User id in web app: "+localStorage.getItem("user_id"));
   }
 
   // For specefic user instance

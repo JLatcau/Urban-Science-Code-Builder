@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class FileService {
   constructor(private http: HttpClient) {}
 
-  //TODO: make api url easily interchangeable between localhost portuse on different machines
+  //Web API URL, set in launchsettings.json file of Web API
   private url='https://localhost:7112';
   
   public upload(formData: FormData) {
