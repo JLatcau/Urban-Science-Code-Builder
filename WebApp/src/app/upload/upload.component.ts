@@ -17,7 +17,7 @@ export class UploadComponent implements OnInit {
   image;
   response;
   imagePath!: string;
-  user_id!: string;
+  user_id!: string ;
   imagePathSubscription!: Subscription;
   user_IdSubscription!: Subscription;
 
@@ -44,11 +44,19 @@ export class UploadComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
    
-    if (this.user_id==="0"){
+    if (localStorage.getItem("user_id")==null){
     this.user_id=uuidv4();
-    console.log("user id in web app: "+this.user_id);
-    this.data.changeUser_Id(this.user_id);
+    localStorage.setItem("user_id",this.user_id.toString());
+    console.log("User id in web app: "+this.user_id);
+
     }
+    else{
+      var user_id=localStorage.getItem("user_id");
+      if (user_id)
+      this.user_id=user_id;
+    }
+    this.data.changeUser_Id(this.user_id);
+      
     formData.append("user_id",this.user_id);
 
       this.router.navigate(['/loading']);
