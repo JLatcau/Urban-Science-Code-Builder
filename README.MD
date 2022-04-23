@@ -102,4 +102,4 @@ Deployment
 
 ======================
 
-Both the Web App and Web API are currently configured to run on localhost. The Web API's "applicationURL" is set to https://localhost:7112/;http://localhost:5112 in the "WebPI\Properties\launchSettings.json" file, which is also specified in the corresponding "app\_service\file.service.ts" file of the Web App for server requests and API calls.
+Both the Web App and Web API are currently configured to run on localhost. The Web API's "applicationURL" is set to https://localhost:7112/;http://localhost:5112 in the "WebAPI\Properties\launchSettings.json" file, which is also specified in the corresponding "src\app\_service\file.service.ts" file of the Web App for server requests and API calls.
