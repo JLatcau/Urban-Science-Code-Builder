@@ -1119,24 +1119,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jacob\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Dess\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jacob\\Desktop\\Final_Presentation\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "D:\\ProjectRepos\\Schematics_Card_Update\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\Jacob\\Desktop\\Final_Presentation\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
-      "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jacob\\Desktop\\Final_Presentation\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
+      "projectPath": "D:\\ProjectRepos\\Schematics_Card_Update\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\WebAPI.csproj",
+      "packagesPath": "C:\\Users\\Dess\\.nuget\\packages\\",
+      "outputPath": "D:\\ProjectRepos\\Schematics_Card_Update\\Urban-Science-Code-Builder\\WebAPI\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Dess\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

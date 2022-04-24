@@ -109,3 +109,6 @@ C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebA
 C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\ref\WebAPI.dll
 C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.pdb
 C:\Users\Jacob\Desktop\Final_Presentation\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.genruntimeconfig.cache
+D:\ProjectRepos\Schematics_Card_Update\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.dll
+D:\ProjectRepos\Schematics_Card_Update\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\ref\WebAPI.dll
+D:\ProjectRepos\Schematics_Card_Update\Urban-Science-Code-Builder\WebAPI\WebAPI\obj\Debug\net6.0\WebAPI.pdb

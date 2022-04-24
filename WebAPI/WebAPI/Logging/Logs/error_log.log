@@ -136,3 +136,10 @@
 2022-04-22 19:35:35 Information Code generation for 8e5217e7-d3d1-4509-b16e-3e749ed12e05 completed in 21.7 seconds 
 2022-04-22 19:36:16 Information Run upload for user_id 8e5217e7-d3d1-4509-b16e-3e749ed12e05 
 2022-04-22 19:36:53 Information Code generation for 8e5217e7-d3d1-4509-b16e-3e749ed12e05 completed in 37.0 seconds 
+2022-04-24 02:46:03 Information Now listening on: https://localhost:7112 
+2022-04-24 02:46:03 Information Now listening on: http://localhost:5112 
+2022-04-24 02:46:03 Information Application started. Press Ctrl+C to shut down. 
+2022-04-24 02:46:03 Information Hosting environment: Development 
+2022-04-24 02:46:03 Information Content root path: D:\ProjectRepos\Schematics_Card_Update\Urban-Science-Code-Builder\WebAPI\WebAPI\ 
+2022-04-24 02:47:09 Information Run upload for user_id 4a3b81ad-b853-4cd9-944b-c97132178f22 
+2022-04-24 02:47:33 Information Code generation for 4a3b81ad-b853-4cd9-944b-c97132178f22 completed in 23.5 seconds 
