@@ -27,6 +27,8 @@ export class CameraComponent implements OnInit {
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
+  public mirrorImage = "never";
+
   public webcamImage;
   public imageName = "webcamCapture.png";
   public imageFormat= "image/png";
